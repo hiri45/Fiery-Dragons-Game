@@ -1,10 +1,10 @@
-package src;
+package src.gui;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Main{
+public class SquareTile extends JPanel {
     public static void main(String[] args) {
 
     }
-
 }
