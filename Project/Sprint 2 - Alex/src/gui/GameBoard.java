@@ -13,7 +13,7 @@ public class GameBoard {
         frame.setVisible(true);
         frame.setTitle("Fiery Dragon");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        frame.add(new DragonCard());
         frame.pack();
 
 
