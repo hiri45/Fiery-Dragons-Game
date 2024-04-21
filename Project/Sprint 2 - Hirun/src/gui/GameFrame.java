@@ -1,26 +1,33 @@
 package gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GameFrame extends JFrame {
-    private static final int WINDOW_SIZE = 750;
-    private static final int INNER_BOARD_SIZE = 150; //used to represent the Dragon Cards
+    private static final int WINDOW_SIZE = 1000;
+    private static final int INNER_BOARD_SIZE = 400; //used to represent the Dragon Cards
     private static final int GRID_ROWS = 4;
     private static final int GRID_COLS = 4;
-
     public GameFrame() {
         setTitle("Fiery Dragons");
         setSize(WINDOW_SIZE, WINDOW_SIZE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout()); // The layout manager
 
-        JPanel gridPanel = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS)); // for the basic game use a grid of 4x4 to represent the dragon cards in the middle
+        JPanel gridPanel = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS,10,10)); // for the basic game use a grid of 4x4 to represent the dragon cards in the middle
         gridPanel.setPreferredSize(new Dimension(INNER_BOARD_SIZE, INNER_BOARD_SIZE)); // Setting the preferred size of the grid panel
 
-        // Create the 4x4 grid by adding sub-panels
+        // Load the dragon image
+        try {
+            BufferedImage dragonImage = ImageIO.read(getClass().getResourceAsStream("/gui/GameImages/DragonCardImage.png"));
+            Image scaledImage = dragonImage.getScaledInstance(250 / GRID_COLS, -1, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(scaledImage);
+        // Create the 4x4 grid by adding button sub-panels with image on button representing dragon card before flipped
         for (int i = 0; i < GRID_ROWS * GRID_COLS; i++) {
-            JPanel cellPanel = new JPanel();
+            JButton cellPanel = new JButton(icon);
             cellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Add border to each cell
             gridPanel.add(cellPanel); // Add cell panel to the grid
         }
@@ -29,5 +36,7 @@ public class GameFrame extends JFrame {
         add(gridPanel); // The panel is centered by default using GridBagLayout
 
         setLocationRelativeTo(null); // Center the frame on screen
-    }
-}
+    } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }}
