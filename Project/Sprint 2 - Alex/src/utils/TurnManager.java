@@ -22,16 +22,15 @@ public class TurnManager {
     }
 
     public static TurnManager getInstance(int playerCount){
+        //Ensure only one Turnmanager instance exists
         if(instance == null){
             instance = new TurnManager(playerCount);
         }
         return instance;
     }
 
-    public void players(int playerCount){
-
-    }
     public void updatePlayerTurn(){
+        //Update the player's turn
         if (playerTurn < (players.size()-1)){
             playerTurn += 1;
         }else{
@@ -40,6 +39,7 @@ public class TurnManager {
 
     }
     public void resetPlayerCount(){
+        //at the end of the game, if a player wants to choose a different number of players, reset the player count
         playerCount = 0;
         players = new ArrayList<>();
     }
