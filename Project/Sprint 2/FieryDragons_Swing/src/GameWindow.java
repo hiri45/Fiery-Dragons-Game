@@ -1,34 +1,35 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 // This is the class that creates the Window in which the game will be played
 public class GameWindow extends JFrame {
     public GameWindow(){
-        int screenWidth = 1600;
-        int screenHeight = 900;
+        int screenWidth = 1900;
+        int screenHeight = 1080;
 
         // set panels
         JPanel boardPanel = new JPanel();
         Color darkGreenBackground = new Color(0,153,0);
-        boardPanel.setBackground(darkGreenBackground);
-        int boardPanelWidth = (int) (0.7 * screenWidth);
-        boardPanel.setBounds(0,0,boardPanelWidth,screenHeight);
+        boardPanel.setBackground(Color.white);
+        boardPanel.setBounds(0,0,screenWidth,screenHeight);
         boardPanel.setLayout(null);
 
         // To make sure the dragonpool is always in the middle
-        int DragonPoolDiameter = (int) (boardPanelWidth/2.5); //Dynamic dragon pool size so that it always scales with screen size
-        int DragonCardPoolX = (boardPanelWidth - DragonPoolDiameter) / 2;
+        int DragonPoolDiameter = (screenWidth/4); //Dynamic dragon pool size so that it always scales with screen size
+        int DragonCardPoolX = (screenWidth - DragonPoolDiameter) / 2;
         int DragonCardPoolY = (screenHeight - DragonPoolDiameter) / 2;
 
         // Create a circular panel and add it to the boardPanel
-        CircularPanel DragonCardPool = new CircularPanel();
+        DragonCardPool DragonCardPool = new DragonCardPool();
         DragonCardPool.setBounds(DragonCardPoolX, DragonCardPoolY, DragonPoolDiameter, DragonPoolDiameter);
-        boardPanel.add(DragonCardPool);
+        add(DragonCardPool);
 
-        JPanel boardControllerPanel = new JPanel();
-        boardControllerPanel.setBackground(Color.white);
-        boardControllerPanel.setBounds(0,0,screenWidth - boardPanelWidth, screenHeight);
+        // Add 24 squares around the DragonCardPool
+        addSquaresAroundCircle(boardPanel, DragonCardPoolX, DragonCardPoolY, DragonPoolDiameter);
+
+//        JPanel boardControllerPanel = new JPanel();
+//        boardControllerPanel.setBackground(Color.white);
+//        boardControllerPanel.setBounds(0,0,screenWidth - boardPanelWidth, screenHeight);
 
 
 
@@ -44,25 +45,27 @@ public class GameWindow extends JFrame {
         setTitle("Fiery Dragons");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(screenWidth, screenHeight);
-//        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         add(boardPanel);
         boardPanel.add(gameName);
         setLayout(null);
 
     }
-    // Class to create a cirular Panel for the dragon cards
-    private class CircularPanel extends JPanel {
+    private void addSquaresAroundCircle(JPanel panel, int centerX, int centerY, int diameter) {
+        int radius = diameter / 2 + 150; // slightly outside the circle
+        int squareSize = 50; // size of each square
+        double angleStep = 360.0 / 24;
 
-        public CircularPanel(){
-            setOpaque(false); //This is to make the Panel transparent (other than the circle)
+        for (int i = 0; i < 24; i++) {
+            double angle = Math.toRadians(angleStep * i);
+            int x = (int) (centerX + radius * Math.cos(angle) + diameter / 2 - squareSize / 2); // adjust x position
+            int y = (int) (centerY + radius * Math.sin(angle) + diameter / 2 - squareSize / 2); // adjust y position
 
-        }
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Color brownBackground = new Color(54,34,4);
-            g.setColor(brownBackground);
-            g.fillOval(0, 0, this.getWidth(), this.getHeight());
+            JPanel square = new JPanel();
+            square.setBackground(Color.gray);
+            square.setBounds(x, y, squareSize, squareSize);
+            panel.add(square);
         }
     }
+
 }
