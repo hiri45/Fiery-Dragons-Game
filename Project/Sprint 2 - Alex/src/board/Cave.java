@@ -13,4 +13,8 @@ public class Cave {
     public DragonToken getCaveOwner(){
         return caveOwner;
     }
+
+    public void setCavePosition(int position){
+        cavePosition = position;
+    }
 }

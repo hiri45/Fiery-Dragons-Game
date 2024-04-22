@@ -7,4 +7,12 @@ public class Square {
         this.creature = creature;
 
     }
+
+    public void setPosition(int position){
+        this.position = position;
+    }
+
+    public CreatureType getCreature() {
+        return creature;
+    }
 }
