@@ -18,8 +18,8 @@ public class WindowPanel extends JPanel {
         return height;
     }
 
-    private final int offsetX = 125;
-    private final int offsetY = 150;
+    private int offsetX;
+    private int offsetY;
     private final int caveSize = 75;
 
     private final int cardSize = 60;
@@ -31,6 +31,15 @@ public class WindowPanel extends JPanel {
     public WindowPanel() {
         this.setLayout(null); // Use a null layout manager for absolute positioning
         this.setPreferredSize(new Dimension(width, height));
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+
+        // Calculate offsets to center the board
+        int totalBoardWidth = gridSize * squareSize;
+        int totalBoardHeight = gridSize * squareSize;
+        this.offsetX = centerX - (totalBoardWidth / 2);
+        this.offsetY = centerY - (totalBoardHeight / 2);
+
         createSquaresAndCaves();
         createDragonCards();
     }
