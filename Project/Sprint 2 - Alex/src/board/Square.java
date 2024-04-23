@@ -15,4 +15,9 @@ public class Square {
     public CreatureType getCreature() {
         return creature;
     }
+
+    public String ui() {
+        return this.creature.toString();
+
+    }
 }

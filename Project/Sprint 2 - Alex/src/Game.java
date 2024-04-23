@@ -2,6 +2,7 @@ package src;
 
 import src.board.BoardArray;
 import src.board.DragonCardArray;
+import src.utils.Controller;
 import src.utils.TurnManager;
 
 public class Game{
@@ -19,6 +20,9 @@ public class Game{
         //Create a turn manager and add players
         playerCount = 4;
         TurnManager turnManager = TurnManager.getInstance(playerCount);
+
+        Controller uiController = new Controller();
+        uiController.createGameBoard();
     }
 
 }
