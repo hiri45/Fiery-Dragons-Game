@@ -76,22 +76,6 @@ public class WindowPanel extends JPanel {
         this.add(cave);
     }
 
-    // Inner class for square panels
-    private class SquarePanel extends JPanel {
-        public SquarePanel() {
-            // Set the border to replicate the drawn rectangle
-            this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            this.setOpaque(false); // Make the square transparent
-        }
-    }
-
-    // Inner class for cave panels
-    private class CavePanel extends JPanel {
-        public CavePanel(Color bgColor) {
-            this.setBackground(bgColor);
-            this.setOpaque(true); // Caves are not transparent
-        }
-    }
     private void createDragonCards() {
         // Define the number of cards horizontally and vertically
         int cardsPerRow = 4;
