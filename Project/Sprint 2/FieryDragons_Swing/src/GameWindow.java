@@ -9,8 +9,8 @@ public class GameWindow extends JFrame {
 
         // set panels
         JPanel boardPanel = new JPanel();
-        Color darkGreenBackground = new Color(0,153,0);
-        boardPanel.setBackground(Color.white);
+        Color darkGreenBackground = new Color(0,75,0);
+        boardPanel.setBackground(darkGreenBackground);
         boardPanel.setBounds(0,0,screenWidth,screenHeight);
         boardPanel.setLayout(null);
 

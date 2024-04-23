@@ -4,13 +4,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 class DragonCard extends JPanel {
-    private final ImageIcon front;
+    private final ImageIcon front = new ImageIcon("src/Images/dragon card resize.png");
     private final String back;
     private boolean isFrontVisible = true;
     private int amount;
 
-    public DragonCard(ImageIcon front, String back, int amount) {
-        this.front = front;
+    public DragonCard(String back, int amount) {
+//        this.front = new ImageIcon("src/Images/FD logo.png");
         this.back = back;
         this.amount = amount;
 //        setPreferredSize(new Dimension(100, 150)); // Assuming card size

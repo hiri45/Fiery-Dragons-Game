@@ -1,13 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import Creature.*;
 
 public class DragonCardPool extends JPanel {
 
     public Creature[] creatureArray = {new Bat(), new BabyDragon(), new Salamander(), new Spider()};
-    public Creature[] enemy = {new PirateDragon()};
+    public Creature[] enemy = {new PirateDragon(), new PirateDragon()};
     public DragonCardPool() {
         setOpaque(false); // Make the Panel transparent (other than the circle)
         setLayout(new GridLayout(4, 4, 10, 10)); // Layout with 4 rows, 4 columns, and gaps
@@ -15,23 +16,29 @@ public class DragonCardPool extends JPanel {
     }
 
     private void generateDragonCards() {
-        int numberOfCards = 12;
-        DragonCard[] dragonCards = new DragonCard[numberOfCards];
-        int counter = 0;
+
+        ArrayList<DragonCard> dragonCards = new ArrayList<>();
         for (Creature i: creatureArray)
         {
-            for (int j = 1; j < 3; j ++)
+            for (int j = 1; j <= 3; j ++)
             {
-
-                DragonCard card = new DragonCard(new ImageIcon("src/Images/FD logo.png"),i.getName() +" x"+j,j);
-                dragonCards[counter] = card;
-                counter ++;
-                System.out.println(counter);
-                System.out.println(dragonCards[counter].getBack());
+                DragonCard card = new DragonCard(i.getName() +" x"+j,j);
+                dragonCards.add(card);
             }
         }
-
-
+        for (Creature i: enemy)
+        {
+            for (int j = 1; j <= 2; j ++)
+            {
+                DragonCard card = new DragonCard(i.getName() +" x"+j,j);
+                dragonCards.add(card);
+            }
+        }
+        Collections.shuffle(dragonCards); // This shuffles the dragon cards arrayList so we can randomise placement of the dragon cards
+        for(DragonCard i : dragonCards)
+        {
+            add(i);
+        }
     }
 
     @Override
