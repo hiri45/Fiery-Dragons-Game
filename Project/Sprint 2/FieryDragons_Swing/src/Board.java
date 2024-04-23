@@ -33,20 +33,25 @@ public class Board extends JPanel {
         for (int i = 0; i < x; i++) {
             int offset = i * (volcanoSideLength + gap);
 
+
             VolcanoCard topVolcanoCard = new VolcanoCard();
-            topVolcanoCard.setBounds(this.dragonCardPoolX + offset, this.dragonCardPoolY - volcanoSideLength - gap, volcanoSideLength, volcanoSideLength);
+            topVolcanoCard.setBounds(this.dragonCardPoolX + offset, this.dragonCardPoolY - volcanoSideLength/x, volcanoSideLength, volcanoSideLength/x);
+            topVolcanoCard.setLayout(new GridLayout(1,3,10,10));
             add(topVolcanoCard);
 
             VolcanoCard bottomVolcanoCard = new VolcanoCard();
-            bottomVolcanoCard.setBounds(this.dragonCardPoolX + offset, this.dragonCardPoolY + effectiveLength, volcanoSideLength, volcanoSideLength);
+            bottomVolcanoCard.setBounds(this.dragonCardPoolX + offset, this.dragonCardPoolY + effectiveLength, volcanoSideLength, volcanoSideLength/x);
             add(bottomVolcanoCard);
+            bottomVolcanoCard.setLayout(new GridLayout(1,3,10,10));
 
             VolcanoCard leftVolcanoCard = new VolcanoCard();
-            leftVolcanoCard.setBounds(this.dragonCardPoolX - volcanoSideLength - gap, this.dragonCardPoolY + offset, volcanoSideLength, volcanoSideLength);
+            leftVolcanoCard.setBounds(this.dragonCardPoolX - volcanoSideLength/x, this.dragonCardPoolY + offset, volcanoSideLength/x, volcanoSideLength);
+            leftVolcanoCard.setLayout(new GridLayout(3,1,10,10));
             add(leftVolcanoCard);
 
             VolcanoCard rightVolcanoCard = new VolcanoCard();
-            rightVolcanoCard.setBounds(this.dragonCardPoolX + effectiveLength, this.dragonCardPoolY + offset, volcanoSideLength, volcanoSideLength);
+            rightVolcanoCard.setBounds(this.dragonCardPoolX + effectiveLength, this.dragonCardPoolY + offset, volcanoSideLength/x, volcanoSideLength);
+            rightVolcanoCard.setLayout(new GridLayout(3,1,10,10));
             add(rightVolcanoCard);
         }
     }
