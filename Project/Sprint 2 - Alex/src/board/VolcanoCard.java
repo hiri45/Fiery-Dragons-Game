@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class VolcanoCard {
     private int squareCount;
     private boolean hasCave;
-    private ArrayList<Square> squares;
+    private ArrayList<Square> squares = new ArrayList<>();
     private Cave cave;
 
     private int startPosition;
@@ -14,6 +14,10 @@ public class VolcanoCard {
         this.hasCave = hasCave;
 
 
+    }
+
+    public ArrayList<Square> getSquares() {
+        return squares;
     }
 
     public void setStartPosition(int startPosition){

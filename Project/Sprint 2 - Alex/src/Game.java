@@ -12,7 +12,9 @@ public class Game{
 
         //Create the board
         BoardArray boardArray = BoardArray.getInstance();
-
+        boardArray.addVolcanoCards(8,3);
+        boardArray.shuffleAndCombine();
+        boardArray.addPosition(8,3);
         //Create the chit cards
         DragonCardArray dragonCardArray = new DragonCardArray();
 
