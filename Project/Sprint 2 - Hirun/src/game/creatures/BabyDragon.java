@@ -1,4 +1,4 @@
-package gui;
+package game.creatures;
 
 public class BabyDragon extends Creature{
     public BabyDragon() {

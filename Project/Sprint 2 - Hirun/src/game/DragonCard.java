@@ -1,4 +1,4 @@
-package gui;
+package game;
 
 import javax.swing.*;
 
@@ -38,7 +38,7 @@ public class DragonCard {
         return creatureQuant;
     }
 
-    void flipDragon(JButton button, int cardIndex) {
+    public void flipDragon(JButton button, int cardIndex) {
         // Set the button's text to the string from the dragonCardFlipped array. This dragonCardFlipped array is only displayed like this for the time being.
         // corresponding to the index of the button that was clicked
         String[] dragonCardFlipped = {"1 salamander","2 salamander", "3 salamander","1 bat",
