@@ -36,6 +36,7 @@ public class GamePanel extends JFrame {
                 JButton cellPanel = new JButton(icon);
                 cellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Add border to each cell
                 int finalI = i;
+                // for now just having a JLabel with a string when flipped but will represent the icon in future
                 cellPanel.addActionListener(_ -> dragonCard.flipDragon(cellPanel, finalI)); // Add action listener to flip the dragon card
                 gridPanel.add(cellPanel); // Add cell panel to the grid
             }
