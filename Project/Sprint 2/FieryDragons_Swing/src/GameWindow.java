@@ -17,7 +17,7 @@ public class GameWindow extends JFrame {
         setLayout(null);
 
         // set panels
-        Board boardPanel = new Board(screenWidth, screenHeight);
+        Board boardPanel = new Board(screenWidth, screenHeight,4);
         add(boardPanel);
     }
     public static void main(String[] args) {
