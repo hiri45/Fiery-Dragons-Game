@@ -31,10 +31,10 @@ public class Board extends JPanel {
         normalVolcanoCards.add(set2);
         normalVolcanoCards.add(set3);
         normalVolcanoCards.add(set4);
-        normalVolcanoCards.add(set5);
-        normalVolcanoCards.add(set6);
-        normalVolcanoCards.add(set7);
-        normalVolcanoCards.add(set8);
+        caveVolcanoCards.add(set5);
+        caveVolcanoCards.add(set6);
+        caveVolcanoCards.add(set7);
+        caveVolcanoCards.add(set8);
 
         setBounds(0,0,screenWidth,screenHeight);
         Color darkGreenBackground = new Color(0,75,0);
@@ -42,44 +42,46 @@ public class Board extends JPanel {
         setLayout(null);
 
 
-        placeVolcano(2);
+        placeVolcano(8);
         placeDragonCardPool();
     }
+    private void setupVolcanoCard(VolcanoCard card, int x, int y, int width, int height, int rows, int cols) {
+        card.setBounds(x, y, width, height);
+        card.setLayout(new GridLayout(rows, cols, 10, 10));
+        add(card);
+    }
 
-    private void placeVolcano(int x)
-    {
-        // Define dimensions and spacing for the squares (tiles) around the dragon card pool
-        int gap = 10; // Gap between panels
-        int effectiveLength = dragonPoolSideLength; // Panels plus gaps must fill the entire side length
-
-        // Calculate the side length of each volcano tile based on the number of gaps (x - 1) and the total number of panels (x)
-        int volcanoSideLength = (effectiveLength - (x - 1) * gap) / x;
-
-        // Correcting starting points to align with dragon card pool
+    private void placeVolcano(int totalVolcanoCards) {
+        //I have made the parameter the total amount of cards as I believe this will make it more simple to expand in the future. It may seem redundant now
+        totalVolcanoCards = totalVolcanoCards / 4; // Divide by amount of sides which is 4. This is how many cards are on each side of the board
+        int gap = 10; // Gap between cards.
+        int effectiveLength = dragonPoolSideLength; // set like this in case effectiveLength needs an extension in the future. Also, easier to understand this section of the code
         Collections.shuffle(normalVolcanoCards);
-        for (int i = 0; i < x; i++) {
-            int offset = i * (volcanoSideLength + gap);
+        Collections.shuffle(caveVolcanoCards);
 
+        int volcanoSideLength = (effectiveLength - (totalVolcanoCards - 1) * gap) / totalVolcanoCards;
+        int tileHeight = volcanoSideLength / totalVolcanoCards;
+        int tileWidth = volcanoSideLength / totalVolcanoCards;
 
-            VolcanoCard topVolcanoCard = new VolcanoCard(normalVolcanoCards.get(3*i));
-            topVolcanoCard.setBounds(this.dragonCardPoolX + offset, this.dragonCardPoolY - volcanoSideLength/x, volcanoSideLength, volcanoSideLength/x);
-            topVolcanoCard.setLayout(new GridLayout(1,3,10,10));
-            add(topVolcanoCard);
+        /*
+         Place the 4 cave cards as the first volcano card of each side.
+         Right and Top cards generate from opposite directions to Left and Bottom.
+         This ensures that, even though the cave card is the first card generated on that side,
+         the distance between each cave volcano card is the same
+        */
+        setupVolcanoCard(new VolcanoCard(caveVolcanoCards.get(0)), dragonCardPoolX + effectiveLength - volcanoSideLength, dragonCardPoolY - tileHeight, volcanoSideLength, tileHeight, 1, 3);
+        setupVolcanoCard(new VolcanoCard(caveVolcanoCards.get(1)), dragonCardPoolX, dragonCardPoolY + effectiveLength, volcanoSideLength, tileHeight, 1, 3);
+        setupVolcanoCard(new VolcanoCard(caveVolcanoCards.get(2)), dragonCardPoolX - tileWidth, dragonCardPoolY, tileWidth, volcanoSideLength, 3, 1);
+        setupVolcanoCard(new VolcanoCard(caveVolcanoCards.get(3)), dragonCardPoolX + effectiveLength, dragonCardPoolY + effectiveLength - volcanoSideLength, tileWidth, volcanoSideLength, 3, 1);
 
-            VolcanoCard bottomVolcanoCard = new VolcanoCard(normalVolcanoCards.get(3*i+1));
-            bottomVolcanoCard.setBounds(this.dragonCardPoolX + offset, this.dragonCardPoolY + effectiveLength, volcanoSideLength, volcanoSideLength/x);
-            add(bottomVolcanoCard);
-            bottomVolcanoCard.setLayout(new GridLayout(1,3,10,10));
+        // Place normal volcano cards
+        for (int i = 0; i < totalVolcanoCards - 1; i++) {
+            int offset = (i + 1) * (volcanoSideLength + gap);
 
-            VolcanoCard leftVolcanoCard = new VolcanoCard(normalVolcanoCards.get(3*i+1));
-            leftVolcanoCard.setBounds(this.dragonCardPoolX - volcanoSideLength/x, this.dragonCardPoolY + offset, volcanoSideLength/x, volcanoSideLength);
-            leftVolcanoCard.setLayout(new GridLayout(3,1,10,10));
-            add(leftVolcanoCard);
-
-            VolcanoCard rightVolcanoCard = new VolcanoCard(normalVolcanoCards.get(3*i+1));
-            rightVolcanoCard.setBounds(this.dragonCardPoolX + effectiveLength, this.dragonCardPoolY + offset, volcanoSideLength/x, volcanoSideLength);
-            rightVolcanoCard.setLayout(new GridLayout(3,1,10,10));
-            add(rightVolcanoCard);
+            setupVolcanoCard(new VolcanoCard(normalVolcanoCards.get(3 * i)), dragonCardPoolX + effectiveLength - offset - volcanoSideLength, dragonCardPoolY - tileHeight, volcanoSideLength, tileHeight, 1, 3);
+            setupVolcanoCard(new VolcanoCard(normalVolcanoCards.get(3 * i + 1)), dragonCardPoolX + offset, dragonCardPoolY + effectiveLength, volcanoSideLength, tileHeight, 1, 3);
+            setupVolcanoCard(new VolcanoCard(normalVolcanoCards.get(3 * i + 2)), dragonCardPoolX - tileWidth, dragonCardPoolY + offset, tileWidth, volcanoSideLength, 3, 1);
+            setupVolcanoCard(new VolcanoCard(normalVolcanoCards.get(3 * i + 3)), dragonCardPoolX + effectiveLength, dragonCardPoolY + effectiveLength - offset - volcanoSideLength, tileWidth, volcanoSideLength, 3, 1);
         }
     }
 
