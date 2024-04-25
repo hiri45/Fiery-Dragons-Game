@@ -67,8 +67,6 @@ public class Board extends JPanel {
         int panelY = y;
 
         switch (panelPosition.toLowerCase()) {
-            case "none":
-                break;
             case "top":
                 panelX = x + gridWidth;
                 panelY = y - gridHeight;

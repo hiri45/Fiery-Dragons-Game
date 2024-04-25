@@ -22,7 +22,8 @@ public abstract class Cave extends JPanel{
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));  // Set a visible border
 
         // Optionally, add a label or other components
-        JLabel label = new JLabel(image);
+//        JLabel label = new JLabel(image);
+        JLabel label = new JLabel(creature.getName()+"Cave");
         this.add(label);
     }
 
