@@ -1,5 +1,7 @@
 package src.gui;
 
+import src.actors.Actor;
+import src.actors.DragonToken;
 import src.board.BoardArray;
 import src.board.Cave;
 import src.board.Square;
@@ -104,8 +106,6 @@ public class WindowPanel extends JPanel {
                 String label = volcanoCardSquares.get(j).ui();
                 JLabel creatureLabel = new JLabel(label);
                 labels.add(creatureLabel);
-
-
             }
         }
         Random rand = new Random();
@@ -138,20 +138,20 @@ public class WindowPanel extends JPanel {
             }
         }
         //place first cave down on the map starting from the left side of the board, and then place the rest of the caves down
-            VolcanoCard card = volcanoCards.get(0);
+        VolcanoCard card = volcanoCards.get(0);
 
-            if (card.hasCave()) {
-                addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize);//top left cave
-                addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize);//right top cave
-                addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize + 1 * squareSize, offsetY + gridSize * squareSize);//bottom left right cave
-                addCave(caves.get(3),offsetX - caveSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize); //left bottom cave
-            }else{
-                addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize + squareSize, offsetY - caveSize); //top cave right
-                addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize); // right cave bottom
-                addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY + gridSize * squareSize); // bottom cave left
-                addCave(caves.get(3),offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize); // Left cave top
+        if (card.hasCave()) {
+            addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize);//top left cave
+            addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize);//right top cave
+            addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize + 1 * squareSize, offsetY + gridSize * squareSize);//bottom left right cave
+            addCave(caves.get(3),offsetX - caveSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize); //left bottom cave
+        }else{
+            addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize + squareSize, offsetY - caveSize); //top cave right
+            addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize); // right cave bottom
+            addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY + gridSize * squareSize); // bottom cave left
+            addCave(caves.get(3),offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize); // Left cave top
+        }
 
-            }
     }
 
     private void addCave(Cave cave, int x, int y) {
@@ -160,6 +160,11 @@ public class WindowPanel extends JPanel {
         this.add(cavePanel);
     }
 
+    private void addDragonToken(DragonToken dragonToken, int x, int y){
+        JPanel dragonTokenPanel = new DragonTokenPanel(dragonToken);
+        dragonTokenPanel.setBounds(x,y,50,50);
+        this.add(dragonTokenPanel,0);
+    }
     private void createDragonCards() {
         // Define the number of cards horizontally and vertically
         int cardsPerRow = 4;

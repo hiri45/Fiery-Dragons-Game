@@ -2,23 +2,25 @@ package src.actors;
 
 import src.board.Cave;
 
-public class DragonToken {
-    private boolean turn;
-    private int startingPosition;
+public class DragonToken extends Actor{
+
     private Cave cave;
 
-    public DragonToken() {
-
+    public DragonToken(int id){
+        super(id);
     }
-    public void playTurn(){
-        boolean continueTurn;
+    public Cave getCave(){
+        return cave;
     }
 
     public void setCave(Cave cave){
         this.cave = cave;
     }
 
-    public Cave getCave(){
-        return cave;
-    }
+
+
+
+
+
+
 }

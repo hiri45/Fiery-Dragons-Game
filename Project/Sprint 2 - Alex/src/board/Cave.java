@@ -1,5 +1,6 @@
 package src.board;
 
+import src.actors.Actor;
 import src.actors.DragonToken;
 
 public class Cave {
@@ -7,10 +8,17 @@ public class Cave {
     private int cavePosition;
     private DragonToken caveOwner;
 
-    Cave(CreatureType creatureType){
+
+
+    Cave(CreatureType creatureType, DragonToken caveOwner){
         this.creatureType = creatureType;
+        this.caveOwner = caveOwner;
+        caveOwner.setCave(this);
     }
-    public DragonToken getCaveOwner(){
+    public CreatureType getCreatureType() {
+        return creatureType;
+    }
+    public Actor getCaveOwner(){
         return caveOwner;
     }
 

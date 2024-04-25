@@ -1,5 +1,8 @@
 package src.board;
 
+import src.actors.DragonToken;
+import src.utils.PlayerManager;
+
 import java.util.ArrayList;
 
 public class VolcanoCard {
@@ -40,15 +43,28 @@ public class VolcanoCard {
             squares.get(i).setPosition(cardPosition);
             cardPosition++;
         }
+        if(this.hasCave){
+            initialiseCave();
+        }
     }
     public void initialiseCave(){
         int middleSquare = 1;
         //add a new cave
         if (this.hasCave){
-            cave = new Cave(squares.get(middleSquare).getCreature());
+            for(DragonToken dragonToken: PlayerManager.getInstance().players){
+                //if a player doesn't have a cave, allocate the dragonToken the Cave Owner
+                if(dragonToken.getCave() == null){
+
+                    cave = new Cave(squares.get(middleSquare).getCreature(),dragonToken);
+                    break;
+                }
+
+            }
+
         }
     }
 
-
-
+    public Cave getCave() {
+        return cave;
+    }
 }
