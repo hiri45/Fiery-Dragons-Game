@@ -9,4 +9,5 @@ public class SquarePanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setOpaque(false); // Make the square transparent
     }
+
 }

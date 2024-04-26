@@ -12,6 +12,10 @@ public class Square {
         this.position = position;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public CreatureType getCreature() {
         return creature;
     }

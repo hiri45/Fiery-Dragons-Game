@@ -33,15 +33,11 @@ public class VolcanoCard {
 
     public void initialiseSquares(CreatureType creature1,CreatureType creature2, CreatureType creature3){
         //give each square a position on the board
-        int cardPosition = startPosition;
+
         if (squares.size() < squareCount){
             squares.add(new Square(creature1));
             squares.add(new Square(creature2));
             squares.add(new Square(creature3));
-        }
-        for (int i = 0; i < squares.size();i++){
-            squares.get(i).setPosition(cardPosition);
-            cardPosition++;
         }
         if(this.hasCave){
             initialiseCave();
@@ -61,6 +57,14 @@ public class VolcanoCard {
 
             }
 
+        }
+    }
+    public void setPosition(){
+        int cardPosition = startPosition;
+        for (int i = 0; i < squares.size();i++){
+            System.out.println(cardPosition);
+            squares.get(i).setPosition(cardPosition);
+            cardPosition++;
         }
     }
 

@@ -83,10 +83,16 @@ public class BoardArray {
 
     public void addPosition(int volcanoCardCount, int squaresPerVC){
         //add the starting position to each volcano card
-        board.get(0).setStartPosition(0);
-        for (int i = 2; i < volcanoCardCount; i += 3){
-            board.get(i).setStartPosition(i);
+        int counter = 0;
+        board.get(0).setStartPosition(counter);
+        counter += 3;
+        for (int i = 1; i < volcanoCardCount; i ++){
+            board.get(i).setStartPosition(counter);
+            counter += 3;
 
+        }
+        for (int i = 0; i < volcanoCardCount; i ++){
+            board.get(i).setPosition();
         }
     }
 
