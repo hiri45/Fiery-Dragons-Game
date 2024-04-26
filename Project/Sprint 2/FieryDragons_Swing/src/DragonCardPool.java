@@ -22,7 +22,7 @@ public class DragonCardPool extends JPanel {
         {
             for (int j = 1; j <= 3; j ++)
             {
-                DragonCard card = new DragonCard(i.getName() +" x"+j,j);
+                DragonCard card = new DragonCard(i,j);
                 dragonCards.add(card);
             }
         }
@@ -30,7 +30,7 @@ public class DragonCardPool extends JPanel {
         {
             for (int j = 1; j <= 2; j ++)
             {
-                DragonCard card = new DragonCard(i.getName() +" x"+j,j);
+                DragonCard card = new DragonCard(i,j);
                 dragonCards.add(card);
             }
         }

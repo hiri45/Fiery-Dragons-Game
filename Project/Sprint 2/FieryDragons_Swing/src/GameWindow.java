@@ -9,6 +9,7 @@ public class GameWindow extends JFrame {
     public GameWindow(){
         int screenWidth = 1900;
         int screenHeight = 1080;
+        int players = 2;
 
         setTitle("Fiery Dragons");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -17,8 +18,8 @@ public class GameWindow extends JFrame {
         setLayout(null);
 
         // set panels
-        Board boardPanel = new Board(screenWidth, screenHeight,4);
-        add(boardPanel);
+        add(Board.getInstance(screenWidth,screenHeight,players));
+
     }
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {

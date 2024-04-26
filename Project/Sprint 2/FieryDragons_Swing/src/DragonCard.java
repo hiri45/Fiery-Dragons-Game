@@ -2,18 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import Creature.*;
 
 class DragonCard extends JPanel {
     private final ImageIcon front = new ImageIcon("src/Images/dragon card resize.png");
     private final String back;
     private boolean isFrontVisible = true;
-    private int amount;
+    private final int creatureAmount;
+    private final Creature creature;
 
-    public DragonCard(String back, int amount) {
-//        this.front = new ImageIcon("src/Images/FD logo.png");
-        this.back = back;
-        this.amount = amount;
-//        setPreferredSize(new Dimension(100, 150)); // Assuming card size
+    public DragonCard(Creature creature, int creatureAmount) {
+        this.creature = creature;
+        this.back = creature.getName()+ " x"+ creatureAmount;
+        this.creatureAmount = creatureAmount;
         setLayout(new BorderLayout());
         updateAppearance();
         addMouseListener(new MouseAdapter() {
@@ -46,13 +47,10 @@ class DragonCard extends JPanel {
         repaint();
     }
 
-    public int getAmount() {
-        return amount;
+    public int getCreatureAmount() {
+        return creatureAmount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 
     public boolean isFrontVisible() {
         return isFrontVisible;
@@ -62,11 +60,8 @@ class DragonCard extends JPanel {
         isFrontVisible = frontVisible;
     }
 
-    public String getBack() {
-        return back;
-    }
 
-    public ImageIcon getFront() {
-        return front;
+    public Creature getCreature() {
+        return creature;
     }
 }

@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Board extends JPanel {
-    int players;
-    int dragonCardPoolX;
-    int dragonCardPoolY;
-    int dragonPoolSideLength;
-    ArrayList<Creature[]> normalVolcanoCards = new ArrayList<>();
-    ArrayList<Creature[]> caveVolcanoCards = new ArrayList<>();
+    private static Board instance;
+    private final int players;
+    private final int dragonCardPoolX;
+    private final int dragonCardPoolY;
+    private final int dragonPoolSideLength;
+    public ArrayList<Creature[]> normalVolcanoCards = new ArrayList<>();
+    public ArrayList<Creature[]> caveVolcanoCards = new ArrayList<>();
 
-    public Board(int screenWidth, int screenHeight, int players) {
+    private Board(int screenWidth, int screenHeight, int players) {
         this.players = players;
         this.dragonPoolSideLength = (screenWidth/4); //Dynamic dragon pool size so that it always scales with screen size
         this.dragonCardPoolX = (screenWidth - dragonPoolSideLength) / 2;
@@ -143,6 +144,12 @@ public class Board extends JPanel {
         DragonCardPool dragonCardPool = new DragonCardPool();
         dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
         add(dragonCardPool);
+    }
+    public static Board getInstance(int screenWidth, int screenHeight, int players) {
+        if (instance == null) {
+            instance = new Board(screenWidth, screenHeight, players);
+        }
+        return instance;
     }
 
     @Override
