@@ -139,14 +139,17 @@ public class WindowPanel extends JPanel {
         PlayerManager playerManager = PlayerManager.getInstance();
         ArrayList<DragonToken> dragonTokens = playerManager.getPlayers();
 
-        addDragonToken(dragonTokens.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize,50,800);
-        addDragonToken(dragonTokens.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize - squareSize,50,850);
+        addDragonToken(dragonTokens.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize,50,750);
+        addDragonToken(dragonTokens.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize - squareSize,50,780);
+        addDragonToken(dragonTokens.get(2),offsetX + (gridSize / 2) * squareSize + 1 * squareSize, offsetY + gridSize * squareSize,50,810);
+        addDragonToken(dragonTokens.get(3),offsetX - caveSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize,50,840);
 
 
     }
 
     private void addCave(Cave cave, int x, int y) {
         CavePanel cavePanel = new CavePanel(x,y,cave,caveColor);
+        cave.setCavePanel(cavePanel);
         cavePanels.add(cavePanel);
         cavePanel.setBounds(x, y, caveSize, caveSize);
         this.add(cavePanel);
@@ -159,40 +162,73 @@ public class WindowPanel extends JPanel {
 
         //Add move buttons for temporarily moving dragon tokens
         JButton moveButton = new JButton("Move1");
-        moveButton.addActionListener(e -> dragonToken.move1());
+        moveButton.addActionListener(e -> dragonToken.move(1));
         moveButton.setBounds(buttonX, buttonY, 100, 30);  // Position the move button
         this.add(moveButton);
 
         JButton moveButton2 = new JButton("Move2");
-        moveButton2.addActionListener(e -> dragonToken.move2());
-        moveButton2.setBounds(buttonX+150, buttonY, 100, 30);  // Position the move button
+        moveButton2.addActionListener(e -> dragonToken.move(2));
+        moveButton2.setBounds(buttonX+100, buttonY, 100, 30);  // Position the move button
         this.add(moveButton2);
 
         JButton moveButton3 = new JButton("move3");
-        moveButton3.addActionListener(e -> dragonToken.move3());
-        moveButton3.setBounds(buttonX+ 300, buttonY, 100, 30);  // Position the move button
+        moveButton3.addActionListener(e -> dragonToken.move(3));
+        moveButton3.setBounds(buttonX+ 200, buttonY, 100, 30);  // Position the move button
         this.add(moveButton3);
 
+        JButton moveButton4 = new JButton("moveBackwards1");
+        moveButton4.addActionListener(e -> dragonToken.move(-1));
+        moveButton4.setBounds(buttonX+ 300, buttonY, 100, 30);  // Position the move button
+        this.add(moveButton4);
+
+        JButton moveButton5 = new JButton("moveBackwards2");
+        moveButton5.addActionListener(e -> dragonToken.move(-2));
+        moveButton5.setBounds(buttonX+ 400, buttonY, 100, 30);  // Position the move button
+        this.add(moveButton5);
+
     }
-    public void moveToken(DragonTokenPanel dragonTokenPanel) {
+    public void moveToken(DragonTokenPanel dragonTokenPanel, int noPosition) {
         // Determine the next position in a clockwise movement
         int newPosition = dragonTokenPanel.getDragonToken().getPosition();
 
-        if(dragonTokenPanel.getDragonToken().getTotalSquaresMoved() % 25 == 0){
-            System.out.println("passed 1");
-            for (CavePanel cavePanel: cavePanels){
-                if (dragonTokenPanel.getDragonToken().getCave().getCavePosition() == dragonTokenPanel.getDragonToken().getPosition()){
-                    System.out.println("passed 2");
-                    dragonTokenPanel.moveDragonToken(cavePanel.getX(),cavePanel.getY());
-                }
-            }
-        }
-        for(SquarePanel squarePanel: boardPanels){
-            if (newPosition == squarePanel.getSquare().getPosition()){
-                dragonTokenPanel.moveDragonToken(squarePanel.getX(),squarePanel.getY());
-            }
-        }
 
+        if(noPosition > 0){
+            forwardsMovement(dragonTokenPanel,newPosition);
+        }else{
+            backwardsMovement(dragonTokenPanel,newPosition);
+        }
+    }
+
+    public void forwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
+
+        move(dragonTokenPanel,newPosition);
+
+    }
+    public void backwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
+        int cavePos =  dragonTokenPanel.getDragonToken().getCave().getCavePosition();
+        int caveX = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getX();
+        int caveY = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getY();
+        if(newPosition < cavePos && !dragonTokenPanel.getDragonToken().isInCave()){
+            System.out.println("wow");
+            dragonTokenPanel.moveDragonToken(caveX,caveY);
+            dragonTokenPanel.getDragonToken().setPosition(cavePos);
+            dragonTokenPanel.getDragonToken().setInCave(true);
+        }else if(newPosition == cavePos && dragonTokenPanel.getDragonToken().isInCave()){
+
+        }
+        else{
+            move(dragonTokenPanel,newPosition);
+        }
+    }
+
+    public void move(DragonTokenPanel dragonTokenPanel, int newPosition) {
+        for (SquarePanel squarePanel : boardPanels) {
+            if (newPosition == squarePanel.getSquare().getPosition()) {
+                System.out.println("cheese");
+                dragonTokenPanel.moveDragonToken(squarePanel.getX(), squarePanel.getY());
+                dragonTokenPanel.getDragonToken().setInCave(false);
+            }
+        }
     }
     private void createDragonCards() {
         // Define the number of cards horizontally and vertically

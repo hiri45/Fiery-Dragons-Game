@@ -2,17 +2,28 @@ package src.board;
 
 import src.actors.Actor;
 import src.actors.DragonToken;
+import src.gui.CavePanel;
 
 public class Cave {
     private CreatureType creatureType;
     private int cavePosition;
     private DragonToken caveOwner;
 
+    private CavePanel cavePanel;
+
 
 
     Cave(CreatureType creatureType, int cavePosition){
         this.cavePosition = cavePosition;
         this.creatureType = creatureType;
+    }
+
+    public CavePanel getCavePanel() {
+        return cavePanel;
+    }
+
+    public void setCavePanel(CavePanel cavePanel) {
+        this.cavePanel = cavePanel;
     }
 
     public int getCavePosition() {

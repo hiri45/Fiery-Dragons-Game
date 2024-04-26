@@ -81,6 +81,9 @@ public class BoardArray {
                 k++;
             }
         }
+        for(VolcanoCard volcanoCard: this.getBoard()){
+            squares.addAll(volcanoCard.getSquares());
+        }
     }
 
     public void addPosition(int volcanoCardCount, int squaresPerVC){
@@ -93,15 +96,15 @@ public class BoardArray {
             counter += 3;
 
         }
+
         for (int i = 0; i < volcanoCardCount; i ++){
             board.get(i).setFixedPositions();
         }
+
+
     }
 
     public ArrayList<Square> getSquares() {
-        for(VolcanoCard volcanoCard: this.getBoard()){
-            squares.addAll(volcanoCard.getSquares());
-        }
         return squares;
     }
 }

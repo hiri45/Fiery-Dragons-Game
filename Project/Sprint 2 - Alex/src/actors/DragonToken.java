@@ -64,27 +64,12 @@ public class DragonToken extends Actor{
             // move 2 squares
 
     }
-    public void move1(){
-        int noPositions = 1;
+
+    public void move(int noPositions){
         MovementManager movementManager = MovementManager.getInstance();
         if(movementManager.canMove(this,noPositions)){
             movementManager.updatePosition(this,noPositions);
         }
     }
 
-    public void move2(){
-        int noPositions = 2;
-        MovementManager movementManager = MovementManager.getInstance();
-        if(movementManager.canMove(this,noPositions)){
-            movementManager.updatePosition(this,noPositions);
-        }
-    }
-
-    public void move3(){
-        int noPositions = 3;
-        MovementManager movementManager = MovementManager.getInstance();
-        if(movementManager.canMove(this,noPositions)){
-            movementManager.updatePosition(this,noPositions);
-        }
-    }
 }

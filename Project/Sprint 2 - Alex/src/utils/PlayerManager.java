@@ -64,24 +64,27 @@ public class PlayerManager {
 
         BoardArray boardArray = BoardArray.getInstance();
         ArrayList<VolcanoCard> board = boardArray.getBoard();
-        //for every dragon token
-        for(DragonToken dragonToken: players){
-            //for every volcano card there is on the board
-            for(VolcanoCard volcanoCard: board){
+    for(DragonToken dragonToken: players){
+        // Flag to indicate if the token has been assigned a cave
+        boolean tokenAssignedCave = false;
 
-                //if the board has a cave
-                if(volcanoCard.hasCave()){
-
-                    //and that cave does not have an owner
-                    if(volcanoCard.getCave().getCaveOwner() == null){
-                        System.out.println("pizza");
-                        //set the owner of the cave to the player
-                        volcanoCard.getCave().setCaveOwner(dragonToken);
-                        dragonToken.setPosition(volcanoCard.getCave().getCavePosition());
-                    }
-                }
+        // For every volcano card on the board
+        for(VolcanoCard volcanoCard: board){
+            // If the volcano card has a cave and that cave does not have an owner
+            if(volcanoCard.hasCave() && volcanoCard.getCave().getCaveOwner() == null){
+                // Set the owner of the cave to the dragon token
+                volcanoCard.getCave().setCaveOwner(dragonToken);
+                dragonToken.setPosition(volcanoCard.getCave().getCavePosition());
+                // Mark that the token has been assigned a cave
+                tokenAssignedCave = true;
+                break; // Break out of the loop after assigning a cave
             }
         }
 
+        // If a token has been assigned, skip to the next token
+        if(tokenAssignedCave){
+            continue;
+        }
+        }
     }
 }

@@ -39,15 +39,14 @@ public class VolcanoCard {
             squares.add(new Square(creature2));
             squares.add(new Square(creature3));
         }
-        if(this.hasCave){
-            initialiseCave();
-        }
+
     }
     public void initialiseCave(){
         int middleSquare = 1;
         //add a new cave
         if (this.hasCave){
             cave = new Cave(squares.get(middleSquare).getCreature(),squares.get(middleSquare).getPosition());
+            System.out.println(squares.get(middleSquare).getPosition());
 
         }
     }
@@ -56,6 +55,9 @@ public class VolcanoCard {
         for (int i = 0; i < squares.size();i++){
             squares.get(i).setPosition(cardPosition);
             cardPosition++;
+        }
+        if(this.hasCave){
+            initialiseCave();
         }
     }
 
