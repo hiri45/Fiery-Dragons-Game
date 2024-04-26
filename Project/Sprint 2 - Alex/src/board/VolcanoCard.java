@@ -47,22 +47,13 @@ public class VolcanoCard {
         int middleSquare = 1;
         //add a new cave
         if (this.hasCave){
-            for(DragonToken dragonToken: PlayerManager.getInstance().players){
-                //if a player doesn't have a cave, allocate the dragonToken the Cave Owner
-                if(dragonToken.getCave() == null){
-
-                    cave = new Cave(squares.get(middleSquare).getCreature(),dragonToken);
-                    break;
-                }
-
-            }
+            cave = new Cave(squares.get(middleSquare).getCreature(),squares.get(middleSquare).getPosition());
 
         }
     }
-    public void setPosition(){
+    public void setFixedPositions(){
         int cardPosition = startPosition;
         for (int i = 0; i < squares.size();i++){
-            System.out.println(cardPosition);
             squares.get(i).setPosition(cardPosition);
             cardPosition++;
         }

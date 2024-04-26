@@ -14,6 +14,14 @@ public class Actor {
         this.id = id;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public int getId() {
         return id;
     }
@@ -22,7 +30,7 @@ public class Actor {
         this.id = id;
     }
     public void playTurn(){
-        boolean continueTurn;
+
     }
 
     public void setStartingPosition(int startingPosition) {

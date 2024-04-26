@@ -10,6 +10,8 @@ public class BoardArray {
     private ArrayList<VolcanoCard> caveCards = new ArrayList<>();
     private ArrayList<VolcanoCard> nonCaveCards = new ArrayList<>();
 
+    private ArrayList<Square> squares = new ArrayList<>();
+
     private int volcanoCardCount;
 
     private int squaresPerVC;
@@ -92,8 +94,14 @@ public class BoardArray {
 
         }
         for (int i = 0; i < volcanoCardCount; i ++){
-            board.get(i).setPosition();
+            board.get(i).setFixedPositions();
         }
     }
 
+    public ArrayList<Square> getSquares() {
+        for(VolcanoCard volcanoCard: this.getBoard()){
+            squares.addAll(volcanoCard.getSquares());
+        }
+        return squares;
+    }
 }

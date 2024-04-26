@@ -16,8 +16,12 @@ public class DragonTokenPanel extends JPanel {
     private int tokenDiameter = 300;  // Diameter of the dragon token
     private JLabel label;
 
-    public DragonTokenPanel(int x,int y,DragonToken dragonToken,int offsetX, int offsetY) {
+    private Color color;
+
+    public DragonTokenPanel(int x,int y,DragonToken dragonToken,int offsetX, int offsetY,Color color) {
         this.dragonToken = dragonToken;
+        dragonToken.setDragonTokenPanel(this);
+        this.color = color;
         this.x = x;
         this.y = y;
         this.offsetX = offsetX;
@@ -50,7 +54,7 @@ public class DragonTokenPanel extends JPanel {
 
 
     private void updatePosition() {
-        setLocation(this.getX() * squareSize + offsetX, this.getY() * squareSize + offsetY);
+        setBounds(getX(), getY(), getWidth(), getHeight());
     }
 
     public void moveDragonToken(int newX, int newY) {

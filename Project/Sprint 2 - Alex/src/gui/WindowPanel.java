@@ -6,6 +6,8 @@ import src.board.BoardArray;
 import src.board.Cave;
 import src.board.Square;
 import src.board.VolcanoCard;
+import src.utils.MovementManager;
+import src.utils.PlayerManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +41,8 @@ public class WindowPanel extends JPanel {
     private final int width = 1000;
     private final int height = 900;
 
-    private ArrayList<JPanel> boardPanels = new ArrayList<>();
+    private ArrayList<SquarePanel> boardPanels = new ArrayList<>();
+    private ArrayList<CavePanel> cavePanels = new ArrayList<>();
 
     public WindowPanel() {
         this.setLayout(null); // Use a null layout manager for absolute positioning
@@ -55,95 +58,73 @@ public class WindowPanel extends JPanel {
 
         createSquaresAndCaves();
         createDragonCards();
+        MovementManager movementManager = MovementManager.getInstance();
+        movementManager.setWindowPanel(this);
+    }
+
+    public ArrayList<SquarePanel> getBoardPanels() {
+        return boardPanels;
     }
 
     private void createSquaresAndCaves() {
         BoardArray boardArray = BoardArray.getInstance();
+        ArrayList<Square> squares = boardArray.getSquares();
+        int index = 0;
 
-        // Add top edge squares
-        for (int i = 1; i < gridSize - 1; i++) {
+// Add top edge squares (left to right)
+        for (int i = 1; i < gridSize - 1; i++, index++) {
             int x = offsetX + i * squareSize;
             int y = offsetY;
-            SquarePanel square = new SquarePanel();
-            square.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(square);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            squarePanel.setBounds(x, y, squareSize, squareSize);
+            boardPanels.add(squarePanel);
+            this.add(squarePanel);
         }
 
-        // Add right edge squares
-        for (int j = 1; j < gridSize - 1; j++) {
+// Add right edge squares (top to bottom)
+        for (int j = 1; j < gridSize - 1; j++, index++) {
             int x = offsetX + (gridSize - 1) * squareSize;
             int y = offsetY + j * squareSize;
-            SquarePanel square = new SquarePanel();
-            square.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(square);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            squarePanel.setBounds(x, y, squareSize, squareSize);
+            boardPanels.add(squarePanel);
+            this.add(squarePanel);
         }
 
-        // Add bottom edge squares in reverse order
-        for (int i = gridSize - 2; i > 0; i--) {
+// Add bottom edge squares (right to left)
+        for (int i = gridSize - 2; i > 0; i--, index++) {
             int x = offsetX + i * squareSize;
             int y = offsetY + (gridSize - 1) * squareSize;
-            SquarePanel square = new SquarePanel();
-            square.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(square);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            squarePanel.setBounds(x, y, squareSize, squareSize);
+            boardPanels.add(squarePanel);
+            this.add(squarePanel);
         }
 
-        // Add left edge squares in reverse order
-        for (int j = gridSize - 2; j > 0; j--) {
+// Add left edge squares (bottom to top)
+        for (int j = gridSize - 2; j > 0; j--, index++) {
             int x = offsetX;
             int y = offsetY + j * squareSize;
-            SquarePanel square = new SquarePanel();
-            square.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(square);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            squarePanel.setBounds(x, y, squareSize, squareSize);
+            boardPanels.add(squarePanel);
+            this.add(squarePanel);
         }
-        ArrayList<JLabel> labels = new ArrayList<>();
+
+        addcreatureLabels();
+
         ArrayList<VolcanoCard> volcanoCards = boardArray.getBoard();
-        //go through the list of volcanoCards
-        for(int i = 0; i < volcanoCards.size();i++){
 
-            //get the array of squares inside each volcano card
-            ArrayList<Square> volcanoCardSquares = volcanoCards.get(i).getSquares();
-            //get the animals associated with each square
-            for (int j = 0; j < volcanoCardSquares.size(); j++){
-                String label = volcanoCardSquares.get(j).ui();
-                JLabel creatureLabel = new JLabel(label);
-                labels.add(creatureLabel);
-//                String position = valueOf(volcanoCardSquares.get(j).getPosition());
-//                JLabel positionLabel = new JLabel(position);
-//                labels.add(positionLabel);
-            }
-        }
-        Random rand = new Random();
-        float r = rand.nextFloat();
-        float g = rand.nextFloat();
-        float b = rand.nextFloat();
-        Color randomColor = new Color(r, g, b);
-
-        //add all the labels to their appropriate panel
-        for (int k = 0; k < this.boardPanels.size();k++){
-            if(k%3 == 0){
-                rand = new Random();
-                r = rand.nextFloat();
-                g = rand.nextFloat();
-                b = rand.nextFloat();
-                randomColor = new Color(r, g, b);
-            }
-            JLabel label = labels.get(k);
-            boardPanels.get(k).setOpaque(true);
-            boardPanels.get(k).setBackground(randomColor);
-            boardPanels.get(k).add(label);
-
-            //add each boardPanel to the current windowPanel
-            this.add(boardPanels.get(k));
-        }
         ArrayList<Cave> caves = new ArrayList<>();
         for (VolcanoCard card: volcanoCards){
             if(card.hasCave()){
                 caves.add(card.getCave());
+
             }
         }
+
         //place first cave down on the map starting from the left side of the board, and then place the rest of the caves down
         VolcanoCard card = volcanoCards.get(0);
-
         if (card.hasCave()) {
             addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize);//top left cave
             addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize);//right top cave
@@ -155,46 +136,64 @@ public class WindowPanel extends JPanel {
             addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY + gridSize * squareSize); // bottom cave left
             addCave(caves.get(3),offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize); // Left cave top
         }
-    addDragonToken(new DragonToken(1),offsetX + (gridSize / 2) * squareSize - 2 * squareSize,offsetY - caveSize);
+        PlayerManager playerManager = PlayerManager.getInstance();
+        ArrayList<DragonToken> dragonTokens = playerManager.getPlayers();
+
+        addDragonToken(dragonTokens.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize,50,800);
+        addDragonToken(dragonTokens.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize - squareSize,50,850);
+
+
     }
 
     private void addCave(Cave cave, int x, int y) {
         CavePanel cavePanel = new CavePanel(x,y,cave,caveColor);
+        cavePanels.add(cavePanel);
         cavePanel.setBounds(x, y, caveSize, caveSize);
         this.add(cavePanel);
     }
 
-    private void addDragonToken(DragonToken dragonToken, int x, int y){
-        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x,y,dragonToken, offsetX, offsetY);
+    private void addDragonToken(DragonToken dragonToken, int x, int y,int buttonX, int buttonY){
+        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x,y,dragonToken, offsetX, offsetY,Color.red);
         dragonTokenPanel.setBounds(x,y,50,50);
         this.add(dragonTokenPanel,0);
 
-        JButton moveButton = new JButton("Move");
-        moveButton.addActionListener(e -> moveToken(dragonTokenPanel));
-        moveButton.setBounds(50, 800, 100, 30);  // Position the move button
+        //Add move buttons for temporarily moving dragon tokens
+        JButton moveButton = new JButton("Move1");
+        moveButton.addActionListener(e -> dragonToken.move1());
+        moveButton.setBounds(buttonX, buttonY, 100, 30);  // Position the move button
         this.add(moveButton);
 
-        dragonTokenPanel.setLocation(x * squareSize + offsetX, y * squareSize + offsetY);
-    }
+        JButton moveButton2 = new JButton("Move2");
+        moveButton2.addActionListener(e -> dragonToken.move2());
+        moveButton2.setBounds(buttonX+150, buttonY, 100, 30);  // Position the move button
+        this.add(moveButton2);
 
-    private void moveToken(DragonTokenPanel dragonTokenPanel) {
+        JButton moveButton3 = new JButton("move3");
+        moveButton3.addActionListener(e -> dragonToken.move3());
+        moveButton3.setBounds(buttonX+ 300, buttonY, 100, 30);  // Position the move button
+        this.add(moveButton3);
+
+    }
+    public void moveToken(DragonTokenPanel dragonTokenPanel) {
         // Determine the next position in a clockwise movement
-        int currentX = dragonTokenPanel.getX();
-        int currentY = dragonTokenPanel.getY();
-        System.out.println(currentX);
-        System.out.println(currentY);
-        // Example of moving right on the top row
-        if (currentY == 0 && currentX < gridSize - 1) {
-            dragonTokenPanel.moveDragonToken(currentX + 1, currentY);
-        } else if (currentX == gridSize - 1 && currentY < gridSize - 1) {  // Move down on the right column
-            dragonTokenPanel.moveDragonToken(currentX, currentY + 1);
-        } else if (currentY == gridSize - 1 && currentX > 0) {  // Move left on the bottom row
-            dragonTokenPanel.moveDragonToken(currentX - 1, currentY);
-        } else if (currentX == 0 && currentY > 0) {  // Move up on the left column
-            dragonTokenPanel.moveDragonToken(currentX, currentY - 1);
-        }
-    }
+        int newPosition = dragonTokenPanel.getDragonToken().getPosition();
 
+        if(dragonTokenPanel.getDragonToken().getTotalSquaresMoved() % 25 == 0){
+            System.out.println("passed 1");
+            for (CavePanel cavePanel: cavePanels){
+                if (dragonTokenPanel.getDragonToken().getCave().getCavePosition() == dragonTokenPanel.getDragonToken().getPosition()){
+                    System.out.println("passed 2");
+                    dragonTokenPanel.moveDragonToken(cavePanel.getX(),cavePanel.getY());
+                }
+            }
+        }
+        for(SquarePanel squarePanel: boardPanels){
+            if (newPosition == squarePanel.getSquare().getPosition()){
+                dragonTokenPanel.moveDragonToken(squarePanel.getX(),squarePanel.getY());
+            }
+        }
+
+    }
     private void createDragonCards() {
         // Define the number of cards horizontally and vertically
         int cardsPerRow = 4;
@@ -224,5 +223,41 @@ public class WindowPanel extends JPanel {
         }
     }
 
+    public void addcreatureLabels(){
+        BoardArray boardArray = BoardArray.getInstance();
+        ArrayList<Square> squares = boardArray.getSquares();
+        ArrayList<JLabel> labels = new ArrayList<>();
+        ArrayList<VolcanoCard> volcanoCards = boardArray.getBoard();
+        //go through the list of volcanoCards
+            //get the animals associated with each square
+        for (int j = 0; j < squares.size(); j++){
+            String label = squares.get(j).ui();
+            JLabel creatureLabel = new JLabel(label);
+            labels.add(creatureLabel);
+        }
+        Random rand = new Random();
+        float r = rand.nextFloat();
+        float g = rand.nextFloat();
+        float b = rand.nextFloat();
+        Color randomColor = new Color(r, g, b);
+
+        //add all the labels to their appropriate panel
+        for (int k = 0; k < this.boardPanels.size();k++){
+            if(k%3 == 0){
+                rand = new Random();
+                r = rand.nextFloat();
+                g = rand.nextFloat();
+                b = rand.nextFloat();
+                randomColor = new Color(r, g, b);
+            }
+            JLabel label = labels.get(k);
+            boardPanels.get(k).setOpaque(true);
+            boardPanels.get(k).setBackground(randomColor);
+            boardPanels.get(k).add(label);
+
+            //add each boardPanel to the current windowPanel
+            this.add(boardPanels.get(k));
+        }
+    }
 
 }

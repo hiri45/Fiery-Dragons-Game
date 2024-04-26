@@ -1,5 +1,7 @@
 package src.gui;
 
+import src.utils.MovementManager;
+
 import javax.swing.*;
 
 public class GameBoard extends JPanel {
