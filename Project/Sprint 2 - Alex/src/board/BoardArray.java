@@ -12,9 +12,6 @@ public class BoardArray {
 
     private ArrayList<Square> squares = new ArrayList<>();
 
-    private int volcanoCardCount;
-
-    private int squaresPerVC;
     public static BoardArray instance;
 
     BoardArray(){

@@ -200,31 +200,38 @@ public class WindowPanel extends JPanel {
     }
 
     public void forwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
-
+        //move the token forwards as normal
         move(dragonTokenPanel,newPosition);
 
     }
     public void backwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
+        /*
+        Handles the logic for moving dragon tokens backwards
+         */
         int cavePos =  dragonTokenPanel.getDragonToken().getCave().getCavePosition();
         int caveX = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getX();
         int caveY = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getY();
+        //If the token is supposed to move behind the cave, move the token into the cave
         if(newPosition < cavePos && !dragonTokenPanel.getDragonToken().isInCave()){
-            System.out.println("wow");
             dragonTokenPanel.moveDragonToken(caveX,caveY);
             dragonTokenPanel.getDragonToken().setPosition(cavePos);
             dragonTokenPanel.getDragonToken().setInCave(true);
         }else if(newPosition == cavePos && dragonTokenPanel.getDragonToken().isInCave()){
+            //if the token is in the cave, but there is backwards movement, don't do anything
 
         }
         else{
+            //otherwise move backwards as normal
             move(dragonTokenPanel,newPosition);
         }
     }
 
     public void move(DragonTokenPanel dragonTokenPanel, int newPosition) {
+        /*
+        Visually move the jpanel to match the position of the token in the backend
+         */
         for (SquarePanel squarePanel : boardPanels) {
             if (newPosition == squarePanel.getSquare().getPosition()) {
-                System.out.println("cheese");
                 dragonTokenPanel.moveDragonToken(squarePanel.getX(), squarePanel.getY());
                 dragonTokenPanel.getDragonToken().setInCave(false);
             }

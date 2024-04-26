@@ -10,7 +10,7 @@ public class GameBoard extends JPanel {
     }
 
     public void drawGameBoard(){
-        JFrame frame = new JFrame("Interactive Game Board");
+        JFrame frame = new JFrame("FieryDragon Board Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         WindowPanel gameWindow = new WindowPanel();
         frame.add(gameWindow);

@@ -24,24 +24,6 @@ public class MovementManager {
         this.windowPanel = windowPanel;
     }
 
-//    public boolean canMove(DragonToken dragonToken, int noPositions){
-//
-////        return false if any other dragon token is on the position the current dragon token wants to move onto
-////        for(DragonToken player: playerManager.getPlayers()){
-////            if (player.getPosition() == dragonToken.getPosition() + noPositions){
-////                return false;
-////            }
-////        }
-//
-//        //return true if the new position is greater than distance to the cave
-//        boolean res = dragonToken.getPosition()+noPositions >= (windowPanel.getBoardPanels().size());
-//        if(res){
-//            dragonToken.setPosition(dragonToken.getPosition() - windowPanel.getBoardPanels().size());
-//            return true;
-//        }
-//        return true;
-//
-//    }
     public boolean canMove(DragonToken dragonToken, int noPositions) {
         PlayerManager playerManager = PlayerManager.getInstance();
         int newPosition = (dragonToken.getPosition() + noPositions) % windowPanel.getBoardPanels().size();
@@ -59,22 +41,6 @@ public class MovementManager {
         return true;
 
     }
-
-    private boolean isCaveWithinReach(DragonToken dragonToken) {
-        if (dragonToken.getCave().getCavePosition() - dragonToken.getPosition() < 3) {
-            return true;
-        }
-        return false;
-    }
-
-    private int calculateDistanceToCave(DragonToken dragonToken) {
-        int distance = dragonToken.getCave().getCavePosition() - dragonToken.getPosition();
-        if (distance == 0){
-            return 1;
-        }
-        return distance;
-    }
-
 
     public void updatePosition(DragonToken dragonToken, int noPositions){
         int newPosition = dragonToken.getPosition() + noPositions;
