@@ -1,3 +1,4 @@
+package Panels;
 
 import Caves.*;
 import Creature.*;
@@ -15,6 +16,10 @@ public class Board extends JPanel {
     private final int dragonPoolSideLength;
     public ArrayList<Creature[]> normalVolcanoCards = new ArrayList<>();
     public ArrayList<Creature[]> caveVolcanoCards = new ArrayList<>();
+    private BatCave batCave;
+    private SpiderCave spiderCave;
+    private SalamanderCave salamanderCave;
+    private BabyDragonCave babyDragonCave;
 
     private Board(int screenWidth, int screenHeight, int players) {
         this.players = players;
@@ -45,9 +50,30 @@ public class Board extends JPanel {
         setBackground(darkGreenBackground);
         setLayout(null);
 
-
         placeVolcano(8);
         placeDragonCardPool();
+
+        DragonToken[] tokens = {
+                new DragonToken(0, 0, Color.RED),
+                new DragonToken(0, 0, Color.GREEN),
+                new DragonToken(0, 0, Color.BLUE),
+                new DragonToken(0, 0, Color.YELLOW)
+        };
+        Cave[] caves = {
+                babyDragonCave,
+                salamanderCave,
+                batCave,
+                spiderCave
+        };
+        //displays tokens on caves depending on how many players are playing
+        //tokens start opposite ends if 2 players to ensure even distance
+        for (int i = 1; i <= players; i++)
+        {
+            placeTokenInCave(tokens[i-1], caves[i-1]);
+        }
+
+
+
     }
     private void setupVolcanoCard(VolcanoCard card, int x, int y, int width, int height, int rows, int cols) {
         card.setBounds(x, y, width, height);
@@ -71,39 +97,33 @@ public class Board extends JPanel {
             case "top":
                 panelX = x + gridWidth;
                 panelY = y - gridHeight;
-                BatCave batCave = BatCave.getInstance();
+                batCave = new BatCave(panelX, panelY);
                 batCave.setBounds(panelX, panelY, gridWidth, gridHeight);
                 add(batCave);
                 break;
             case "bottom":
                 panelX = x + gridWidth;
                 panelY = y + height;
-                SpiderCave spiderCave = SpiderCave.getInstance();
+                spiderCave = new SpiderCave(panelX, panelY);
                 spiderCave.setBounds(panelX,panelY, gridWidth, gridHeight);
                 add(spiderCave);
                 break;
             case "left":
                 panelX = x - gridWidth;
                 panelY = y + gridHeight;
-                BabyDragonCave babyDragonCave = BabyDragonCave.getInstance();
+                babyDragonCave = new BabyDragonCave(panelX, panelY);
                 babyDragonCave.setBounds(panelX,panelY, gridWidth, gridHeight);
                 add(babyDragonCave);
                 break;
             case "right":
                 panelX = x + width;
                 panelY = y + gridHeight;
-                SalamanderCave salamanderCave = SalamanderCave.getInstance();
+                salamanderCave = new SalamanderCave(panelX,panelY);
                 salamanderCave.setBounds(panelX,panelY, gridWidth, gridHeight);
                 add(salamanderCave);
                 break;
         }
-
-//        Cave cave = new Cave(gridWidth, gridHeight);
-//        cave.setBounds(panelX, panelY, gridWidth, gridHeight);
-//        add(cave);  // Adding the custom panel to the same container as the card
     }
-
-
     private void placeVolcano(int totalVolcanoCards) {
         //I have made the parameter the total amount of cards as I believe this will make it more simple to expand in the future. It may seem redundant now
         totalVolcanoCards = totalVolcanoCards / 4; // Divide by amount of sides which is 4. This is how many cards are on each side of the board
@@ -145,6 +165,10 @@ public class Board extends JPanel {
         dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
         add(dragonCardPool);
     }
+    public void placeTokenInCave(DragonToken token, Cave cave) {
+        cave.setToken(token);
+    }
+
     public static Board getInstance(int screenWidth, int screenHeight, int players) {
         if (instance == null) {
             instance = new Board(screenWidth, screenHeight, players);
@@ -155,6 +179,5 @@ public class Board extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
     }
 }

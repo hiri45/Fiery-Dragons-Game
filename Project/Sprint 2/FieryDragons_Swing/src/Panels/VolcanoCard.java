@@ -1,8 +1,9 @@
+package Panels;
+
 import Creature.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class VolcanoCard extends JPanel {
     Creature[] creatures;

@@ -1,8 +1,7 @@
-import Creature.*;
+import Panels.Board;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 // This is the class that creates the Window in which the game will be played
 public class GameWindow extends JFrame {
