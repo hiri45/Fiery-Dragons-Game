@@ -30,6 +30,7 @@ public abstract class Cave extends JPanel{
         return positionY;
     }
 
+    //add token to the panel and place it in the middle
     public void setToken(DragonToken token) {
         this.token = token;
         add(token, BorderLayout.CENTER);

@@ -15,10 +15,12 @@ class DragonCard extends JPanel {
 
     public DragonCard(Creature creature, int creatureAmount) {
         this.creature = creature;
+        //currently displays the name and amount of creature, but will change to an image in later sprint
         this.back = creature.getName()+ " x"+ creatureAmount;
         this.creatureAmount = creatureAmount;
         setLayout(new BorderLayout());
         updateAppearance();
+        //when mouse is clicked on panel, card will flip
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -31,7 +33,7 @@ class DragonCard extends JPanel {
         isFrontVisible = !isFrontVisible;
         updateAppearance();
     }
-
+    //will update apperance of dragon card depending on whether isFrontVisible is true or nah
     private void updateAppearance() {
         removeAll(); // Clear any existing content
         JLabel label;
@@ -53,15 +55,9 @@ class DragonCard extends JPanel {
         return creatureAmount;
     }
 
-
-    public boolean isFrontVisible() {
-        return isFrontVisible;
-    }
-
     public void setFrontVisible(boolean frontVisible) {
         isFrontVisible = frontVisible;
     }
-
 
     public Creature getCreature() {
         return creature;

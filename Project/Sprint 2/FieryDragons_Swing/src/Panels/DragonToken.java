@@ -3,6 +3,7 @@ package Panels;
 import java.awt.*;
 import javax.swing.*;
 
+//the Token that the player will move. Currently distinguished by colours
 public class DragonToken extends JComponent {
     private int positionX, positionY;
     private Color color;

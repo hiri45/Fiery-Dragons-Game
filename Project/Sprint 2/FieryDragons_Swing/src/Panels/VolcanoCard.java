@@ -9,8 +9,8 @@ public class VolcanoCard extends JPanel {
     Creature[] creatures;
 
     public VolcanoCard(Creature[] creatures) {
+        //adds creatures to volcano card
         this.creatures = creatures;
-//        setLayout(new GridLayout(1, 3, 10, 10));
         for (int i = 0; i < creatures.length; i++)
         {
             add(new JLabel(creatures[i].getImage()));

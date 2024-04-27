@@ -18,7 +18,7 @@ public class DragonCardPool extends JPanel {
     }
 
     private void generateDragonCards() {
-
+        //loop to create all type of dragon cards and then randomise before placing them on the board
         ArrayList<DragonCard> dragonCards = new ArrayList<>();
         for (Creature i: creatureArray)
         {
