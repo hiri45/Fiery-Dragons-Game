@@ -33,7 +33,7 @@ class DragonCard extends JPanel {
         isFrontVisible = !isFrontVisible;
         updateAppearance();
     }
-    //will update apperance of dragon card depending on whether isFrontVisible is true or nah
+    //will update appearance of dragon card depending on whether isFrontVisible is true or nah
     private void updateAppearance() {
         removeAll(); // Clear any existing content
         JLabel label;
@@ -45,7 +45,6 @@ class DragonCard extends JPanel {
         {
             label = new JLabel(back);
         }
-//        JLabel label = new JLabel(isFrontVisible ? front : back);
         add(label);
         revalidate();
         repaint();

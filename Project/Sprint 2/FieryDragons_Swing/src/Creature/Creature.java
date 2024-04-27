@@ -1,7 +1,7 @@
 package Creature;
 
 import javax.swing.*;
-//Class to store all information about a specific creature
+//Class to store all information about a specific creature including graphics, name and enemy status
 public abstract class Creature {
     private final ImageIcon image;
     private final String name;
