@@ -4,10 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
+import java.util.Objects;
+
+import Caves.Cave;
 import Creature.*;
 
 class DragonCard extends JPanel {
-    private final ImageIcon front = new ImageIcon("src/Images/dragon card resize.png");
+    private final ImageIcon front = new ImageIcon(Objects.requireNonNull(DragonCard.class.getResource("/Images/dragon card resize.png")));
     private final String back;
     private boolean isFrontVisible = true;
     private final int creatureAmount;

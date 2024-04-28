@@ -7,8 +7,8 @@ import java.awt.*;
 public class GameWindow extends JFrame {
     public GameWindow(){
         //set screen size
-        int screenWidth = 1900;
-        int screenHeight = 1080;
+        int screenWidth = 1600;
+        int screenHeight = 900;
         //record number of players. will be dynamically entered in later stages of development
         int players = 2;
 

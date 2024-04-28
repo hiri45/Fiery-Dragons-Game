@@ -1,6 +1,10 @@
 package Creature;
 
+import Caves.Cave;
+
 import javax.swing.*;
+import java.net.URL;
+
 //Class to store all information about a specific creature including graphics, name and enemy status
 public abstract class Creature {
     private final ImageIcon image;
@@ -12,6 +16,15 @@ public abstract class Creature {
         this.name = name;
         this.image = image;
         this.enemy = enemy;
+    }
+    public static ImageIcon retrieveImage(String location) {
+        URL imgLocation = Cave.class.getResource(location);
+        if (imgLocation != null) {
+            return new ImageIcon(imgLocation);
+        } else {
+            System.err.println("cannot find");
+            return null;
+        }
     }
 
     public ImageIcon getImage() {

@@ -1,9 +1,10 @@
 package Creature;
 
 import javax.swing.*;
+import java.net.URL;
 
-public class Bat extends Creature{
+public class Bat extends Creature {
     public Bat() {
-        super("Bat", new ImageIcon("src/Images/bat resize.png"), false);
+        super("Bat", retrieveImage("/Images/bat resize.png"), false);
     }
 }

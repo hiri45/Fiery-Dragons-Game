@@ -4,6 +4,6 @@ import javax.swing.*;
 
 public class BabyDragon extends Creature{
     public BabyDragon() {
-        super("BabyDragon", new ImageIcon("src/Images/baby dragon resize.png"),false);
+        super("BabyDragon",retrieveImage("/Images/baby dragon resize.png"),false);
     }
 }
