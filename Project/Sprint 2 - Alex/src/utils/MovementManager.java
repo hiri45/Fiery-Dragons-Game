@@ -28,9 +28,15 @@ public class MovementManager {
         PlayerManager playerManager = PlayerManager.getInstance();
         int newPosition = (dragonToken.getPosition() + noPositions) % windowPanel.getBoardPanels().size();
 
+        //If the current token is in the cave, remove one position from the number of positions to move
+        //because cave and square in front both have the same position
+        if (dragonToken.isInCave()){
+            newPosition = dragonToken.getPosition()+noPositions - 1;
+        }
+
         // Check if the new position is occupied by another token
         for (DragonToken player : playerManager.getPlayers()) {
-            if (player != dragonToken && player.getPosition() == newPosition && !player.isInCave()) {
+            if (player != dragonToken && player.getPosition() == newPosition && (!player.isInCave() || dragonToken.isInCave())) {
                 // Another token is in the new position, can't move here
                 return false;
             }
@@ -49,7 +55,10 @@ public class MovementManager {
 
         int currentPosition = dragonToken.getPosition();
         int cavePos = dragonToken.getCave().getCavePosition();
-        if(dragonToken.getPosition() > boardSize-2){
+
+        //if the new position is greater than the size of the board
+        //the -2 = 1(moving out of cave) + 1 (wanting to trigger reset 1 square before the end of the board)
+        if(newPosition > boardSize-2){
             dragonToken.setPosition(dragonToken.getPosition()-boardSize);
         }
         //if the player's position is still in their cave move out of the cave
