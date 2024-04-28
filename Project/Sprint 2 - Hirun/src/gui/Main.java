@@ -10,6 +10,5 @@ public class Main {
         gamePanel.setLocationRelativeTo(null); // Center the frame on screen
         gamePanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gamePanel.setVisible(true);
-    }
-}
+    }}
 

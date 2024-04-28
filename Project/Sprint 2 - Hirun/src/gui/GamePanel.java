@@ -33,13 +33,14 @@ public class GamePanel extends JFrame {
             Image scaledImage = dragonImage.getScaledInstance(250 / CHIT_COLS, -1, Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(scaledImage);
             DragonCard dragonCard = new DragonCard();
+            String [] dragonCardArray = dragonCard.shuffleDragon(); // use to randomise the chit cards on the board
             // Create the 4x4 grid by adding button sub-panels with image on button representing dragon card before flipped
             for (int i = 0; i < CHIT_ROWS * CHIT_COLS; i++) {
                 JButton cellPanel = new JButton(icon);
                 cellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Add border to each cell
                 int finalI = i;
                 // for now just having a JLabel with a string when flipped but will represent the icon in future
-                cellPanel.addActionListener(_ -> dragonCard.flipDragon(cellPanel, finalI)); // Add action listener to flip the dragon card
+                cellPanel.addActionListener(_ -> dragonCard.flipDragon(dragonCardArray,cellPanel, finalI)); // Add action listener to flip the dragon card
                 gridPanel.add(cellPanel); // Add cell panel to the grid
             }
         }
@@ -81,28 +82,42 @@ public class GamePanel extends JFrame {
             bottomVolcanoPanel.add(bottomCellPanel);
         }
 
-        // representing the panels as desired using grid bag constraints
-        // Top volcano panel
-        gbc.gridx = 1; gbc.gridy = 0;
+        // still figuring out a way to implement these caves onto the board
+        JPanel leftCavePanel = new JPanel();
+        leftCavePanel.setPreferredSize(new Dimension(100, 100));
+        JPanel rightCavePanel = new JPanel();
+        rightCavePanel.setPreferredSize(new Dimension(100, 100));
+        JPanel topCavePanel = new JPanel();
+        topCavePanel.setPreferredSize(new Dimension(100, 100));
+        JPanel bottomCavePanel = new JPanel();
+        bottomCavePanel.setPreferredSize(new Dimension(100, 100));
+
+// Representation of the volcano panels as desired using grid bag constraints
+
+// Top volcano panel
+        gbc.gridx = 1; gbc.gridy = 0; // This should be directly above the central grid
+        gbc.gridwidth = CHIT_COLS; gbc.gridheight = 1;
         add(topVolcanoPanel, gbc);
 
-        // Left side panel
-        gbc.gridx = 0; gbc.gridy = 1; gbc.gridheight = CHIT_ROWS; // Match the number of rows of the central grid
+// Left side panel
+        gbc.gridx = 0; gbc.gridy = 1; // This should be directly to the left of the central grid
+        gbc.gridwidth = 1; gbc.gridheight = CHIT_ROWS;
         add(leftVolcanoPanel, gbc);
 
-        // Central grid panel
-        gbc.gridx = 1; gbc.gridy = 1; gbc.gridheight = 1; // Reset gridheight to 1
+// Central grid panel
+        gbc.gridx = 1; gbc.gridy = 1; // This is the central grid
+        gbc.gridwidth = CHIT_COLS; gbc.gridheight = CHIT_ROWS;
         add(gridPanel, gbc);
 
-        // Right side panel
-        gbc.gridx = 2; gbc.gridy = 1; gbc.gridheight = CHIT_ROWS; // Match the number of rows of the central grid
+// Right side panel
+        gbc.gridx = CHIT_COLS + 1; gbc.gridy = 1; // This should be directly to the right of the central grid
+        gbc.gridwidth = 1; gbc.gridheight = CHIT_ROWS;
         add(rightVolcanoPanel, gbc);
 
-        // Bottom volcano panel
-        gbc.gridx = 1; gbc.gridy = 2; // Set the position below the central grid
+// Bottom volcano panel
+        gbc.gridx = 1; gbc.gridy = CHIT_ROWS + 1; // This should be directly below the central grid
+        gbc.gridwidth = CHIT_COLS; gbc.gridheight = 1;
         add(bottomVolcanoPanel, gbc);
-
-        pack(); // Pack the frame to respect preferred sizes
 
     }
 
