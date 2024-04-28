@@ -41,6 +41,7 @@ public class MovementManager {
                 return false;
             }
         }
+        //if you are in your cave, you can't move backwards anymore
         if (noPositions < 0 && dragonToken.getCave().getCavePosition() < noPositions){
             return false;
         }
@@ -49,6 +50,7 @@ public class MovementManager {
     }
 
     public void updatePosition(DragonToken dragonToken, int noPositions){
+
         int newPosition = dragonToken.getPosition() + noPositions;
         BoardArray boardArray = BoardArray.getInstance();
         int boardSize = boardArray.getSquares().size();
@@ -57,25 +59,37 @@ public class MovementManager {
         int cavePos = dragonToken.getCave().getCavePosition();
 
         //if the new position is greater than the size of the board
-        //the -2 = 1(moving out of cave) + 1 (wanting to trigger reset 1 square before the end of the board)
-        if(newPosition > boardSize-2){
-            dragonToken.setPosition(dragonToken.getPosition()-boardSize);
-        }
-        //if the player's position is still in their cave move out of the cave
-        if (dragonToken.isInCave()){
-            newPosition = currentPosition;
-            if (noPositions > 1){
-                newPosition = currentPosition + noPositions - 1;
-            }
-            //handles backwards movement
-        }else if (noPositions < 0){
-            if (newPosition < cavePos){
-                newPosition = dragonToken.getCave().getCavePosition() + noPositions;
-            }
+        int tempVar = (newPosition) % (boardSize);
+        //20 is the smallest size that can put a player on the last position (i.e. 20 + 3 = position 23)
+        //2  if you're on square 23, and you move 3 that equals 26 and 26%24 = 2 so anything below 2 is acceptable
+//        if( tempVar <= 2 && currentPosition >= 20 ){
+        if( tempVar <= 2 && newPosition >= 23 ){
+            newPosition = tempVar;
 
+//            dragonToken.setPosition(dragonToken.getPosition()-boardSize);
         }else{
-            newPosition = dragonToken.getPosition()+noPositions;
+            //if the player's position is still in their cave move out of the cave
+            if (dragonToken.isInCave()){
+                newPosition = currentPosition;
+                if (noPositions > 1){
+                    newPosition = currentPosition + noPositions - 1;
+                }
+                //handles backwards movement
+            }else if (noPositions < 0){
+                System.out.println(newPosition);
+                System.out.println(currentPosition);
+                if(newPosition < 0){
+                    newPosition = boardSize + noPositions;
+                }else if(newPosition < cavePos){
+                    System.out.println("sup");
+                    newPosition = dragonToken.getCave().getCavePosition() + noPositions;
+                }
+
+            }else{
+                newPosition = dragonToken.getPosition()+noPositions;
+            }
         }
+
 
 
         dragonToken.setPosition(newPosition);

@@ -234,6 +234,7 @@ public class WindowPanel extends JPanel {
             if (newPosition == squarePanel.getSquare().getPosition()) {
                 dragonTokenPanel.moveDragonToken(squarePanel.getX(), squarePanel.getY());
                 dragonTokenPanel.getDragonToken().setInCave(false);
+                break;
             }
         }
     }
