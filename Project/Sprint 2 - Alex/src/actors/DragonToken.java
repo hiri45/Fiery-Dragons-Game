@@ -1,75 +1,139 @@
+/*
+ * DragonToken.java
+ *
+ * This file defines the DragonToken class, which represents a dragon token in the game.
+ * It extends the Actor class with additional attributes and behaviors specific to the dragon tokens,
+ * such as cave-related properties and movement functionalities.
+ *
+ * Author: Alex Ung
+ * Last Modified: 29/04/2024
+ */
+
 package src.actors;
 
 import src.board.Cave;
 import src.gui.DragonTokenPanel;
 import src.utils.MovementManager;
 
-public class DragonToken extends Actor{
+/**
+ * Represents a dragon token in the game, containing specific game mechanics related to the dragon's
+ * interaction with the game board, such as movements and cave interactions.
+ */
+public class DragonToken extends Actor {
 
-    private Cave cave;
-    private DragonTokenPanel dragonTokenPanel;
+    private Cave cave;  // Reference to the cave associated with the dragon token
+    private DragonTokenPanel dragonTokenPanel;  // GUI component associated with the dragon token
 
-    private boolean inCave;
+    private boolean inCave;  // Flag indicating whether the dragon token is currently in the cave
+    private int totalSquaresMoved;  // Counter for the total number of squares moved by the token
 
-    private int totalSquaresMoved;
-
-    public DragonToken(int id){
+    /**
+     * Constructor for the DragonToken class.
+     *
+     * @param id The unique identifier for the dragon token.
+     */
+    public DragonToken(int id) {
         super(id);
-        inCave = true;
-        totalSquaresMoved = 0;
+        inCave = true;  // Tokens start in the cave
+        totalSquaresMoved = 0;  // Initial move count is zero
     }
 
+    /**
+     * Returns the graphical user interface panel associated with this dragon token.
+     *
+     * @return The DragonTokenPanel associated with this token.
+     */
     public DragonTokenPanel getDragonTokenPanel() {
         return dragonTokenPanel;
     }
 
+    /**
+     * Sets the graphical user interface panel for this dragon token.
+     *
+     * @param dragonTokenPanel The DragonTokenPanel to associate with this token.
+     */
     public void setDragonTokenPanel(DragonTokenPanel dragonTokenPanel) {
         this.dragonTokenPanel = dragonTokenPanel;
     }
 
-    public Cave getCave(){
+    /**
+     * Gets the cave associated with this dragon token.
+     *
+     * @return The cave object linked to this token.
+     */
+    public Cave getCave() {
         return cave;
     }
 
-    public void setCave(Cave cave){
+    /**
+     * Sets the cave for this dragon token.
+     *
+     * @param cave The cave to associate with this token.
+     */
+    public void setCave(Cave cave) {
         this.cave = cave;
     }
 
+    /**
+     * Checks if the dragon token is currently in a cave.
+     *
+     * @return true if the token is in the cave, false otherwise.
+     */
     public boolean isInCave() {
         return inCave;
     }
 
+    /**
+     * Gets the total number of squares moved by this token.
+     *
+     * @return The total number of squares moved.
+     */
     public int getTotalSquaresMoved() {
         return totalSquaresMoved;
     }
 
+    /**
+     * Adds the number of squares moved to the total count of squares moved.
+     *
+     * @param totalSquaresMoved The number of squares to add to the total.
+     */
     public void addMovement(int totalSquaresMoved) {
         this.totalSquaresMoved += totalSquaresMoved;
     }
 
+    /**
+     * Sets the in-cave status of the dragon token.
+     *
+     * @param inCave true to place the token in the cave, false to indicate it is outside the cave.
+     */
     public void setInCave(boolean inCave) {
         this.inCave = inCave;
     }
 
+    /**
+     * Overridden playTurn method from Actor class to implement specific dragon token turn actions.
+     * This includes movement decisions and card interactions.
+     */
     @Override
     public void playTurn() {
-        super.playTurn();
-        int noPositions = 1;
+        super.playTurn();  // Call to superclass method in case it has important functionality
+        int noPositions = 1;  // Example movement, should be determined by game logic or player input
         MovementManager movementManager = MovementManager.getInstance();
-        if(movementManager.canMove(this,noPositions)){
-            movementManager.updatePosition(this,noPositions);
+        if (movementManager.canMove(this, noPositions)) {
+            movementManager.updatePosition(this, noPositions);
         }
-        // flip a dragon card. Call the isMatch() function
-            //success! call the canMove() function
-            // move 2 squares
-
+        // Additional game logic such as flipping a dragon card can be implemented here
     }
 
-    public void move(int noPositions){
+    /**
+     * Moves the dragon token by a specified number of positions.
+     *
+     * @param noPositions The number of positions to move the token.
+     */
+    public void move(int noPositions) {
         MovementManager movementManager = MovementManager.getInstance();
-        if(movementManager.canMove(this,noPositions)){
-            movementManager.updatePosition(this,noPositions);
+        if (movementManager.canMove(this, noPositions)) {
+            movementManager.updatePosition(this, noPositions);
         }
     }
-
 }
