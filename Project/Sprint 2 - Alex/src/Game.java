@@ -44,7 +44,7 @@ public class Game{
         playerManager.addPlayers(playerCount); // Add players to the game
 
         // Initialize the array of dragon cards, which are used as chit cards in the game
-        DragonCardArray dragonCardArray = new DragonCardArray();
+        DragonCardArray dragonCardArray = DragonCardArray.getInstance();
 
         // Initialize the UI controller
         Controller uiController = new Controller();
