@@ -5,7 +5,7 @@
  * It sets up the game environment, initializes game components, and starts the game interface.
  *
  * Author: Alex Ung
- * lasd modified: 29/04/2024
+ * Last Modified: 29/04/2024
  */
 
 package src;

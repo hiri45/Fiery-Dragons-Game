@@ -1,4 +1,4 @@
-/*
+/**
  * DragonTokenPanel.java
  *
  * Provides a graphical representation of a dragon token within a game. This panel is responsible

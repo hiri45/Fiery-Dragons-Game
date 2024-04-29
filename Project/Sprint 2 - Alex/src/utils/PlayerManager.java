@@ -1,8 +1,18 @@
+/**
+ * File: PlayerManager.java
+ *
+ * Description:
+ * Manages the players within the Fiery Dragons game, handling player turns, player registration,
+ * and assigning caves to dragon tokens. This class ensures that players are rotated correctly
+ * and that each dragon token is assigned to a cave if available.
+ *
+ * Author: Alex Ung
+ * Last Modified: 29/04/2024
+ */
 package src.utils;
 
 import src.actors.DragonToken;
 import src.board.BoardArray;
-import src.board.Cave;
 import src.board.VolcanoCard;
 
 import java.util.ArrayList;
@@ -13,7 +23,10 @@ public class PlayerManager {
     public ArrayList<DragonToken> players;
 
     public int playerCount;
-    public PlayerManager(){
+    /**
+     * Constructs a new PlayerManager, initializing the player list and setting the initial player turn.
+     */
+    private PlayerManager(){
         players = new ArrayList<>();
         playerTurn = 0;
         this.playerCount = 0;
@@ -21,18 +34,30 @@ public class PlayerManager {
 
 
     }
-
+    /**
+     * Ensures that only one instance of PlayerManager is used throughout the application.
+     * Implements the Singleton pattern.
+     *
+     * @return The single instance of PlayerManager.
+     */
     public static PlayerManager getInstance(){
         if(instance == null){
             instance = new PlayerManager();
         }
         return instance;
     }
-
+    /**
+     * Returns the list of all players.
+     *
+     * @return ArrayList of DragonToken, representing the players.
+     */
     public ArrayList<DragonToken> getPlayers() {
         return players;
     }
-
+    /**
+     * Updates the player turn, rotating among the available players and ensuring that each
+     * player gets their turn sequentially.
+     */
     public void updatePlayerTurn(){
         //Update the player's turn
         if (playerTurn < (players.size()-1)){
@@ -47,6 +72,11 @@ public class PlayerManager {
         }
 
     }
+    /**
+     * Adds a specified number of players to the game and assigns them dragon tokens.
+     *
+     * @param numberOfPlayers The number of players to add.
+     */
     public void addPlayers(int numberOfPlayers){
         for(int i = 0; i < numberOfPlayers; i++){
             players.add(new DragonToken(i));
@@ -54,14 +84,19 @@ public class PlayerManager {
         playerCount += numberOfPlayers;
         assignCaves();
     }
+    /**
+     * Resets the player count and clears the list of players, usually called at the end of a game.
+     */
     public void resetPlayerCount(){
         //at the end of the game, if a player wants to choose a different number of players, reset the player count
         playerCount = 0;
         players = new ArrayList<>();
     }
-
+    /**
+     * Assigns caves to dragon tokens. Each token is given a cave if available, ensuring no two tokens
+     * are assigned the same cave.
+     */
     public void assignCaves(){
-
         BoardArray boardArray = BoardArray.getInstance();
         ArrayList<VolcanoCard> board = boardArray.getBoard();
     for(DragonToken dragonToken: players){

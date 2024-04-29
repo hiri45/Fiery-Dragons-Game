@@ -1,11 +1,11 @@
-/*
+/**
  * GameBoard.java
  *
  * Provides the graphical interface for displaying the game board in the Fiery Dragon Board Game.
  * This class extends JPanel and contains methods to initialize and display the game board within a JFrame.
  *
  * Author: Alex Ung
- * Date: 29/04/2024
+ * Last Modified: 29/04/2024
  */
 
 package src.gui;

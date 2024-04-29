@@ -1,4 +1,4 @@
-/*
+/**
  * Square.java
  *
  * Represents a single square on the game board. Each square is associated with a specific

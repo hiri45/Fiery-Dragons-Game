@@ -1,4 +1,4 @@
-/*
+/**
  * Actor.java
  *
  * This file contains the definition of the Actor class, which represents a player or character

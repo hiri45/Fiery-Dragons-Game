@@ -1,4 +1,4 @@
-/*
+/**
  * WindowPanel.java
  *
  * Manages the graphical display of the game board in the Fiery Dragons game.
@@ -7,7 +7,7 @@
  * with these elements.
  *
  * Author: Alex Ung
- * Date: 29/04/2024
+ * Last Modified: 29/04/2024
  */
 
 package src.gui;

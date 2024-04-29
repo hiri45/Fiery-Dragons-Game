@@ -1,4 +1,4 @@
-/*
+/**
  * DragonToken.java
  *
  * This file defines the DragonToken class, which represents a dragon token in the game.

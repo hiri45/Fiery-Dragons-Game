@@ -1,4 +1,4 @@
-/*
+/**
  * Cave.java
  *
  * This file defines the Cave class, which represents a cave in the board game.

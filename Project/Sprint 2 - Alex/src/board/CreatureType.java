@@ -1,4 +1,4 @@
-/*
+/**
  * CreatureType.java
  *
  * This file defines the CreatureType enum, which represents different types of creatures

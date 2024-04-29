@@ -1,4 +1,4 @@
-/*
+/**
  * VolcanoCard.java
  *
  * Represents a Volcano Card in the game that can contain multiple squares, each with a unique creature.

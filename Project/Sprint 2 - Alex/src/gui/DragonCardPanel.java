@@ -1,4 +1,4 @@
-/*
+/**
  * DragonCardPanel.java
  *
  * This class extends JPanel to create a visual representation of a dragon card in the game.

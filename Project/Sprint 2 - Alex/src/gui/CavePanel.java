@@ -1,4 +1,4 @@
-/*
+/**
  * CavePanel.java
  *
  * This class extends JPanel to create a visual representation of a cave on the game board.

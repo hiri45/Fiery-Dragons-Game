@@ -1,4 +1,4 @@
-/*
+/**
  * SquarePanel.java
  *
  * Extends JPanel to represent a square on the game board. Each square is associated with a specific
@@ -6,7 +6,7 @@
  * visually represents the square.
  *
  * Author: Alex Ung
- * Date: 29/04/2024
+ * Last Modified: 29/04/2024
  */
 
 package src.gui;

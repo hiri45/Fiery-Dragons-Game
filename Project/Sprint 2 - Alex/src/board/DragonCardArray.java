@@ -1,4 +1,4 @@
-/*
+/**
  * DragonCardArray.java
  *
  * Manages a collection of dragon cards in a centralized location using the singleton design pattern.
