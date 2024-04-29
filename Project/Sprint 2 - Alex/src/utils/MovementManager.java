@@ -142,7 +142,7 @@ public class MovementManager {
         int boardSize = boardArray.getSquares().size();
         int newPosition = dragonToken.getPosition() + noPositions;
 
-        //if the player is alreadu in the cave, don't move backwards anymore
+        //if the player is already in the cave, don't move backwards anymore
         if(dragonToken.isInCave()){
             return cavePos;
         }
