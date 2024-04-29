@@ -27,6 +27,7 @@ public class DragonToken extends Actor {
     private boolean inCave;  // Flag indicating whether the dragon token is currently in the cave
     private int totalSquaresMoved;  // Counter for the total number of squares moved by the token
 
+    private int cycleTracker;
     /**
      * Constructor for the DragonToken class.
      *
@@ -81,6 +82,25 @@ public class DragonToken extends Actor {
      */
     public boolean isInCave() {
         return inCave;
+    }
+
+    /**
+     * Retrieves the current value of the cycle tracker for a dragon token.
+     * The cycle tracker can be used to monitor how many complete loops a token has made around the board.
+     *
+     * @return The current cycle tracker value.
+     */
+    public int getCycleTracker() {
+        return cycleTracker;
+    }
+    /**
+     * Sets the cycle tracker value for a dragon token. This method is used to update the cycle tracker,
+     * which counts how many complete loops have been made around the board
+     *
+     * @param cycleTracker The new value to set for the cycle tracker.
+     */
+    public void setCycleTracker(int cycleTracker) {
+        this.cycleTracker = cycleTracker;
     }
 
     /**

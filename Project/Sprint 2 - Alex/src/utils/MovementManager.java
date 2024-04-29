@@ -19,6 +19,8 @@ public class MovementManager {
     private WindowPanel windowPanel;
     private static MovementManager instance;
 
+    public BoardArray boardArray = BoardArray.getInstance();
+
 
     /**
      * Retrieves the single instance of MovementManager, creating it if it does not yet exist.
@@ -79,45 +81,82 @@ public class MovementManager {
      */
     public void updatePosition(DragonToken dragonToken, int noPositions){
 
-        int newPosition = dragonToken.getPosition() + noPositions;
-        BoardArray boardArray = BoardArray.getInstance();
-        int boardSize = boardArray.getSquares().size();
-
-        int currentPosition = dragonToken.getPosition();
-        int cavePos = dragonToken.getCave().getCavePosition();
-
-        //if the new position is greater than the size of the board
-        int tempVar = (newPosition) % (boardSize);
-
-        if( tempVar <= 2 && newPosition >= 23 ){
-            newPosition = tempVar; // Reset position if wrapping around the board.
+        int newPosition;
+        if(noPositions > 0){
+            newPosition = forwardsMovement(dragonToken,noPositions);
         }else{
-            //if the player's position is still in their cave move out of the cave
-            if (dragonToken.isInCave()){
-                newPosition = currentPosition;
-                if (noPositions > 1){
-                    newPosition = currentPosition + noPositions - 1; // Adjust for movement out of the cave.
-                }
-                //handles backwards movement
-            }else if (noPositions < 0){
-                if(newPosition < 0){
-                    newPosition = boardSize + noPositions;
-                }else if(newPosition < cavePos){
-                    newPosition = dragonToken.getCave().getCavePosition() + noPositions;
-                }
-
-            }else{
-                newPosition = dragonToken.getPosition()+noPositions;
-            }
+            newPosition = backwardsMovement(dragonToken,noPositions);
         }
-
         dragonToken.setPosition(newPosition);
         dragonToken.addMovement(noPositions);
 
         // Update UI
         windowPanel.moveToken(dragonToken.getDragonTokenPanel(),noPositions);
     }
+    /**
+     * Calculates the new position of a dragon token when moving backwards on the board.
+     * This method ensures that movement is wrapped around correctly when reaching the start of the board array.
+     * Additionally, it handles special conditions when the dragon token starts in the cave.
+     *
+     * @param dragonToken The dragon token whose position is being updated.
+     * @param noPositions The number of positions to move backwards (negative value).
+     * @return The new position of the dragon token after accounting for backwards movement and wrap-around.
+     */
+    public int forwardsMovement(DragonToken dragonToken, int noPositions){
+        int newPosition = dragonToken.getPosition() + noPositions;
 
+        int boardSize = boardArray.getSquares().size();
+        int tempVar = (newPosition) % (boardSize);
+
+        int currentPosition = dragonToken.getPosition();
+        // Reset position if wrapping around the board.
+        if( tempVar <= 2 && newPosition >= (boardSize-1) ){
+            newPosition = tempVar;
+            if(dragonToken.getCycleTracker() < 1){
+                dragonToken.setCycleTracker(dragonToken.getCycleTracker()+1);
+            }
+        }else {
+            //if the player's position is still in their cave move out of the cave
+            if (dragonToken.isInCave()) {
+                newPosition = currentPosition;
+                if (noPositions > 1) {
+                    newPosition = currentPosition + noPositions - 1; // Adjust for movement out of the cave.
+                }
+            }
+        }
+        return newPosition;
+    }
+
+    /**
+     * Calculates the new position for a dragon token moving backwards on the game board.
+     * This method ensures correct handling when the token wraps around the start of the board,
+     * and accounts for tokens starting their movement from a cave.
+     *
+     * @param dragonToken The dragon token whose position is being updated.
+     * @param noPositions The number of positions to move backwards (negative value).
+     * @return The new position on the board, adjusted for backward movement and wrap-around.
+     */
+
+    public int backwardsMovement(DragonToken dragonToken, int noPositions){
+        int cavePos = dragonToken.getCave().getCavePosition();
+        int boardSize = boardArray.getSquares().size();
+        int newPosition = dragonToken.getPosition() + noPositions;
+
+        //if the player is alreadu in the cave, don't move backwards anymore
+        if(dragonToken.isInCave()){
+            return cavePos;
+        }
+        if (newPosition < 0 ){
+            //Makes sure the player can't have negative cycles
+            if(dragonToken.getCycleTracker()-1 < 0){
+                return cavePos-1;
+            }
+            dragonToken.setCycleTracker(dragonToken.getCycleTracker()-1);
+            return boardSize + newPosition;
+        }
+
+        return newPosition;
+    }
     /**
      * Placeholder method for future functionality to check if the dragon card drawn matches the requirements.
      */

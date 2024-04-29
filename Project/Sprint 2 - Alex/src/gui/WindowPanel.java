@@ -313,19 +313,23 @@ public class WindowPanel extends JPanel {
         int cavePos = dragonTokenPanel.getDragonToken().getCave().getCavePosition();
         int caveX = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getX();
         int caveY = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getY();
+        int cycles = dragonTokenPanel.getDragonToken().getCycleTracker();
 
         // Check if the new position is behind the cave's position and the token is not already in the cave.
-        if(newPosition < cavePos && !dragonTokenPanel.getDragonToken().isInCave()){
+        if(newPosition < cavePos && !dragonTokenPanel.getDragonToken().isInCave() && cycles == 0){
             // Move the dragon token into the cave and update its state to reflect it is inside the cave.
             dragonTokenPanel.moveDragonToken(caveX, caveY);
             dragonTokenPanel.getDragonToken().setPosition(cavePos);
             dragonTokenPanel.getDragonToken().setInCave(true);
         } else if (newPosition == cavePos && dragonTokenPanel.getDragonToken().isInCave()) {
             // If the token is in the cave and attempts to move backwards to the same cave position, do nothing.
-        } else {
+        }
+        else {
             // If not moving into the cave, update the position normally.
             move(dragonTokenPanel, newPosition);
         }
+
+
     }
 
     /**

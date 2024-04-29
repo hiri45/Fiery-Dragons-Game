@@ -23,6 +23,7 @@ public class PlayerManager {
     public ArrayList<DragonToken> players;
 
     public int playerCount;
+
     /**
      * Constructs a new PlayerManager, initializing the player list and setting the initial player turn.
      */
@@ -122,4 +123,6 @@ public class PlayerManager {
         }
         }
     }
+
+
 }
