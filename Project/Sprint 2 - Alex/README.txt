@@ -14,3 +14,14 @@ Sequence Diagrams can be found in:
 
 Source code for the application can be found in: 
 /src
+
+
+<-----------THIS INFORMATION WILL ALSO BE AVAILABLE IN THE DESIGN RATIONALE----------->
+Instructions for running executable .jar file:
+- Make sure to have jdk 22 installed and the app should be runnable on all OS:
+  https://www.oracle.com/au/java/technologies/downloads/ 
+
+link to unlisted video demonstration:
+https://youtu.be/P35hQo1IqJI?si=s_QZIPCvoQ2J7BV5 
+
+
