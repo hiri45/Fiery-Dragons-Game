@@ -1,3 +1,15 @@
+/*
+ * WindowPanel.java
+ *
+ * Manages the graphical display of the game board in the Fiery Dragons game.
+ * This panel is responsible for creating and arranging the squares, caves, and dragon tokens
+ * on the game board. It also manages the positioning and interactive functionality associated
+ * with these elements.
+ *
+ * Author: Alex Ung
+ * Date: 29/04/2024
+ */
+
 package src.gui;
 
 import src.actors.Actor;
@@ -18,32 +30,26 @@ import static java.lang.String.valueOf;
 
 public class WindowPanel extends JPanel {
 
-    private final int squareSize = 75;
-    private final int gridSize = 8;
+    private final int squareSize = 75;   // Size of each square on the board
+    private final int gridSize = 8;      // Grid size of the board, representing 8x8
 
-    @Override
-    public int getWidth() {
-        return width;
-    }
+    private int offsetX;                 // Horizontal offset for centering the board
+    private int offsetY;                 // Vertical offset for centering the board
+    private final int caveSize = 75;     // Size of the caves on the board
 
-    @Override
-    public int getHeight() {
-        return height;
-    }
+    private final int cardSize = 60;     // Size of dragon cards
+    private final Color caveColor = new Color(128, 64, 0); // Color for caves
 
-    private int offsetX;
-    private int offsetY;
-    private final int caveSize = 75;
+    private final int width = 1000;      // Width of the panel
+    private final int height = 900;      // Height of the panel
 
-    private final int cardSize = 60;
-    private final Color caveColor = new Color(128, 64, 0); // Brown color for caves
+    private ArrayList<SquarePanel> boardPanels = new ArrayList<>(); // Panels for each square
+    private ArrayList<CavePanel> cavePanels = new ArrayList<>();    // Panels for each cave
 
-    private final int width = 1000;
-    private final int height = 900;
-
-    private ArrayList<SquarePanel> boardPanels = new ArrayList<>();
-    private ArrayList<CavePanel> cavePanels = new ArrayList<>();
-
+    /**
+     * Constructor for WindowPanel. Sets up the board by creating squares, caves,
+     * and dragon cards, and configures basic panel settings.
+     */
     public WindowPanel() {
         this.setLayout(null); // Use a null layout manager for absolute positioning
         this.setPreferredSize(new Dimension(width, height));
@@ -62,59 +68,95 @@ public class WindowPanel extends JPanel {
         movementManager.setWindowPanel(this);
     }
 
+    /**
+     * Gets the list of square panels that make up the game board.
+     * This method allows access to the square panels, which represent each square on the game board.
+     *
+     * @return An ArrayList of SquarePanel representing each square on the board.
+     */
     public ArrayList<SquarePanel> getBoardPanels() {
         return boardPanels;
     }
 
-    private void createSquaresAndCaves() {
-        BoardArray boardArray = BoardArray.getInstance();
-        ArrayList<Square> squares = boardArray.getSquares();
-        int index = 0;
+    /**
+     * Overrides the getWidth method to provide the predefined width of the panel.
+     * This method is used to determine the width of the WindowPanel for layout calculations.
+     *
+     * @return The width of the panel.
+     */
+    @Override
+    public int getWidth() {
+        return width;
+    }
 
-// Add top edge squares (left to right)
+    /**
+     * Overrides the getHeight method to provide the predefined height of the panel.
+     * This method is used to determine the height of the WindowPanel for layout calculations.
+     *
+     * @return The height of the panel.
+     */
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Creates and arranges the squares and caves on the game board.
+     * This method sets up the visual representation of the game board by arranging SquarePanel and CavePanel
+     * instances according to the game's layout specifications. It also adds functionality for the placement
+     * of DragonToken representations based on the game's rules.
+     */
+    private void createSquaresAndCaves() {
+        // Retrieve the singleton instance of BoardArray which holds all the squares and volcano cards.
+        BoardArray boardArray = BoardArray.getInstance();
+        // Get the list of all squares from the board array.
+        ArrayList<Square> squares = boardArray.getSquares();
+        int index = 0; // Index used to place squares in their respective panel positions.
+
+        // Position squares along the top edge of the board from left to right, excluding corners.
         for (int i = 1; i < gridSize - 1; i++, index++) {
             int x = offsetX + i * squareSize;
             int y = offsetY;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
             squarePanel.setBounds(x, y, squareSize, squareSize);
             boardPanels.add(squarePanel);
             this.add(squarePanel);
         }
 
-// Add right edge squares (top to bottom)
+        // Position squares along the right edge of the board from top to bottom, excluding corners.
         for (int j = 1; j < gridSize - 1; j++, index++) {
             int x = offsetX + (gridSize - 1) * squareSize;
             int y = offsetY + j * squareSize;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
             squarePanel.setBounds(x, y, squareSize, squareSize);
             boardPanels.add(squarePanel);
             this.add(squarePanel);
         }
 
-// Add bottom edge squares (right to left)
+        // Position squares along the bottom edge of the board from right to left, excluding corners.
         for (int i = gridSize - 2; i > 0; i--, index++) {
             int x = offsetX + i * squareSize;
             int y = offsetY + (gridSize - 1) * squareSize;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
             squarePanel.setBounds(x, y, squareSize, squareSize);
             boardPanels.add(squarePanel);
             this.add(squarePanel);
         }
 
-// Add left edge squares (bottom to top)
+        // Position squares along the left edge of the board from bottom to top, excluding corners.
         for (int j = gridSize - 2; j > 0; j--, index++) {
             int x = offsetX;
             int y = offsetY + j * squareSize;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index),x,y);
+            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
             squarePanel.setBounds(x, y, squareSize, squareSize);
             boardPanels.add(squarePanel);
             this.add(squarePanel);
         }
+        // Call method to add creature labels to the squares.
+        addCreatureLabels();
 
-        addcreatureLabels();
-
+        // Retrieve all volcano cards to determine which ones have caves.
         ArrayList<VolcanoCard> volcanoCards = boardArray.getBoard();
-
         ArrayList<Cave> caves = new ArrayList<>();
         for (VolcanoCard card: volcanoCards){
             if(card.hasCave()){
@@ -136,9 +178,11 @@ public class WindowPanel extends JPanel {
             addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY + gridSize * squareSize); // bottom cave left
             addCave(caves.get(3),offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize); // Left cave top
         }
+
+        // Retrieve the list of dragon tokens from the player manager and position them.
         PlayerManager playerManager = PlayerManager.getInstance();
         ArrayList<DragonToken> dragonTokens = playerManager.getPlayers();
-
+        //add the dragonTokens onto the gui
         addDragonToken(dragonTokens.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize,50,750);
         addDragonToken(dragonTokens.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize - squareSize,50,780);
         addDragonToken(dragonTokens.get(2),offsetX + (gridSize / 2) * squareSize + 1 * squareSize, offsetY + gridSize * squareSize,50,810);
@@ -147,159 +191,246 @@ public class WindowPanel extends JPanel {
 
     }
 
+    /**
+     * Adds a CavePanel to the game board at a specified position.
+     *
+     * @param cave The Cave object representing the game logic for a specific cave.
+     * @param x    The x-coordinate where the cave should be placed on the board.
+     * @param y    The y-coordinate where the cave should be placed on the board.
+     */
     private void addCave(Cave cave, int x, int y) {
+        // Create a new CavePanel using the specified cave and color for background.
         CavePanel cavePanel = new CavePanel(x,y,cave,caveColor);
+        // Associate the graphical cave panel with the logical cave object.
         cave.setCavePanel(cavePanel);
+        // Add the cave panel to the list of cave panels.
         cavePanels.add(cavePanel);
+        // Set the position and size of the cave panel on the game board.
         cavePanel.setBounds(x, y, caveSize, caveSize);
+        // Add the cave panel to this WindowPanel, making it visible on the game board.
         this.add(cavePanel);
     }
 
-    private void addDragonToken(DragonToken dragonToken, int x, int y,int buttonX, int buttonY){
-        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x,y,dragonToken, offsetX, offsetY,Color.red);
-        dragonTokenPanel.setBounds(x,y,50,50);
-        this.add(dragonTokenPanel,0);
+    /**
+     * Adds a DragonTokenPanel to the game board and sets up control buttons for token movement.
+     *
+     * This method creates a DragonTokenPanel for a given dragon token at a specified position on the board,
+     * and adds interactive buttons that allow the player to move the dragon token in various ways during gameplay.
+     *
+     * @param dragonToken The DragonToken object that needs a graphical representation.
+     * @param x           The x-coordinate where the dragon token should be placed on the board.
+     * @param y           The y-coordinate where the dragon token should be placed on the board.
+     * @param buttonX     The starting x-coordinate for the first movement control button.
+     * @param buttonY     The y-coordinate for all movement control buttons.
+     */
+    private void addDragonToken(DragonToken dragonToken, int x, int y, int buttonX, int buttonY) {
+        // Create a new DragonTokenPanel with specified position, token data, and default color.
+        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x, y, dragonToken, offsetX, offsetY, Color.red);
+        dragonTokenPanel.setBounds(x, y, 50, 50); // Set size and position of the token panel.
+        this.add(dragonTokenPanel, 0); // Add the token panel to this WindowPanel at the lowest z-index.
 
-        //Add move buttons for temporarily moving dragon tokens
+        // Setup and add a button for moving the dragon token forward by 1 position.
         JButton moveButton = new JButton("Move1");
-        moveButton.addActionListener(e -> dragonToken.move(1));
-        moveButton.setBounds(buttonX, buttonY, 100, 30);  // Position the move button
-        this.add(moveButton);
+        moveButton.addActionListener(e -> dragonToken.move(1)); // Attach action to move the token forward.
+        moveButton.setBounds(buttonX, buttonY, 100, 30); // Set position and size of the button.
+        this.add(moveButton); // Add the button to the WindowPanel.
 
+        // Setup and add a button for moving the dragon token forward by 2 positions.
         JButton moveButton2 = new JButton("Move2");
-        moveButton2.addActionListener(e -> dragonToken.move(2));
-        moveButton2.setBounds(buttonX+100, buttonY, 100, 30);  // Position the move button
-        this.add(moveButton2);
+        moveButton2.addActionListener(e -> dragonToken.move(2)); // Attach action to move the token forward.
+        moveButton2.setBounds(buttonX + 100, buttonY, 100, 30); // Adjust position for layout.
+        this.add(moveButton2); // Add the button to the WindowPanel.
 
-        JButton moveButton3 = new JButton("move3");
-        moveButton3.addActionListener(e -> dragonToken.move(3));
-        moveButton3.setBounds(buttonX+ 200, buttonY, 100, 30);  // Position the move button
-        this.add(moveButton3);
+        // Setup and add a button for moving the dragon token forward by 3 positions.
+        JButton moveButton3 = new JButton("Move3");
+        moveButton3.addActionListener(e -> dragonToken.move(3)); // Attach action to move the token forward.
+        moveButton3.setBounds(buttonX + 200, buttonY, 100, 30); // Adjust position for layout.
+        this.add(moveButton3); // Add the button to the WindowPanel.
 
-        JButton moveButton4 = new JButton("moveBackwards1");
-        moveButton4.addActionListener(e -> dragonToken.move(-1));
-        moveButton4.setBounds(buttonX+ 300, buttonY, 100, 30);  // Position the move button
-        this.add(moveButton4);
+        // Setup and add a button for moving the dragon token backward by 1 position.
+        JButton moveButton4 = new JButton("MoveBackwards1");
+        moveButton4.addActionListener(e -> dragonToken.move(-1)); // Attach action to move the token backward.
+        moveButton4.setBounds(buttonX + 300, buttonY, 100, 30); // Adjust position for layout.
+        this.add(moveButton4); // Add the button to the WindowPanel.
 
-        JButton moveButton5 = new JButton("moveBackwards2");
-        moveButton5.addActionListener(e -> dragonToken.move(-2));
-        moveButton5.setBounds(buttonX+ 400, buttonY, 100, 30);  // Position the move button
-        this.add(moveButton5);
-
+        // Setup and add a button for moving the dragon token backward by 2 positions.
+        JButton moveButton5 = new JButton("MoveBackwards2");
+        moveButton5.addActionListener(e -> dragonToken.move(-2)); // Attach action to move the token backward.
+        moveButton5.setBounds(buttonX + 400, buttonY, 100, 30); // Adjust position for layout.
+        this.add(moveButton5); // Add the button to the WindowPanel.
     }
+    /**
+     * Manages the movement of a dragon token on the game board.
+     *
+     * This method determines the direction and magnitude of the movement based on the input parameter
+     * and delegates to specific methods for forward or backward movement. It updates the position of the
+     * dragon token accordingly.
+     *
+     * @param dragonTokenPanel The graphical panel representing the dragon token whose position is to be updated.
+     * @param noPosition       The number of positions to move the dragon token. A positive value moves the token forward,
+     *                         while a negative value moves it backward.
+     */
     public void moveToken(DragonTokenPanel dragonTokenPanel, int noPosition) {
-        // Determine the next position in a clockwise movement
+        // Retrieve the current position of the dragon token from its panel.
         int newPosition = dragonTokenPanel.getDragonToken().getPosition();
 
-
-        if(noPosition > 0){
-            forwardsMovement(dragonTokenPanel,newPosition);
-        }else{
-            backwardsMovement(dragonTokenPanel,newPosition);
+        // Check if the movement is forward (positive number of positions).
+        if (noPosition > 0) {
+            // Handle forward movement by delegating to the appropriate method.
+            forwardsMovement(dragonTokenPanel, newPosition);
+        } else {
+            // Handle backward movement by delegating to the appropriate method.
+            backwardsMovement(dragonTokenPanel, newPosition);
         }
     }
 
-    public void forwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
-        //move the token forwards as normal
-        move(dragonTokenPanel,newPosition);
 
+    /**
+     * Manages forward movement of a dragon token on the game board.
+     *
+     * This method directly calls the move method to update the dragon token's position on the board
+     * based on the new position calculated in the moveToken method.
+     *
+     * @param dragonTokenPanel The graphical panel representing the dragon token.
+     * @param newPosition      The calculated new position for the dragon token, assuming forward movement.
+     */
+    public void forwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
+        // Move the token forward by updating its position to the new calculated position.
+        move(dragonTokenPanel, newPosition);
     }
+    /**
+     * Manages backward movement of a dragon token on the game board, including handling special cases
+     * like moving into a cave.
+     *
+     * This method determines if backward movement should place the dragon token inside its cave or just update
+     * its position on the board. It handles logic specific to cave entry and adjustments of token position when moving backwards.
+     *
+     * @param dragonTokenPanel The graphical panel representing the dragon token.
+     * @param newPosition      The calculated new position for the dragon token, assuming backward movement.
+     */
     public void backwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
-        /*
-        Handles the logic for moving dragon tokens backwards
-         */
-        int cavePos =  dragonTokenPanel.getDragonToken().getCave().getCavePosition();
+        // Retrieve the position and graphical coordinates of the cave associated with the dragon token.
+        int cavePos = dragonTokenPanel.getDragonToken().getCave().getCavePosition();
         int caveX = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getX();
         int caveY = dragonTokenPanel.getDragonToken().getCave().getCavePanel().getY();
-        //If the token is supposed to move behind the cave, move the token into the cave
+
+        // Check if the new position is behind the cave's position and the token is not already in the cave.
         if(newPosition < cavePos && !dragonTokenPanel.getDragonToken().isInCave()){
-            dragonTokenPanel.moveDragonToken(caveX,caveY);
+            // Move the dragon token into the cave and update its state to reflect it is inside the cave.
+            dragonTokenPanel.moveDragonToken(caveX, caveY);
             dragonTokenPanel.getDragonToken().setPosition(cavePos);
             dragonTokenPanel.getDragonToken().setInCave(true);
-        }else if(newPosition == cavePos && dragonTokenPanel.getDragonToken().isInCave()){
-            //if the token is in the cave, but there is backwards movement, don't do anything
-
-        }
-        else{
-            //otherwise move backwards as normal
-            move(dragonTokenPanel,newPosition);
+        } else if (newPosition == cavePos && dragonTokenPanel.getDragonToken().isInCave()) {
+            // If the token is in the cave and attempts to move backwards to the same cave position, do nothing.
+        } else {
+            // If not moving into the cave, update the position normally.
+            move(dragonTokenPanel, newPosition);
         }
     }
 
+    /**
+     * Updates the graphical position of a dragon token to reflect its new logical position.
+     *
+     * This method scans through all square panels on the game board to find the square that matches
+     * the new position of the dragon token. Once found, it updates the graphical location of the
+     * dragon token to align with the square's location on the board.
+     *
+     * @param dragonTokenPanel The graphical panel representing the dragon token that needs to be moved.
+     * @param newPosition      The new logical position of the dragon token determined by game logic.
+     */
     public void move(DragonTokenPanel dragonTokenPanel, int newPosition) {
-        /*
-        Visually move the jpanel to match the position of the token in the backend
-         */
+        // Iterate over all square panels on the board to find the one that matches the new position.
         for (SquarePanel squarePanel : boardPanels) {
+            // Check if the square's position matches the dragon token's new logical position.
             if (newPosition == squarePanel.getSquare().getPosition()) {
+                // Move the dragon token panel to the square's graphical coordinates.
                 dragonTokenPanel.moveDragonToken(squarePanel.getX(), squarePanel.getY());
+                // Update the token's state to indicate it is not inside a cave.
                 dragonTokenPanel.getDragonToken().setInCave(false);
-                break;
+                break;  // Exit the loop once the correct panel is found and updated.
             }
         }
     }
+    /**
+     * Creates and positions dragon cards in a grid layout on the game board.
+     *
+     * This method calculates the necessary dimensions and layout to arrange dragon cards in a 4x4 grid.
+     * It positions the cards centrally on the game board and sets their bounds according to calculated positions.
+     */
     private void createDragonCards() {
-        // Define the number of cards horizontally and vertically
+        // Number of cards per row and total number of rows in the grid.
         int cardsPerRow = 4;
-        int cardRows = 4; // For a 4x4 grid of cards
+        int cardRows = 4; // Fixed grid of 4x4 for dragon cards.
 
-        // Calculate total width and height needed for all cards including gaps between them
-        int totalCardsWidth = cardsPerRow * cardSize + (cardsPerRow - 1) * 5; // Adjust the gap width as needed
-        int totalCardsHeight = cardRows * cardSize + (cardRows - 1) * 5; // Adjust the gap height as needed
+        // Calculate the total width and height needed for all cards including gaps between them.
+        int totalCardsWidth = cardsPerRow * cardSize + (cardsPerRow - 1) * 5; // Total width with gaps between cards.
+        int totalCardsHeight = cardRows * cardSize + (cardRows - 1) * 5; // Total height with gaps between cards.
 
-        // Calculate starting position to center the cards
-        int startX = (this.getWidth() - totalCardsWidth) / 2;
-        int startY = (this.getHeight() - totalCardsHeight) / 2;
+        // Calculate the starting position to center the grid of cards within the panel.
+        int startX = (this.getWidth() - totalCardsWidth) / 2; // Center horizontally.
+        int startY = (this.getHeight() - totalCardsHeight) / 2; // Center vertically.
 
-        // Create and position the dragon cards
+        // Create each dragon card and position it within the grid.
         for (int i = 0; i < cardRows * cardsPerRow; i++) {
-            String cardName = "Dragon Card " + (i + 1);
-            DragonCardPanel card = new DragonCardPanel(cardName);
+            String cardName = "Dragon Card " + (i + 1); // Name the card with its sequential number.
+            DragonCardPanel card = new DragonCardPanel(cardName); // Create a new DragonCardPanel for each card.
 
-            int row = i / cardsPerRow; // Row position of the card
-            int col = i % cardsPerRow; // Column position of the card
+            int row = i / cardsPerRow; // Determine the row position based on the index.
+            int col = i % cardsPerRow; // Determine the column position based on the index.
 
-            int x = startX + col * (cardSize + 5); // x position considering the gap
-            int y = startY + row * (cardSize + 5); // y position considering the gap
+            // Calculate the exact x and y position for each card, considering gaps.
+            int x = startX + col * (cardSize + 5); // Position horizontally with a gap of 5 pixels between cards.
+            int y = startY + row * (cardSize + 5); // Position vertically with a gap of 5 pixels between cards.
 
-            card.setBounds(x, y, cardSize, cardSize);
-            this.add(card);
+            card.setBounds(x, y, cardSize, cardSize); // Set the bounds of the card within the panel.
+            this.add(card); // Add the card to the WindowPanel.
         }
     }
 
-    public void addcreatureLabels(){
+
+    /**
+     * Adds creature labels to each square panel on the game board.
+     *
+     * This method retrieves the list of squares from the BoardArray singleton and creates a label for each square
+     * based on the creature type it holds. These labels are then added to their corresponding square panels
+     * and visually updated with random background colors to distinguish the squares.
+     */
+    public void addCreatureLabels() {
+        // Retrieve the singleton instance of BoardArray to access squares and volcano cards.
         BoardArray boardArray = BoardArray.getInstance();
         ArrayList<Square> squares = boardArray.getSquares();
         ArrayList<JLabel> labels = new ArrayList<>();
-        ArrayList<VolcanoCard> volcanoCards = boardArray.getBoard();
-        //go through the list of volcanoCards
-            //get the animals associated with each square
-        for (int j = 0; j < squares.size(); j++){
-            String label = squares.get(j).ui();
-            JLabel creatureLabel = new JLabel(label);
-            labels.add(creatureLabel);
+
+        // Create labels for each square based on the creature type it contains.
+        for (int j = 0; j < squares.size(); j++) {
+            String labelText = squares.get(j).ui();  // Retrieves the creature type in string format from each square.
+            JLabel creatureLabel = new JLabel(labelText);  // Create a label with the creature type text.
+            labels.add(creatureLabel);  // Add the newly created label to the list of labels.
         }
+
+        // Initialize a random color generator for setting random background colors.
         Random rand = new Random();
         float r = rand.nextFloat();
         float g = rand.nextFloat();
         float b = rand.nextFloat();
-        Color randomColor = new Color(r, g, b);
+        Color randomColor = new Color(r, g, b);  // Create an initial random color.
 
-        //add all the labels to their appropriate panel
-        for (int k = 0; k < this.boardPanels.size();k++){
-            if(k%3 == 0){
-                rand = new Random();
+        // Assign each label to its corresponding square panel and set a random background color.
+        for (int k = 0; k < this.boardPanels.size(); k++) {
+            if (k % 3 == 0) {  // Change the color every three panels for visual diversity.
+                rand = new Random();  // Reinitialize random number generator.
                 r = rand.nextFloat();
                 g = rand.nextFloat();
                 b = rand.nextFloat();
-                randomColor = new Color(r, g, b);
+                randomColor = new Color(r, g, b);  // Assign a new random color.
             }
-            JLabel label = labels.get(k);
-            boardPanels.get(k).setOpaque(true);
-            boardPanels.get(k).setBackground(randomColor);
-            boardPanels.get(k).add(label);
 
-            //add each boardPanel to the current windowPanel
+            JLabel label = labels.get(k);  // Get the label corresponding to the current square panel.
+            boardPanels.get(k).setOpaque(true);  // Set the panel to opaque to ensure the background color shows.
+            boardPanels.get(k).setBackground(randomColor);  // Set the background color of the panel.
+            boardPanels.get(k).add(label);  // Add the label to the square panel.
+
+            // Finally, add the updated square panel to the WindowPanel for display.
             this.add(boardPanels.get(k));
         }
     }

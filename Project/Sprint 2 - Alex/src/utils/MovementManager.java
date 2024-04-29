@@ -76,12 +76,9 @@ public class MovementManager {
                 }
                 //handles backwards movement
             }else if (noPositions < 0){
-                System.out.println(newPosition);
-                System.out.println(currentPosition);
                 if(newPosition < 0){
                     newPosition = boardSize + noPositions;
                 }else if(newPosition < cavePos){
-                    System.out.println("sup");
                     newPosition = dragonToken.getCave().getCavePosition() + noPositions;
                 }
 
