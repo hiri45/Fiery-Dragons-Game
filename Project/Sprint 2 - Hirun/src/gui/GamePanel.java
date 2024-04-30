@@ -29,7 +29,7 @@ public class GamePanel extends JFrame {
 
         // Load the dragon image
         try {
-            BufferedImage dragonImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/gui/GameImages/DragonCardImage.png")));
+            BufferedImage dragonImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/gui/gameImages/DragonCardImage.png")));
             Image scaledImage = dragonImage.getScaledInstance(250 / CHIT_COLS, -1, Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(scaledImage);
             DragonCard dragonCard = new DragonCard();
@@ -60,11 +60,29 @@ public class GamePanel extends JFrame {
         JPanel bottomVolcanoPanel = new JPanel(new GridLayout(VERTICAL_VOLCANO_ROWS, VERTICAL_VOLCANO_COLS));
         bottomVolcanoPanel.setPreferredSize(new Dimension(100,100));
 
+        // still figuring out a way to implement these caves onto the board
+        JPanel leftCavePanel = new JPanel();
+        leftCavePanel.setPreferredSize(new Dimension(100, 50)); // Ensure size is enough to see it
+        leftCavePanel.setBackground(Color.GRAY);
+        //JPanel leftCavePanel = new JPanel(new GridLayout(1,1));
+        //leftCavePanel.setPreferredSize(new Dimension(100, 100));
+        JPanel rightCavePanel = new JPanel();
+        rightCavePanel.setPreferredSize(new Dimension(100, 50));
+        rightCavePanel.setBackground(Color.GRAY);
+        JPanel topCavePanel = new JPanel();
+        topCavePanel.setPreferredSize(new Dimension(50, 100));
+        topCavePanel.setBackground(Color.GRAY);
+        JPanel bottomCavePanel = new JPanel();
+        bottomCavePanel.setPreferredSize(new Dimension(50, 100));
+        bottomCavePanel.setBackground(Color.GRAY);
+
+
 
         // Create horizontal panels (left and right)
         for (int i = 0; i < HORIZONTAL_VOLCANO_ROWS; i++) {
             JLabel leftCellPanel = new JLabel();
             leftCellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            //leftCellPanel.add(leftCavePanel, BorderLayout.WEST);
             leftVolcanoPanel.add(leftCellPanel);
 
             JLabel rightCellPanel = new JLabel();
@@ -82,15 +100,6 @@ public class GamePanel extends JFrame {
             bottomVolcanoPanel.add(bottomCellPanel);
         }
 
-        // still figuring out a way to implement these caves onto the board
-        JPanel leftCavePanel = new JPanel();
-        leftCavePanel.setPreferredSize(new Dimension(100, 100));
-        JPanel rightCavePanel = new JPanel();
-        rightCavePanel.setPreferredSize(new Dimension(100, 100));
-        JPanel topCavePanel = new JPanel();
-        topCavePanel.setPreferredSize(new Dimension(100, 100));
-        JPanel bottomCavePanel = new JPanel();
-        bottomCavePanel.setPreferredSize(new Dimension(100, 100));
 
 // Representation of the volcano panels as desired using grid bag constraints
 
@@ -118,6 +127,30 @@ public class GamePanel extends JFrame {
         gbc.gridx = 1; gbc.gridy = CHIT_ROWS + 1; // This should be directly below the central grid
         gbc.gridwidth = CHIT_COLS; gbc.gridheight = 1;
         add(bottomVolcanoPanel, gbc);
+
+
+        // right cave panel
+        gbc.gridx = -1; // Align with the central grid horizontally
+        gbc.gridy = 1; // Place directly above the central grid (one unit up)
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1; // Only one unit tall
+        add(rightCavePanel, gbc);
+
+// Bottom Cave Panel
+        gbc.gridx = 1; // Align with the central grid horizontally
+        gbc.gridy = -1; // Place directly below the central grid
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1; // Only one unit tall
+        add(bottomCavePanel, gbc);
+
+// Make sure to validate the layout after adding all panels
+        validate();
+        repaint();
+
+        pack();
+
+
+
 
     }
 
