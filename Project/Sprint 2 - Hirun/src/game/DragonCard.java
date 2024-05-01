@@ -1,5 +1,7 @@
 package game;
 
+import game.utils.Shuffle;
+
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,9 +12,6 @@ public class DragonCard {
     private String dragonCardCreature;
     private boolean flipStatus;
     private int creatureQuant;
-    private final String[] dragonCardFlipped = {"1 salamander", "2 salamander", "3 salamander", "1 bat",
-            "2 bat", "3 bat", "1 spider", "2 spider", "3 spider", "1 babyDragon", "2 babyDragon", "3 babyDragon", "1 pirateDragon",
-            "1 pirateDragon", "2 pirateDragon", "2 pirateDragon"};
 
     public DragonCard() {
         // these variables will be helpful for later when matching and moving the player
@@ -73,11 +72,12 @@ public class DragonCard {
         }
     }
 
-    public String[] shuffleDragon() {
-        List<String> list = Arrays.asList(dragonCardFlipped);
-        Collections.shuffle(list);
-        return list.toArray(dragonCardFlipped); // updates the original array
-    }
+    // not required since i made a separate shuffle class
+//    public String[] shuffleDragon() {
+//        List<String> list = Arrays.asList(dragonCardFlipped);
+//        Collections.shuffle(list);
+//        return list.toArray(dragonCardFlipped); // updates the original array
+//    }
 }
 
 
