@@ -90,8 +90,8 @@ public class BoardPanel extends JFrame {
         createLeftPanel(leftVolcanoPanel1,caves[0]);
         createLeftPanel(leftVolcanoPanel2,"");
 
-        createRightPanel(rightVolcanoPanel1,caves[1]);
-        createRightPanel(rightVolcanoPanel2,"");
+        createRightPanel(rightVolcanoPanel1,"");
+        createRightPanel(rightVolcanoPanel2,caves[1]);
 
         // Create card panels for the top volcano panel and bottom volcano panel along with cave in required position
         createTopPanel(topVolcanoPanel1,"");
@@ -151,6 +151,7 @@ public class BoardPanel extends JFrame {
                         if (col == 1) {
                             JLabel label = new JLabel();
                             cellPanel.add(label);
+                            cellPanel.setBackground(Color.RED);
                             cellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                         }
                     }
@@ -186,6 +187,7 @@ public class BoardPanel extends JFrame {
                         if (col == 0) {
                             JLabel label = new JLabel();
                             cellPanel.add(label);
+                            cellPanel.setBackground(Color.RED);
                             cellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                         }
                     }
@@ -221,6 +223,7 @@ public class BoardPanel extends JFrame {
                         if (!(row == 0)) {
                             JLabel label = new JLabel();
                             cellPanel.add(label);
+                            cellPanel.setBackground(Color.RED);
                             cellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                         }
                     }
@@ -256,6 +259,7 @@ public class BoardPanel extends JFrame {
                         if (!(row == 1)) {
                             JLabel label = new JLabel();
                             cellPanel.add(label);
+                            cellPanel.setBackground(Color.RED);
                             cellPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                         }
                     }
