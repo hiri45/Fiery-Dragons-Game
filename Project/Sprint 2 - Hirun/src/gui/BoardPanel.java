@@ -81,6 +81,8 @@ public class BoardPanel extends JFrame {
 
 
         String [] caves = {"bat", "babyDragon", "spider", "salamander"}; // for now just using an array of strings without the actual Cave class
+        String [][] volcanoCaveCards = {{"babyDragoon","bat","spider"},{"salamander","spider","bat"},{"spider","salamander","babyDragon"},{"bat","spider","babyDragon"}};
+        String [][] nonCaveVolcCard = {{"spider","bat","salamander"},{"babyDragon","salamander","bat"},{"bat","babyDragon","salamander"},{"salamander","babyDragon","spider"}};
         // uses Shuffle class to shuffle the original caves array
         Shuffle caveShuffled = new Shuffle(caves);
         caveShuffled.shuffleDragon();
@@ -250,7 +252,7 @@ public class BoardPanel extends JFrame {
                     }
                     // Add a label conditionally
                     else {
-                        // Create labels only for specific cards
+                        // this is where the cave creature cards would be added, didnt have time.
                         if (!(row == 1)) {
                             JLabel label = new JLabel();
                             cellPanel.add(label);
@@ -258,6 +260,7 @@ public class BoardPanel extends JFrame {
                         }
                     }
                 }
+                // this is where the non cave creature cards would be added, didnt have time.
                 if (!(row == 1)) {
                     JLabel label = new JLabel("Card " + (col + 1));
                     cellPanel.add(label);
