@@ -63,7 +63,7 @@ public class WindowPanel extends JPanel {
         this.offsetY = centerY - (totalBoardHeight / 2);
 
         createSquaresAndCaves();
-        createDragonCards();
+        placeDragonCardPool();
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
     }
@@ -390,6 +390,15 @@ public class WindowPanel extends JPanel {
             this.add(card); // Add the card to the WindowPanel.
         }
     }
+    private void placeDragonCardPool()
+    {
+        int dragonPoolSideLength = (width/3); //Dynamic dragon pool size so that it always scales with screen size
+        int dragonCardPoolX = (width - dragonPoolSideLength) / 2;
+        int dragonCardPoolY = (height - dragonPoolSideLength) / 2;
+        DragonCardPool dragonCardPool = new DragonCardPool();
+        dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
+        add(dragonCardPool);
+    }
 
 
     /**
@@ -437,6 +446,7 @@ public class WindowPanel extends JPanel {
             // Finally, add the updated square panel to the WindowPanel for display.
             this.add(boardPanels.get(k));
         }
+
     }
 
 }
