@@ -38,10 +38,6 @@ public class Game{
         // Add positions to the board for volcano cards and squares
         boardArray.addPosition(8,3);
 
-        // Initialize the player count and configure players
-        int playerCount = 4; // Number of players
-        PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
-        playerManager.addPlayers(playerCount); // Add players to the game
 
         // Initialize the array of dragon cards, which are used as chit cards in the game
         DragonCardArray dragonCardArray = DragonCardArray.getInstance();

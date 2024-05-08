@@ -39,6 +39,7 @@ public class GameBoard extends JPanel {
         JFrame frame = new JFrame("Fiery Dragon Board Game"); // Create a new JFrame with the game's title
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation to exit the application
 
+
         WindowPanel gameWindow = new WindowPanel(); // Create the main game panel
         frame.add(gameWindow); // Add the game panel to the frame
 

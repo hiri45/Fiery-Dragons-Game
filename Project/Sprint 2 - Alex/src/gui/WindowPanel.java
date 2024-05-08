@@ -12,7 +12,6 @@
 
 package src.gui;
 
-import src.actors.Actor;
 import src.actors.DragonToken;
 import src.board.BoardArray;
 import src.board.Cave;
@@ -25,6 +24,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static java.lang.String.valueOf;
 
@@ -45,6 +47,7 @@ public class WindowPanel extends JPanel {
 
     private ArrayList<SquarePanel> boardPanels = new ArrayList<>(); // Panels for each square
     private ArrayList<CavePanel> cavePanels = new ArrayList<>();    // Panels for each cave
+    private int numberOfPlayers; // Variable to store the number of players
 
     /**
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
@@ -61,6 +64,21 @@ public class WindowPanel extends JPanel {
         int totalBoardHeight = gridSize * squareSize;
         this.offsetX = centerX - (totalBoardWidth / 2);
         this.offsetY = centerY - (totalBoardHeight / 2);
+
+        // add popup to retreive the number of players
+        JButton playButton = new JButton("Start Game");
+        playButton.setBounds(width - 150, height - 50, 140, 40);
+        this.add(playButton);
+
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                popupForNumberOfPlayers();
+            }
+        });
+        popupForNumberOfPlayers();
+        PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
+        playerManager.addPlayers(numberOfPlayers); // Add players to the game
 
         createSquaresAndCaves();
         placeDragonCardPool();
@@ -98,6 +116,17 @@ public class WindowPanel extends JPanel {
     @Override
     public int getHeight() {
         return height;
+    }
+
+    private void popupForNumberOfPlayers() {
+        String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
+        try {
+            numberOfPlayers = Integer.parseInt(input);
+            JOptionPane.showMessageDialog(this, "To confirm, the number of players is: " + numberOfPlayers);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "This game only supports upto 4 players", "Error", JOptionPane.ERROR_MESSAGE);
+            popupForNumberOfPlayers(); // Optionally retry until valid input is given
+        }
     }
 
     /**
