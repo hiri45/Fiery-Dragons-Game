@@ -85,8 +85,7 @@ public class WindowPanel extends JPanel {
         placeDragonCardPool();
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
-
-
+        displayCurrentPlayer();
 
     }
     public static WindowPanel getInstance(){
@@ -488,6 +487,16 @@ public class WindowPanel extends JPanel {
             this.add(boardPanels.get(k));
         }
 
+    }
+    public void displayCurrentPlayer()
+    {
+        PlayerManager playerManager = PlayerManager.getInstance();
+        DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
+        JPanel currentPlayerDisplay = new JPanel();
+        currentPlayerDisplay.setBounds(100,100,150,50);
+        JLabel label = new JLabel("Current Player: "+ currentPlayer.getId());
+        currentPlayerDisplay.add(label);
+        this.add(currentPlayerDisplay);
     }
 
 }

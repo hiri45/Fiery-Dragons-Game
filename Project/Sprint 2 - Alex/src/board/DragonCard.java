@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import src.Creature.*;
 import src.actors.DragonToken;
+import src.gui.WindowPanel;
 import src.utils.MovementManager;
 import src.utils.PlayerManager;
 
@@ -51,10 +52,11 @@ public class DragonCard extends JPanel {
         {
             label = new JLabel(back);
 
-            MovementManager movementManager = MovementManager.getInstance();
             PlayerManager playerManager = PlayerManager.getInstance();
             DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
+
             BoardArray boardArray = BoardArray.getInstance();
+            WindowPanel windowPanel = WindowPanel.getInstance();
 
             if(!this.creature.isEnemy())
             {
@@ -65,6 +67,8 @@ public class DragonCard extends JPanel {
                 else
                 {
                     playerManager.updatePlayerTurn();
+                    windowPanel.displayCurrentPlayer();
+
                 }
             }
             else
