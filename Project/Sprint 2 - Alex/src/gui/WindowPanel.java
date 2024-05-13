@@ -31,6 +31,7 @@ import java.awt.event.ActionListener;
 import static java.lang.String.valueOf;
 
 public class WindowPanel extends JPanel {
+    private static WindowPanel instance;
 
     private final int squareSize = 75;   // Size of each square on the board
     private final int gridSize = 8;      // Grid size of the board, representing 8x8
@@ -53,7 +54,7 @@ public class WindowPanel extends JPanel {
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
      * and dragon cards, and configures basic panel settings.
      */
-    public WindowPanel() {
+    private WindowPanel() {
         this.setLayout(null); // Use a null layout manager for absolute positioning
         this.setPreferredSize(new Dimension(width, height));
         int centerX = getWidth() / 2;
@@ -87,6 +88,12 @@ public class WindowPanel extends JPanel {
 
 
 
+    }
+    public static WindowPanel getInstance(){
+        if(instance == null){
+            instance = new WindowPanel();
+        }
+        return instance;
     }
 
     /**

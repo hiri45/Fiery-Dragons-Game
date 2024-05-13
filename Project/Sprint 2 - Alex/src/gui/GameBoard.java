@@ -40,7 +40,7 @@ public class GameBoard extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation to exit the application
 
 
-        WindowPanel gameWindow = new WindowPanel(); // Create the main game panel
+        WindowPanel gameWindow = WindowPanel.getInstance(); // Create the main game panel
         frame.add(gameWindow); // Add the game panel to the frame
 
         frame.pack(); // Size the frame so that all its contents are at or above their preferred sizes
