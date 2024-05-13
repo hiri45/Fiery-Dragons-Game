@@ -33,5 +33,8 @@ public abstract class Creature {
     public String getName() {
         return name;
     }
+    public boolean isEnemy() {
+        return enemy;
+    }
 }
 

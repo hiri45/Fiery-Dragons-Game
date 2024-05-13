@@ -123,6 +123,9 @@ public class PlayerManager {
         }
         }
     }
+    public int getPlayerTurn() {
+        return playerTurn;
+    }
 
 
 }

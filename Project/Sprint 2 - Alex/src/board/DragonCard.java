@@ -8,6 +8,9 @@ import java.net.URL;
 import java.util.Objects;
 
 import src.Creature.*;
+import src.actors.DragonToken;
+import src.utils.MovementManager;
+import src.utils.PlayerManager;
 
 public class DragonCard extends JPanel {
     private final ImageIcon front = new ImageIcon(Objects.requireNonNull(DragonCard.class.getResource("/src/Images/dragon card resize.png")));
@@ -47,6 +50,21 @@ public class DragonCard extends JPanel {
         else
         {
             label = new JLabel(back);
+
+            MovementManager movementManager = MovementManager.getInstance();
+            PlayerManager playerManager = PlayerManager.getInstance();
+            DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
+            if(!this.creature.isEnemy())
+            {
+                currentPlayer.move(this.creatureAmount);
+//                movementManager.forwardsMovement(currentPlayer, this.creatureAmount);
+            }
+            else
+            {
+                currentPlayer.move(this.creatureAmount);
+//                movementManager.backwardsMovement(currentPlayer, this.creatureAmount);
+            }
+
         }
         add(label);
         revalidate();
