@@ -11,6 +11,7 @@
 
 package src.board;
 
+import src.Creature.Creature;
 import src.actors.Actor;
 import src.actors.DragonToken;
 import src.gui.CavePanel;
@@ -20,7 +21,7 @@ import src.gui.CavePanel;
  * a position, and can be owned by a dragon token.
  */
 public class Cave {
-    private CreatureType creatureType;  // The type of creature associated with the cave
+    private Creature creatureType;  // The type of creature associated with the cave
     private int cavePosition;           // The board position of the cave
     private DragonToken caveOwner;      // The dragon token that owns or resides in this cave
 
@@ -32,8 +33,8 @@ public class Cave {
      * @param creatureType The type of creature associated with the cave.
      * @param cavePosition The position of the cave on the board.
      */
-    Cave(CreatureType creatureType, int cavePosition) {
-        this.creatureType = creatureType;
+    Cave(Creature creature, int cavePosition) {
+        this.creatureType = creature;
         this.cavePosition = cavePosition;
     }
 
@@ -69,7 +70,7 @@ public class Cave {
      *
      * @return The CreatureType of the cave.
      */
-    public CreatureType getCreatureType() {
+    public Creature getCreatureType() {
         return creatureType;
     }
 

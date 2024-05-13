@@ -11,6 +11,7 @@
 
 package src.board;
 
+import src.Creature.Creature;
 import src.actors.DragonToken;
 import src.utils.PlayerManager;
 
@@ -75,7 +76,7 @@ public class VolcanoCard {
      * @param creature2 Creature for the second square.
      * @param creature3 Creature for the third square.
      */
-    public void initialiseSquares(CreatureType creature1, CreatureType creature2, CreatureType creature3) {
+    public void initialiseSquares(Creature creature1, Creature creature2, Creature creature3) {
         if (squares.size() < squareCount) {
             squares.add(new Square(creature1));
             squares.add(new Square(creature2));

@@ -84,6 +84,9 @@ public class WindowPanel extends JPanel {
         placeDragonCardPool();
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
+
+
+
     }
 
     /**
@@ -300,6 +303,7 @@ public class WindowPanel extends JPanel {
      *                         while a negative value moves it backward.
      */
     public void moveToken(DragonTokenPanel dragonTokenPanel, int noPosition) {
+
         // Retrieve the current position of the dragon token from its panel.
         int newPosition = dragonTokenPanel.getDragonToken().getPosition();
 
@@ -311,6 +315,7 @@ public class WindowPanel extends JPanel {
             // Handle backward movement by delegating to the appropriate method.
             backwardsMovement(dragonTokenPanel, newPosition);
         }
+
     }
 
 
@@ -375,7 +380,7 @@ public class WindowPanel extends JPanel {
         // Iterate over all square panels on the board to find the one that matches the new position.
         for (SquarePanel squarePanel : boardPanels) {
             // Check if the square's position matches the dragon token's new logical position.
-            if (newPosition == squarePanel.getSquare().getPosition()) {
+                if (newPosition == squarePanel.getSquare().getPosition()) {
                 // Move the dragon token panel to the square's graphical coordinates.
                 dragonTokenPanel.moveDragonToken(squarePanel.getX(), squarePanel.getY());
                 // Update the token's state to indicate it is not inside a cave.

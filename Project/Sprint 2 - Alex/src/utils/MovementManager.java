@@ -15,6 +15,8 @@ import src.actors.DragonToken;
 import src.board.BoardArray;
 import src.gui.WindowPanel;
 
+import javax.swing.*;
+
 public class MovementManager {
     private WindowPanel windowPanel;
     private static MovementManager instance;
@@ -92,6 +94,7 @@ public class MovementManager {
 
         // Update UI
         windowPanel.moveToken(dragonToken.getDragonTokenPanel(),noPositions);
+
     }
     /**
      * Calculates the new position of a dragon token when moving backwards on the board.

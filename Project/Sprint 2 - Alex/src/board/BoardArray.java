@@ -12,6 +12,11 @@
 package src.board;
 
 
+import src.Creature.BabyDragon;
+import src.Creature.Bat;
+import src.Creature.Salamander;
+import src.Creature.Spider;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -57,18 +62,22 @@ public class BoardArray {
         initialiseCardsWithCreatures();
     }
     private void initialiseCardsWithCreatures(){
+        BabyDragon babyDragon = new BabyDragon();
+        Bat bat = new Bat();
+        Salamander salamander = new Salamander();
+        Spider spider = new Spider();
         //initialise volcano cards with relevant squares
         //Cave volcano cards
-        caveCards.get(0).initialiseSquares(CreatureType.BABY_DRAGON,CreatureType.BAT,CreatureType.SPIDER);
-        caveCards.get(1).initialiseSquares(CreatureType.SALAMANDER,CreatureType.SPIDER,CreatureType.BAT);
-        caveCards.get(2).initialiseSquares(CreatureType.SPIDER,CreatureType.SALAMANDER,CreatureType.BABY_DRAGON);
-        caveCards.get(3).initialiseSquares(CreatureType.BAT,CreatureType.SPIDER,CreatureType.BABY_DRAGON);
+        caveCards.get(0).initialiseSquares(babyDragon, bat, spider);
+        caveCards.get(1).initialiseSquares(salamander,spider,bat);
+        caveCards.get(2).initialiseSquares(spider,salamander,babyDragon);
+        caveCards.get(3).initialiseSquares(bat,spider, babyDragon);
 
         //non-cave volcano cards
-        nonCaveCards.get(0).initialiseSquares(CreatureType.SPIDER,CreatureType.BAT,CreatureType.SALAMANDER);
-        nonCaveCards.get(1).initialiseSquares(CreatureType.BABY_DRAGON,CreatureType.SALAMANDER,CreatureType.BAT);
-        nonCaveCards.get(2).initialiseSquares(CreatureType.BAT,CreatureType.BABY_DRAGON,CreatureType.SALAMANDER);
-        nonCaveCards.get(3).initialiseSquares(CreatureType.SALAMANDER,CreatureType.BABY_DRAGON,CreatureType.SPIDER);
+        nonCaveCards.get(0).initialiseSquares(spider ,bat, salamander);
+        nonCaveCards.get(1).initialiseSquares(bat, salamander,bat);
+        nonCaveCards.get(2).initialiseSquares(bat,babyDragon,salamander);
+        nonCaveCards.get(3).initialiseSquares(salamander,babyDragon,spider);
     }
 
 

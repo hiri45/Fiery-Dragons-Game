@@ -54,15 +54,22 @@ public class DragonCard extends JPanel {
             MovementManager movementManager = MovementManager.getInstance();
             PlayerManager playerManager = PlayerManager.getInstance();
             DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
+            BoardArray boardArray = BoardArray.getInstance();
+
             if(!this.creature.isEnemy())
             {
-                currentPlayer.move(this.creatureAmount);
-//                movementManager.forwardsMovement(currentPlayer, this.creatureAmount);
+                if(this.creature.getName() == boardArray.getSquares().get(currentPlayer.getPosition()).getCreature().getName())
+                {
+                    currentPlayer.move(this.creatureAmount);
+                }
+                else
+                {
+                    playerManager.updatePlayerTurn();
+                }
             }
             else
             {
-                currentPlayer.move(this.creatureAmount);
-//                movementManager.backwardsMovement(currentPlayer, this.creatureAmount);
+                currentPlayer.move(-(this.creatureAmount));
             }
 
         }

@@ -11,13 +11,15 @@
 
 package src.board;
 
+import src.Creature.Creature;
+
 /**
  * Represents a square on the game board, with each square characterized by a creature.
  * Squares are fundamental elements of the board setup, influencing player movement
  * and interactions based on the creature type they contain.
  */
 public class Square {
-    private CreatureType creature; // The creature associated with this square
+    private Creature creature; // The creature associated with this square
     private int position;          // The position of this square on the board
 
     /**
@@ -25,7 +27,7 @@ public class Square {
      *
      * @param creature The creature type associated with this square.
      */
-    Square(CreatureType creature) {
+    Square(Creature creature) {
         this.creature = creature;
     }
 
@@ -52,7 +54,7 @@ public class Square {
      *
      * @return The CreatureType of the creature on this square.
      */
-    public CreatureType getCreature() {
+    public Creature getCreature() {
         return creature;
     }
 
