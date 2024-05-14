@@ -73,7 +73,7 @@ public class PlayerManager {
 
         }
         // Show popup for the next player's turn
-        WindowPanel.getInstance().showPlayerTurnPopup("It's Player " + (playerTurn + 1) + "'s turn.");
+        WindowPanel.getInstance().showPlayerTurnPopup("Bad Luck! It's now Player " + (playerTurn + 1) + "'s turn.");
         BoardArray.getInstance().resetDragonCards();
 
     }

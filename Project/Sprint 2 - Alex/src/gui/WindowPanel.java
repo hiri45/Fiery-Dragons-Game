@@ -66,17 +66,6 @@ public class WindowPanel extends JPanel {
         this.offsetX = centerX - (totalBoardWidth / 2);
         this.offsetY = centerY - (totalBoardHeight / 2);
 
-        // add popup to retreive the number of players
-        JButton playButton = new JButton("Start Game");
-        playButton.setBounds(width - 150, height - 50, 140, 40);
-        this.add(playButton);
-
-        playButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popupForNumberOfPlayers();
-            }
-        });
         popupForNumberOfPlayers();
         PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
         playerManager.addPlayers(numberOfPlayers); // Add players to the game
@@ -477,7 +466,7 @@ public class WindowPanel extends JPanel {
         this.add(currentPlayerDisplay);
     }
     public void showPlayerTurnPopup(String message) {
-        JOptionPane.showMessageDialog(this, message, "Player Turn", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, message, "End of Turn ;(", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }
