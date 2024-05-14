@@ -6,9 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="added on to Original UML class diagram with abstract creature class added along with a new approach to dragon card. Past solutions on UML diagram still present and yet to be deleted">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/utils/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/utils/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Caves/BabyDragonCave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Caves/BatCave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Caves/Cave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Caves/SalamanderCave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Caves/SpiderCave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Creature/BabyDragon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Creature/Bat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Creature/Creature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Creature/PirateDragon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Creature/Salamander.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Creature/Spider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/GameWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Images/FD logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Images/baby dragon resize.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Images/bat resize.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Images/dragon card original.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Images/dragon card resize.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Images/salamander resize.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Images/spider resize.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Panels/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Panels/DragonCard$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Panels/DragonCard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Panels/DragonCardPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Panels/DragonToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Panels/VolcanoCard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,17 +57,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Game.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Sprint__3__Branch",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Game.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Sprint__3__Branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.Game" />
