@@ -74,6 +74,7 @@ public class DragonCard extends JPanel {
             else
             {
                 currentPlayer.move(-(this.creatureAmount));
+                playerManager.updatePlayerTurn();
             }
 
         }
