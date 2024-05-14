@@ -208,7 +208,7 @@ public class WindowPanel extends JPanel {
         if (card.hasCave()) {
             addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize);//top left cave
             addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize);//right top cave
-            addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize + 1 * squareSize, offsetY + gridSize * squareSize);//bottom left right cave
+            addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize + squareSize, offsetY + gridSize * squareSize);//bottom left right cave
             addCave(caves.get(3),offsetX - caveSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize); //left bottom cave
         }else{
             addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize + squareSize, offsetY - caveSize); //top cave right
@@ -220,11 +220,20 @@ public class WindowPanel extends JPanel {
         // Retrieve the list of dragon tokens from the player manager and position them.
         PlayerManager playerManager = PlayerManager.getInstance();
         ArrayList<DragonToken> dragonTokens = playerManager.getPlayers();
+
         //add the dragonTokens onto the gui
-        addDragonToken(dragonTokens.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize,50,750);
-        addDragonToken(dragonTokens.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize - squareSize,50,780);
-        addDragonToken(dragonTokens.get(2),offsetX + (gridSize / 2) * squareSize + 1 * squareSize, offsetY + gridSize * squareSize,50,810);
-        addDragonToken(dragonTokens.get(3),offsetX - caveSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize,50,840);
+        // Coordinates and offsets for the tokens
+        int[][] tokenCoordinates = {
+                {offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize},
+                {offsetX + (gridSize / 2) * squareSize + squareSize, offsetY + gridSize * squareSize},
+                {offsetX + (gridSize + 1) * squareSize - squareSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize},
+                {offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize}
+        };
+
+        // Add the specified number of dragon tokens
+        for (int i = 0; i < numberOfPlayers; i++) {
+            addDragonToken(dragonTokens.get(i), tokenCoordinates[i][0], tokenCoordinates[i][1]);
+        }
 
 
     }
@@ -258,44 +267,13 @@ public class WindowPanel extends JPanel {
      * @param dragonToken The DragonToken object that needs a graphical representation.
      * @param x           The x-coordinate where the dragon token should be placed on the board.
      * @param y           The y-coordinate where the dragon token should be placed on the board.
-     * @param buttonX     The starting x-coordinate for the first movement control button.
-     * @param buttonY     The y-coordinate for all movement control buttons.
      */
-    private void addDragonToken(DragonToken dragonToken, int x, int y, int buttonX, int buttonY) {
+    private void addDragonToken(DragonToken dragonToken, int x, int y) {
         // Create a new DragonTokenPanel with specified position, token data, and default color.
         DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x, y, dragonToken, offsetX, offsetY, Color.red);
         dragonTokenPanel.setBounds(x, y, 50, 50); // Set size and position of the token panel.
         this.add(dragonTokenPanel, 0); // Add the token panel to this WindowPanel at the lowest z-index.
 
-        // Setup and add a button for moving the dragon token forward by 1 position.
-        JButton moveButton = new JButton("Move1");
-        moveButton.addActionListener(e -> dragonToken.move(1)); // Attach action to move the token forward.
-        moveButton.setBounds(buttonX, buttonY, 100, 30); // Set position and size of the button.
-        this.add(moveButton); // Add the button to the WindowPanel.
-
-        // Setup and add a button for moving the dragon token forward by 2 positions.
-        JButton moveButton2 = new JButton("Move2");
-        moveButton2.addActionListener(e -> dragonToken.move(2)); // Attach action to move the token forward.
-        moveButton2.setBounds(buttonX + 100, buttonY, 100, 30); // Adjust position for layout.
-        this.add(moveButton2); // Add the button to the WindowPanel.
-
-        // Setup and add a button for moving the dragon token forward by 3 positions.
-        JButton moveButton3 = new JButton("Move3");
-        moveButton3.addActionListener(e -> dragonToken.move(3)); // Attach action to move the token forward.
-        moveButton3.setBounds(buttonX + 200, buttonY, 100, 30); // Adjust position for layout.
-        this.add(moveButton3); // Add the button to the WindowPanel.
-
-        // Setup and add a button for moving the dragon token backward by 1 position.
-        JButton moveButton4 = new JButton("MoveBackwards1");
-        moveButton4.addActionListener(e -> dragonToken.move(-1)); // Attach action to move the token backward.
-        moveButton4.setBounds(buttonX + 300, buttonY, 100, 30); // Adjust position for layout.
-        this.add(moveButton4); // Add the button to the WindowPanel.
-
-        // Setup and add a button for moving the dragon token backward by 2 positions.
-        JButton moveButton5 = new JButton("MoveBackwards2");
-        moveButton5.addActionListener(e -> dragonToken.move(-2)); // Attach action to move the token backward.
-        moveButton5.setBounds(buttonX + 400, buttonY, 100, 30); // Adjust position for layout.
-        this.add(moveButton5); // Add the button to the WindowPanel.
     }
     /**
      * Manages the movement of a dragon token on the game board.
