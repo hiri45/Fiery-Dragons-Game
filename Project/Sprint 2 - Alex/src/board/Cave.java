@@ -30,7 +30,7 @@ public class Cave {
     /**
      * Constructs a Cave with a specified creature type and position.
      *
-     * @param creatureType The type of creature associated with the cave.
+     * @param creature The type of creature associated with the cave.
      * @param cavePosition The position of the cave on the board.
      */
     Cave(Creature creature, int cavePosition) {

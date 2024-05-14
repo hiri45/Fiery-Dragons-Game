@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="update out files for previous commit: Dragon Cards now flip back when players turn is over">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/WindowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/WindowPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
+    <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="game now only adds amount of tokens that are specified by player at the start of the game. If two players, they will spawn opposite ends. More than 4 players will throw an error">
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/Cave.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/Cave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/VolcanoCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/VolcanoCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +32,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Game.executor": "Debug",
+    "Application.Game.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Sprint__3__Branch",
     "kotlin-language-version-configured": "true",
@@ -95,7 +94,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715661893228</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="game now only adds amount of tokens that are specified by player at the start of the game. If two players, they will spawn opposite ends. More than 4 players will throw an error">
+      <option name="closed" value="true" />
+      <created>1715663755182</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715663755182</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -103,17 +110,7 @@
     <MESSAGE value="fixed bug where flipping a pirate dragon would not change players" />
     <MESSAGE value="Dragon Cards now flip back when players turn is over" />
     <MESSAGE value="update out files for previous commit: Dragon Cards now flip back when players turn is over" />
-    <option name="LAST_COMMIT_MESSAGE" value="update out files for previous commit: Dragon Cards now flip back when players turn is over" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/WindowPanel.java</url>
-          <line>234</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="game now only adds amount of tokens that are specified by player at the start of the game. If two players, they will spawn opposite ends. More than 4 players will throw an error" />
+    <option name="LAST_COMMIT_MESSAGE" value="game now only adds amount of tokens that are specified by player at the start of the game. If two players, they will spawn opposite ends. More than 4 players will throw an error" />
   </component>
 </project>
