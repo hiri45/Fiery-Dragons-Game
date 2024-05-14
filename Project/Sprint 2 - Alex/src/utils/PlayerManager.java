@@ -73,7 +73,7 @@ public class PlayerManager {
 
         }
         // Show popup for the next player's turn
-        WindowPanel.getInstance().showPlayerTurnPopup("Bad Luck! It's now Player " + (playerTurn + 1) + "'s turn.");
+        WindowPanel.getInstance().showPlayerTurnPopup("Bad Luck! It's now Player " + (playerTurn) + "'s turn.");
         BoardArray.getInstance().resetDragonCards();
 
     }
@@ -104,28 +104,29 @@ public class PlayerManager {
     public void assignCaves(){
         BoardArray boardArray = BoardArray.getInstance();
         ArrayList<VolcanoCard> board = boardArray.getBoard();
-    for(DragonToken dragonToken: players){
-        // Flag to indicate if the token has been assigned a cave
-        boolean tokenAssignedCave = false;
+        if (playerCount == 2){
+            DragonToken player1 = players.get(0);
+            DragonToken player2 = players.get(1);
+            int counter = 0;
+            board.get(0).getCave().setCaveOwner(player1);
+            System.out.println(board.size()/2);
+            board.get(board.size()/2).getCave().setCaveOwner(player2);
 
-        // For every volcano card on the board
-        for(VolcanoCard volcanoCard: board){
-            // If the volcano card has a cave and that cave does not have an owner
-            if(volcanoCard.hasCave() && volcanoCard.getCave().getCaveOwner() == null){
-                // Set the owner of the cave to the dragon token
-                volcanoCard.getCave().setCaveOwner(dragonToken);
-                dragonToken.setPosition(volcanoCard.getCave().getCavePosition());
-                // Mark that the token has been assigned a cave
-                tokenAssignedCave = true;
-                break; // Break out of the loop after assigning a cave
+        } else{
+            for(DragonToken dragonToken: players){
+                // For every volcano card on the board
+                for(VolcanoCard volcanoCard: board){
+                    // If the volcano card has a cave and that cave does not have an owner
+                    if(volcanoCard.hasCave() && volcanoCard.getCave().getCaveOwner() == null){
+                        // Set the owner of the cave to the dragon token
+                        volcanoCard.getCave().setCaveOwner(dragonToken);
+                        dragonToken.setPosition(volcanoCard.getCave().getCavePosition());
+                        break; // Break out of the loop after assigning a cave
+                    }
+                }
             }
         }
 
-        // If a token has been assigned, skip to the next token
-        if(tokenAssignedCave){
-            continue;
-        }
-        }
     }
     public int getPlayerTurn() {
         return playerTurn;

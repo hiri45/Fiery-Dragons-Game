@@ -90,8 +90,8 @@ public class VolcanoCard {
      */
     public void initialiseCave() {
         if (this.hasCave && cave == null) {
-            int firstSquare = 0;
-            cave = new Cave(squares.get(firstSquare).getCreature(), squares.get(firstSquare).getPosition());
+            int middleSquare = 1;
+            cave = new Cave(squares.get(middleSquare).getCreature(), squares.get(middleSquare).getPosition());
         }
     }
 

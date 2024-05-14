@@ -26,7 +26,7 @@ public class DragonTokenPanel extends JPanel {
     private int offsetY;        // Additional offset for the Y-coordinate
     private int squareSize = 50; // Size of the square in which the token is displayed
     private DragonToken dragonToken; // The dragon token object this panel represents
-    private int tokenDiameter = 50;  // The diameter of the token for drawing
+    private int tokenDiameter = 30;  // The diameter of the token for drawing
     private JLabel label;       // Label displaying the token's ID
     private Color color;        // Color of the token
 
