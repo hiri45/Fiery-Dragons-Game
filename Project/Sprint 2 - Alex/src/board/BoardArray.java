@@ -26,6 +26,8 @@ public class BoardArray {
     private ArrayList<VolcanoCard> caveCards = new ArrayList<>();
     private ArrayList<VolcanoCard> nonCaveCards = new ArrayList<>();
 
+    private ArrayList<DragonCard> dragonCards = new ArrayList<>();
+
     private ArrayList<Square> squares = new ArrayList<>();
 
     public static BoardArray instance;
@@ -75,7 +77,7 @@ public class BoardArray {
 
         //non-cave volcano cards
         nonCaveCards.get(0).initialiseSquares(spider ,bat, salamander);
-        nonCaveCards.get(1).initialiseSquares(bat, salamander,bat);
+        nonCaveCards.get(1).initialiseSquares(babyDragon, salamander,bat);
         nonCaveCards.get(2).initialiseSquares(bat,babyDragon,salamander);
         nonCaveCards.get(3).initialiseSquares(salamander,babyDragon,spider);
     }
@@ -141,6 +143,18 @@ public class BoardArray {
     }
     public ArrayList<VolcanoCard> getBoard() {
         return board;
+    }
+    public void setDragonCards(ArrayList<DragonCard> dragonCards) {
+        this.dragonCards = dragonCards;
+    }
+
+    public void resetDragonCards()
+    {
+        for (DragonCard current : this.dragonCards) {
+            if (!current.isFrontVisible()) {
+                current.flip();
+            }
+        }
     }
 
 

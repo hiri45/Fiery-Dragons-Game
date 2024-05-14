@@ -14,6 +14,7 @@ package src.utils;
 import src.actors.DragonToken;
 import src.board.BoardArray;
 import src.board.VolcanoCard;
+import src.gui.WindowPanel;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,9 @@ public class PlayerManager {
             players.get(playerTurn).setTurn(true);
 
         }
+        // Show popup for the next player's turn
+        WindowPanel.getInstance().showPlayerTurnPopup("It's Player " + (playerTurn + 1) + "'s turn.");
+        BoardArray.getInstance().resetDragonCards();
 
     }
     /**

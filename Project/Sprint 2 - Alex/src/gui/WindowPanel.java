@@ -498,5 +498,8 @@ public class WindowPanel extends JPanel {
         currentPlayerDisplay.add(label);
         this.add(currentPlayerDisplay);
     }
+    public void showPlayerTurnPopup(String message) {
+        JOptionPane.showMessageDialog(this, message, "Player Turn", JOptionPane.INFORMATION_MESSAGE);
+    }
 
 }

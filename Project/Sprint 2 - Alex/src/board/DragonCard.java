@@ -47,6 +47,9 @@ public class DragonCard extends JPanel {
         if(isFrontVisible)
         {
             label = new JLabel(front);
+            add(label);
+            revalidate();
+            repaint();
         }
         else
         {
@@ -62,10 +65,16 @@ public class DragonCard extends JPanel {
             {
                 if(this.creature.getName() == boardArray.getSquares().get(currentPlayer.getPosition()).getCreature().getName())
                 {
+                    add(label);
+                    revalidate();
+                    repaint();
                     currentPlayer.move(this.creatureAmount);
                 }
                 else
                 {
+                    add(label);
+                    revalidate();
+                    repaint();
                     playerManager.updatePlayerTurn();
                     windowPanel.displayCurrentPlayer();
 
@@ -73,14 +82,14 @@ public class DragonCard extends JPanel {
             }
             else
             {
+                add(label);
+                revalidate();
+                repaint();
                 currentPlayer.move(-(this.creatureAmount));
                 playerManager.updatePlayerTurn();
+                windowPanel.displayCurrentPlayer();
             }
-
         }
-        add(label);
-        revalidate();
-        repaint();
     }
 
     public int getCreatureAmount() {
@@ -89,6 +98,9 @@ public class DragonCard extends JPanel {
 
     public void setFrontVisible(boolean frontVisible) {
         isFrontVisible = frontVisible;
+    }
+    public boolean isFrontVisible() {
+        return isFrontVisible;
     }
 
     public Creature getCreature() {

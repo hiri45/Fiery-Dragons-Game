@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="added on to Original UML class diagram with abstract creature class added along with a new approach to dragon card. Past solutions on UML diagram still present and yet to be deleted">
+    <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="fixed bug where flipping a pirate dragon would not change players">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/BoardArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/BoardArray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/DragonCardPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/DragonCardPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/WindowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/WindowPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/utils/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/utils/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/BoardArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/BoardArray.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Cave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Cave.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Square.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/VolcanoCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/VolcanoCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/MovementManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/MovementManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,17 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Game.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Sprint__3__Branch&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Game.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Sprint__3__Branch",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.Game" />
@@ -70,10 +84,20 @@
       <option name="presentableId" value="Default" />
       <updated>1715176200694</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixed bug where flipping a pirate dragon would not change players">
+      <option name="closed" value="true" />
+      <created>1715658513019</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715658513019</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added on to Original UML class diagram with abstract creature class added along with a new approach to dragon card. Past solutions on UML diagram still present and yet to be deleted" />
-    <option name="LAST_COMMIT_MESSAGE" value="added on to Original UML class diagram with abstract creature class added along with a new approach to dragon card. Past solutions on UML diagram still present and yet to be deleted" />
+    <MESSAGE value="fixed bug where flipping a pirate dragon would not change players" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug where flipping a pirate dragon would not change players" />
   </component>
 </project>

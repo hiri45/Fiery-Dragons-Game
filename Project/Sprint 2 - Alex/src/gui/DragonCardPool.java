@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import src.Creature.*;
+import src.board.BoardArray;
 import src.board.DragonCard;
 
 public class DragonCardPool extends JPanel {
@@ -38,6 +39,8 @@ public class DragonCardPool extends JPanel {
             }
         }
         Collections.shuffle(dragonCards); // This shuffles the dragon cards arrayList so we can randomise placement of the dragon cards
+        BoardArray boardArray = BoardArray.getInstance();
+        boardArray.setDragonCards(dragonCards);
         //adds dragon cards to dragon card pool panel
         for(DragonCard i : dragonCards)
         {
