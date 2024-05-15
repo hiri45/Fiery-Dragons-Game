@@ -13,9 +13,12 @@ package src.utils;
 
 import src.actors.DragonToken;
 import src.board.BoardArray;
+import src.board.DragonCard;
 import src.gui.WindowPanel;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MovementManager {
     private WindowPanel windowPanel;
@@ -31,8 +34,8 @@ public class MovementManager {
      *
      * @return The single instance of MovementManager.
      */
-    public static MovementManager getInstance(){
-        if(instance == null){
+    public static MovementManager getInstance() {
+        if (instance == null) {
             instance = new MovementManager();
         }
         return instance;
@@ -46,6 +49,7 @@ public class MovementManager {
     public void setWindowPanel(WindowPanel windowPanel) {
         this.windowPanel = windowPanel;
     }
+
     /**
      * Determines if a dragon token can move the specified number of positions on the board.
      *
@@ -57,23 +61,43 @@ public class MovementManager {
         PlayerManager playerManager = PlayerManager.getInstance();
         int newPosition = (dragonToken.getPosition() + noPositions) % windowPanel.getBoardPanels().size();
 
+
         //If the current token is in the cave, remove one position from the number of positions to move
         //because cave and square in front both have the same position
-        if (dragonToken.isInCave()){
-            newPosition = dragonToken.getPosition()+noPositions - 1;
-        }
+        if (dragonToken.isInCave()) {
+            newPosition = dragonToken.getPosition() + noPositions - 1;
+        } else if (this.canWin(dragonToken, noPositions)) {
 
+            this.endGame(dragonToken);
+        }
         for (DragonToken player : playerManager.getPlayers()) {
             if (player != dragonToken && player.getPosition() == newPosition && (!player.isInCave() || dragonToken.isInCave())) {
                 return false;// Block move if another token is in the target position.
             }
         }
-        if (noPositions < 0 && dragonToken.getCave().getCavePosition() < noPositions){
-            return false;// Block backward movement into the cave if not aligned with the cave entry rules.
-        }
-        return true;
+        return noPositions >= 0 || dragonToken.getCave().getCavePosition() >= noPositions;// Block backward movement into the cave if not aligned with the cave entry rules.
 
     }
+
+    public boolean canWin(DragonToken dragonToken, int noPositions) {
+        int newPosition = dragonToken.getPosition() + noPositions;
+        int boardSize = boardArray.getSquares().size();
+        int tempVar = (newPosition) % (boardSize);
+
+        if (tempVar <= 2 && newPosition >= (boardSize - 1)) {
+            newPosition = tempVar;
+
+        }
+        if (noPositions < 0) {
+            return false;
+        }
+        if (newPosition == dragonToken.getCave().getCavePosition() + 1 && !dragonToken.isInCave()) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Updates the position of a dragon token based on the number of positions to move.
      * Handles wrapping around the board and interactions with caves.
@@ -81,21 +105,26 @@ public class MovementManager {
      * @param dragonToken The dragon token to update.
      * @param noPositions The number of positions to move the token.
      */
-    public void updatePosition(DragonToken dragonToken, int noPositions){
+    public void updatePosition(DragonToken dragonToken, int noPositions) {
+        if (canWin(dragonToken, noPositions)) {
+            windowPanel.moveToken(dragonToken.getDragonTokenPanel(), dragonToken.getStartingPosition());
+        } else {
+            int newPosition;
+            if (noPositions > 0) {
+                newPosition = forwardsMovement(dragonToken, noPositions);
+            } else {
+                newPosition = backwardsMovement(dragonToken, noPositions);
+            }
+            dragonToken.setPosition(newPosition);
+            dragonToken.addMovement(noPositions);
 
-        int newPosition;
-        if(noPositions > 0){
-            newPosition = forwardsMovement(dragonToken,noPositions);
-        }else{
-            newPosition = backwardsMovement(dragonToken,noPositions);
+            // Update UI
+            windowPanel.moveToken(dragonToken.getDragonTokenPanel(), noPositions);
         }
-        dragonToken.setPosition(newPosition);
-        dragonToken.addMovement(noPositions);
 
-        // Update UI
-        windowPanel.moveToken(dragonToken.getDragonTokenPanel(),noPositions);
 
     }
+
     /**
      * Calculates the new position of a dragon token when moving backwards on the board.
      * This method ensures that movement is wrapped around correctly when reaching the start of the board array.
@@ -105,7 +134,7 @@ public class MovementManager {
      * @param noPositions The number of positions to move backwards (negative value).
      * @return The new position of the dragon token after accounting for backwards movement and wrap-around.
      */
-    public int forwardsMovement(DragonToken dragonToken, int noPositions){
+    public int forwardsMovement(DragonToken dragonToken, int noPositions) {
         int newPosition = dragonToken.getPosition() + noPositions;
 
         int boardSize = boardArray.getSquares().size();
@@ -113,12 +142,12 @@ public class MovementManager {
 
         int currentPosition = dragonToken.getPosition();
         // Reset position if wrapping around the board.
-        if( tempVar <= 2 && newPosition >= (boardSize-1) ){
+        if (tempVar <= 2 && newPosition >= (boardSize - 1)) {
             newPosition = tempVar;
-            if(dragonToken.getCycleTracker() < 1){
-                dragonToken.setCycleTracker(dragonToken.getCycleTracker()+1);
+            if (dragonToken.getCycleTracker() < 1) {
+                dragonToken.setCycleTracker(dragonToken.getCycleTracker() + 1);
             }
-        }else {
+        } else {
             //if the player's position is still in their cave move out of the cave
             if (dragonToken.isInCave()) {
                 newPosition = currentPosition;
@@ -140,30 +169,47 @@ public class MovementManager {
      * @return The new position on the board, adjusted for backward movement and wrap-around.
      */
 
-    public int backwardsMovement(DragonToken dragonToken, int noPositions){
+    public int backwardsMovement(DragonToken dragonToken, int noPositions) {
         int cavePos = dragonToken.getCave().getCavePosition();
         int boardSize = boardArray.getSquares().size();
         int newPosition = dragonToken.getPosition() + noPositions;
 
         //if the player is already in the cave, don't move backwards anymore
-        if(dragonToken.isInCave()){
+        if (dragonToken.isInCave()) {
             return cavePos;
         }
-        if (newPosition < 0 ){
+        if (newPosition < 0) {
             //Makes sure the player can't have negative cycles
-            if(dragonToken.getCycleTracker()-1 < 0){
-                return cavePos-1;
+            if (dragonToken.getCycleTracker() - 1 < 0) {
+                return cavePos - 1;
             }
-            dragonToken.setCycleTracker(dragonToken.getCycleTracker()-1);
+            dragonToken.setCycleTracker(dragonToken.getCycleTracker() - 1);
             return boardSize + newPosition;
         }
 
         return newPosition;
     }
-    /**
-     * Placeholder method for future functionality to check if the dragon card drawn matches the requirements.
-     */
-    public void isMatch(){
-        // Implementation to be added
+
+    public void endGame(DragonToken dragonToken) {
+        windowPanel.moveToken(dragonToken.getDragonTokenPanel(), dragonToken.getStartingPosition());
+
+        // Create the JOptionPane with a custom "OK" button
+        Object[] options = {"OK"};
+        int result = JOptionPane.showOptionDialog(
+                null,
+                "GG Player " + dragonToken.getId() + " has won the game!",
+                "Game Over",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        // Check if the "OK" button was pressed
+        if (result == JOptionPane.OK_OPTION) {
+            // Exit the application
+            System.exit(0);
+        }
     }
 }

@@ -219,15 +219,15 @@ public class WindowPanel extends JPanel {
                 {offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize}
         };
 
-        if(numberOfPlayers == 2){
-            addDragonToken(dragonTokens.get(0),cavePanels.get(0).getX(),cavePanels.get(0).getY());
-            addDragonToken(dragonTokens.get(1),cavePanels.get(2).getX(),cavePanels.get(2).getY());
-
-        }else{
+//        if(numberOfPlayers == 2){
+//            addDragonToken(dragonTokens.get(0),cavePanels.get(0).getX(),cavePanels.get(0).getY());
+//            addDragonToken(dragonTokens.get(1),cavePanels.get(2).getX(),cavePanels.get(2).getY());
+//
+//        }else{
             for (int i = 0; i < numberOfPlayers; i++) {
                     addDragonToken(dragonTokens.get(i), cavePanels.get(i).getX(), cavePanels.get(i).getY());
                 }
-            }
+//            }
         // Add the specified number of dragon tokens
 
 

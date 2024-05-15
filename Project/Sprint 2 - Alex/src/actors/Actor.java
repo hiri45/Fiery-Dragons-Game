@@ -81,6 +81,10 @@ public class Actor {
         // This method should be overridden in subclass
     }
 
+    public int getStartingPosition() {
+        return startingPosition;
+    }
+
     /**
      * Sets the starting position for this actor.
      *

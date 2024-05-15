@@ -14,6 +14,7 @@ package src.actors;
 import src.board.Cave;
 import src.gui.DragonTokenPanel;
 import src.utils.MovementManager;
+import src.utils.PlayerManager;
 
 /**
  * Represents a dragon token in the game, containing specific game mechanics related to the dragon's
@@ -154,6 +155,8 @@ public class DragonToken extends Actor {
         MovementManager movementManager = MovementManager.getInstance();
         if (movementManager.canMove(this, noPositions)) {
             movementManager.updatePosition(this, noPositions);
+        }else {
+            PlayerManager.getInstance().updatePlayerTurn();
         }
     }
 }
