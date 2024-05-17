@@ -15,7 +15,7 @@ import src.utils.PlayerManager;
 
 public class DragonCard extends JPanel {
     private final ImageIcon front = new ImageIcon(Objects.requireNonNull(DragonCard.class.getResource("/src/Images/dragon card resize.png")));
-    private final String back;
+    private final ImageIcon back;
     private boolean isFrontVisible = true;
     private boolean flipped = false;
     private final int creatureAmount;
@@ -24,7 +24,7 @@ public class DragonCard extends JPanel {
     public DragonCard(Creature creature, int creatureAmount) {
         this.creature = creature;
         //currently displays the name and amount of creature, but will change to an image in later sprint
-        this.back = creature.getName()+ " x"+ creatureAmount;
+        this.back = creature.getDragonImage(creatureAmount); //creature.getName()+ " x"+ creatureAmount;
         this.creatureAmount = creatureAmount;
         setLayout(new BorderLayout());
         updateAppearance();

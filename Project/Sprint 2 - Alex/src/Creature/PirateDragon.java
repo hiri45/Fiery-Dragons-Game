@@ -6,4 +6,15 @@ public class PirateDragon extends Creature{
     public PirateDragon() {
         super("PirateDragon", retrieveImage("/src/Images/FD logo.png"), true);
     }
+    @Override
+    public ImageIcon getDragonImage(int dragonAmount) {
+        // Provide specific implementation for getting dragon image
+        // This is just a placeholder implementation
+        if(dragonAmount == 1){
+            return new ImageIcon(this.getClass().getResource("/src/Images/bat resize.png"));
+        }
+        else{
+            return new ImageIcon(this.getClass().getResource("/src/Images/salamander resize.png"));
+        }
+    }
 }

@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="establishing a nicer looking ui through more images within game">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Images/magic background.png" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Images/magic background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/DragonCardPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/DragonCardPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/magic background.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/magic background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Bat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Bat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Creature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

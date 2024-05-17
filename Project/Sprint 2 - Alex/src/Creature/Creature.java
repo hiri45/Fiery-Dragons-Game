@@ -9,6 +9,7 @@ public abstract class Creature {
     private final ImageIcon image;
     private final String name;
     private final boolean enemy;
+    private int dragonAmount;
 
     public Creature(String name, ImageIcon image, boolean enemy)
     {
@@ -29,6 +30,8 @@ public abstract class Creature {
     public ImageIcon getImage() {
         return image;
     }
+
+    public abstract ImageIcon getDragonImage(int dragonAmount);
 
     public String getName() {
         return name;
