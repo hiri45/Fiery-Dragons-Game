@@ -153,7 +153,6 @@ public class BoardArray {
         for (DragonCard current : this.dragonCards) {
             if (!current.isFrontVisible()) {
                 current.flip();
-                current.setCanFlip(false);
             }
         }
     }
