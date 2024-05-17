@@ -19,6 +19,7 @@ public class DragonCard extends JPanel {
     private boolean isFrontVisible = true;
     private final int creatureAmount;
     private final Creature creature;
+    private boolean flipped = false;
 
     public DragonCard(Creature creature, int creatureAmount) {
         this.creature = creature;
@@ -31,15 +32,24 @@ public class DragonCard extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                flip();
+                checkFlip();
             }
         });
     }
 
-    public void flip() {
+    public void checkFlip() {
+        //checks if the card can be flipped, and only flips if it can be
+        if(!flipped)
+        {
+            flipped = true;
+            flip();
+        }
+    }
+    public void flip(){
         isFrontVisible = !isFrontVisible;
         updateAppearance();
     }
+
     //will update appearance of dragon card depending on whether isFrontVisible is true or nah
     private void updateAppearance() {
         removeAll(); // Clear any existing content
@@ -105,5 +115,13 @@ public class DragonCard extends JPanel {
 
     public Creature getCreature() {
         return creature;
+    }
+
+    public boolean isCanFlip() {
+        return flipped;
+    }
+
+    public void setCanFlip(boolean canFlip) {
+        this.flipped = canFlip;
     }
 }
