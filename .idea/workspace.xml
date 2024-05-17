@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="bug fixed: cave generation changed so that all caves have a unique creature. Currently set to first card on respective volcano card. Only temporary solution">
+    <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="solution direction for design completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/actors/Actor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/actors/Actor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/actors/DragonToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/actors/DragonToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonTokenPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonTokenPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/Cave.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/Cave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/CavePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/CavePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/WindowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/gui/WindowPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Sprint 3 Documentation/FIT3077_-_Sprint_3_-_Fiery_Dragons.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Sprint 3 Documentation/FIT3077_-_Sprint_3_-_Fiery_Dragons.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Cave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Cave.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Square.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/MovementManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/MovementManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/PlayerManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715664444250</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="solution direction for design completed">
+      <option name="closed" value="true" />
+      <created>1715919365411</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715919365411</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -126,6 +138,7 @@
     <MESSAGE value="update out files for previous commit: Dragon Cards now flip back when players turn is over" />
     <MESSAGE value="game now only adds amount of tokens that are specified by player at the start of the game. If two players, they will spawn opposite ends. More than 4 players will throw an error" />
     <MESSAGE value="bug fixed: cave generation changed so that all caves have a unique creature. Currently set to first card on respective volcano card. Only temporary solution" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fixed: cave generation changed so that all caves have a unique creature. Currently set to first card on respective volcano card. Only temporary solution" />
+    <MESSAGE value="solution direction for design completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="solution direction for design completed" />
   </component>
 </project>

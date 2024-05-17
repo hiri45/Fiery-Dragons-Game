@@ -16,6 +16,8 @@ import src.actors.Actor;
 import src.actors.DragonToken;
 import src.gui.CavePanel;
 
+import javax.swing.*;
+
 /**
  * Represents a cave on the game board. Each cave has a unique creature type and
  * a position, and can be owned by a dragon token.
@@ -73,6 +75,7 @@ public class Cave {
     public Creature getCreatureType() {
         return creatureType;
     }
+    public ImageIcon getCreatureImage() {return creatureType.getImage();}
 
     /**
      * Gets the dragon token that owns or resides in this cave.

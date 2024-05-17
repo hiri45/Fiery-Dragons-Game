@@ -49,6 +49,7 @@ public class WindowPanel extends JPanel {
     private ArrayList<SquarePanel> boardPanels = new ArrayList<>(); // Panels for each square
     private ArrayList<CavePanel> cavePanels = new ArrayList<>();    // Panels for each cave
     private int numberOfPlayers; // Variable to store the number of players
+    private Image backgroundImage;
 
     /**
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
@@ -56,6 +57,7 @@ public class WindowPanel extends JPanel {
      */
     private WindowPanel() {
         this.setLayout(null); // Use a null layout manager for absolute positioning
+        //this.setBackground(new Color(153,153,153));
         this.setPreferredSize(new Dimension(width, height));
         int centerX = getWidth() / 2;
         int centerY = getHeight() / 2;
@@ -75,6 +77,10 @@ public class WindowPanel extends JPanel {
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
         displayCurrentPlayer();
+        backgroundImage = new ImageIcon(this.getClass().getResource("/src/Images/magic background.png")).getImage();
+        if (backgroundImage == null) {
+            System.err.println("Background image not found!");
+        }
 
     }
     public static WindowPanel getInstance(){
@@ -429,8 +435,8 @@ public class WindowPanel extends JPanel {
 
         // Create labels for each square based on the creature type it contains.
         for (int j = 0; j < squares.size(); j++) {
-            String labelText = squares.get(j).ui();  // Retrieves the creature type in string format from each square.
-            JLabel creatureLabel = new JLabel(labelText);  // Create a label with the creature type text.
+            ImageIcon labelImage = squares.get(j).ui();  // Retrieves the creature type in string format from each square.
+            JLabel creatureLabel = new JLabel(labelImage);  // Create a label with the creature type text.
             labels.add(creatureLabel);  // Add the newly created label to the list of labels.
         }
 
@@ -473,6 +479,15 @@ public class WindowPanel extends JPanel {
     }
     public void showPlayerTurnPopup(String message) {
         JOptionPane.showMessageDialog(this, message, "End of Turn ;(", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw the background image
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+        }
     }
 
 }

@@ -49,7 +49,7 @@ public class CavePanel extends JPanel {
         this.setOpaque(true); // Ensures the background color is not transparent
 
         // Create and add a label displaying the creature type from the cave
-        creatureLabel = new JLabel(cave.getCreatureType().toString());
+        creatureLabel = new JLabel(cave.getCreatureImage());
         this.add(creatureLabel);
     }
 

@@ -45,5 +45,6 @@ public class GameBoard extends JPanel {
 
         frame.pack(); // Size the frame so that all its contents are at or above their preferred sizes
         frame.setVisible(true); // Make the frame visible
+        frame.setLocationRelativeTo(null);
     }
 }

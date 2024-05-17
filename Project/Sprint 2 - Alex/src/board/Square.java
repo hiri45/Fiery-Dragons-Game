@@ -13,6 +13,8 @@ package src.board;
 
 import src.Creature.Creature;
 
+import javax.swing.*;
+
 /**
  * Represents a square on the game board, with each square characterized by a creature.
  * Squares are fundamental elements of the board setup, influencing player movement
@@ -64,7 +66,7 @@ public class Square {
      *
      * @return A string representing the creature type.
      */
-    public String ui() {
-        return this.creature.toString();
+    public ImageIcon ui() {
+        return this.creature.getImage();
     }
 }
