@@ -51,7 +51,7 @@ public class DragonCardPool extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Color brownBackground = new Color(54, 34, 4);
+        Color brownBackground = new Color(51, 0, 0);
         g.setColor(brownBackground);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
     }
