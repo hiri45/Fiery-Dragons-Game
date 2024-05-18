@@ -11,10 +11,10 @@ public class PirateDragon extends Creature{
         // Provide specific implementation for getting dragon image
         // This is just a placeholder implementation
         if(dragonAmount == 1){
-            return new ImageIcon(this.getClass().getResource("/src/Images/bat resize.png"));
+            return new ImageIcon(this.getClass().getResource("/src/Images/skull.png"));
         }
         else{
-            return new ImageIcon(this.getClass().getResource("/src/Images/salamander resize.png"));
+            return new ImageIcon(this.getClass().getResource("/src/Images/2 skull.png"));
         }
     }
 }
