@@ -11,13 +11,13 @@ public class BabyDragon extends Creature{
         // Provide specific implementation for getting dragon image
         // This is just a placeholder implementation
         if(dragonAmount == 1){
-            return new ImageIcon(this.getClass().getResource("/src/Images/bat resize.png"));
+            return new ImageIcon(this.getClass().getResource("/src/Images/baby dragon resize.png"));
         }
         else if (dragonAmount == 2){
-            return new ImageIcon(this.getClass().getResource("/src/Images/spider resize.png"));
+            return new ImageIcon(this.getClass().getResource("/src/Images/2 baby dragon.png"));
         }
         else{
-            return new ImageIcon(this.getClass().getResource("/src/Images/salamander resize.png"));
+            return new ImageIcon(this.getClass().getResource("/src/Images/3 baby dragon.png"));
         }
     }
 }

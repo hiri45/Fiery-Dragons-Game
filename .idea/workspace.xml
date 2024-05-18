@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="723c860f-d434-4737-a2dd-c029cd1977d0" name="Changes" comment="establishing a nicer looking ui through more images within game">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/BabyDragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/BabyDragon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Bat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Bat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/board/DragonCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/BabyDragon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/BabyDragon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Bat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Bat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Creature.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Creature.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/PirateDragon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/PirateDragon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Salamander.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Salamander.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Spider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Spider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
