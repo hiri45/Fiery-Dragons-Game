@@ -15,10 +15,10 @@ public class Bat extends Creature {
             return new ImageIcon(this.getClass().getResource("/src/Images/bat resize.png"));
         }
         else if (dragonAmount == 2){
-            return new ImageIcon(this.getClass().getResource("/src/Images/spider resize.png"));
+            return new ImageIcon(this.getClass().getResource("/src/Images/2 bats.png"));
         }
         else{
-            return new ImageIcon(this.getClass().getResource("/src/Images/salamander resize.png"));
+            return new ImageIcon(this.getClass().getResource("/src/Images/3 bats.png"));
         }
     }
 }
