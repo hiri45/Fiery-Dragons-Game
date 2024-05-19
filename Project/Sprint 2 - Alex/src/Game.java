@@ -12,7 +12,7 @@ package src;
 
 // Import necessary classes from other packages
 import src.board.BoardArray;
-import src.utils.Controller;
+import src.gui.GameBoard;
 
 // Main class for the Fiery Dragons game
 public class Game{
@@ -36,9 +36,8 @@ public class Game{
         // Add positions to the board for volcano cards and squares
         boardArray.addPosition(8,3);
 
-        // Initialize the UI controller
-        Controller uiController = new Controller();
-        // Create and display the game board using the UI controller
-        uiController.createGameBoard();
+        GameBoard gameBoard = new GameBoard();
+        gameBoard = new GameBoard();
+        gameBoard.drawGameBoard();
     }
 }
