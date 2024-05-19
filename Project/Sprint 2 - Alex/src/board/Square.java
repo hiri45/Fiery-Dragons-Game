@@ -2,7 +2,7 @@
  * Square.java
  *
  * Represents a single square on the game board. Each square is associated with a specific
- * CreatureType, which can influence the gameplay dynamics based on the creature present at
+ * Creature, which can influence the gameplay dynamics based on the creature present at
  * this square. This class provides methods to access and modify the square's properties.
  *
  * Author: Alex Ung
@@ -52,9 +52,9 @@ public class Square {
     }
 
     /**
-     * Returns the creature type associated with this square.
+     * Returns the creature associated with this square.
      *
-     * @return The CreatureType of the creature on this square.
+     * @return The Creature of the creature on this square.
      */
     public Creature getCreature() {
         return creature;

@@ -70,7 +70,7 @@ public class Cave {
     /**
      * Gets the creature type associated with this cave.
      *
-     * @return The CreatureType of the cave.
+     * @return The Creature of the cave.
      */
     public Creature getCreatureType() {
         return creatureType;

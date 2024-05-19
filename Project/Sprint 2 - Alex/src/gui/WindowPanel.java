@@ -375,41 +375,6 @@ public class WindowPanel extends JPanel {
         }
     }
     /**
-     * Creates and positions dragon cards in a grid layout on the game board.
-     *
-     * This method calculates the necessary dimensions and layout to arrange dragon cards in a 4x4 grid.
-     * It positions the cards centrally on the game board and sets their bounds according to calculated positions.
-     */
-    private void createDragonCards() {
-        // Number of cards per row and total number of rows in the grid.
-        int cardsPerRow = 4;
-        int cardRows = 4; // Fixed grid of 4x4 for dragon cards.
-
-        // Calculate the total width and height needed for all cards including gaps between them.
-        int totalCardsWidth = cardsPerRow * cardSize + (cardsPerRow - 1) * 5; // Total width with gaps between cards.
-        int totalCardsHeight = cardRows * cardSize + (cardRows - 1) * 5; // Total height with gaps between cards.
-
-        // Calculate the starting position to center the grid of cards within the panel.
-        int startX = (this.getWidth() - totalCardsWidth) / 2; // Center horizontally.
-        int startY = (this.getHeight() - totalCardsHeight) / 2; // Center vertically.
-
-        // Create each dragon card and position it within the grid.
-        for (int i = 0; i < cardRows * cardsPerRow; i++) {
-            String cardName = "Dragon Card " + (i + 1); // Name the card with its sequential number.
-            DragonCardPanel card = new DragonCardPanel(cardName); // Create a new DragonCardPanel for each card.
-
-            int row = i / cardsPerRow; // Determine the row position based on the index.
-            int col = i % cardsPerRow; // Determine the column position based on the index.
-
-            // Calculate the exact x and y position for each card, considering gaps.
-            int x = startX + col * (cardSize + 5); // Position horizontally with a gap of 5 pixels between cards.
-            int y = startY + row * (cardSize + 5); // Position vertically with a gap of 5 pixels between cards.
-
-            card.setBounds(x, y, cardSize, cardSize); // Set the bounds of the card within the panel.
-            this.add(card); // Add the card to the WindowPanel.
-        }
-    }
-    /**
      *places the DragonCard Pool in the panel. In this case it will be the main Game Panel -> WindowPanel
      */
     private void placeDragonCardPool()
