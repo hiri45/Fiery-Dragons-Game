@@ -72,7 +72,13 @@ public class DragonCard extends JPanel {
 
             if(!this.creature.isEnemy())
             {
-                if(this.creature.getName() == boardArray.getSquares().get(currentPlayer.getPosition()).getCreature().getName())
+                if (currentPlayer.isInCave() && this.creature.getName().equals(currentPlayer.getCave().getCreatureType().getName())){
+                    add(label);
+                    revalidate();
+                    repaint();
+                    currentPlayer.move(this.creatureAmount);
+                }
+                else if(!currentPlayer.isInCave() && this.creature.getName().equals(boardArray.getSquares().get(currentPlayer.getPosition()).getCreature().getName()))
                 {
                     add(label);
                     revalidate();

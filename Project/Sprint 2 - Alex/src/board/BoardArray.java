@@ -12,10 +12,7 @@
 package src.board;
 
 
-import src.Creature.BabyDragon;
-import src.Creature.Bat;
-import src.Creature.Salamander;
-import src.Creature.Spider;
+import src.Creature.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,8 +27,17 @@ public class BoardArray {
 
     private ArrayList<Square> squares = new ArrayList<>();
 
+    private ArrayList<Creature> caveCreatures = new ArrayList<>();
+
     public static BoardArray instance;
 
+    private BoardArray(){
+        caveCreatures.add(new BabyDragon());
+        caveCreatures.add(new Salamander());
+        caveCreatures.add(new Spider());
+        caveCreatures.add(new Bat());
+        Collections.shuffle(caveCreatures);
+    }
     /**
      * Singleton instance access method.
      * @return Single instance of BoardArray.
@@ -146,6 +152,14 @@ public class BoardArray {
     }
     public void setDragonCards(ArrayList<DragonCard> dragonCards) {
         this.dragonCards = dragonCards;
+    }
+
+    public ArrayList<Creature> getCaveCreatures() {
+        return caveCreatures;
+    }
+
+    public void setCaveCreatures(Creature caveCreature) {
+        caveCreatures.remove(caveCreature);
     }
 
     public void resetDragonCards()

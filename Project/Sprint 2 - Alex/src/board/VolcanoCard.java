@@ -89,9 +89,13 @@ public class VolcanoCard {
      * The cave is associated with the creature and position of the middle square.
      */
     public void initialiseCave() {
+        int middleSquare = 1;
         if (this.hasCave && cave == null) {
-            int middleSquare = 1;
-            cave = new Cave(squares.get(middleSquare).getCreature(), squares.get(middleSquare).getPosition());
+            BoardArray boardArray = BoardArray.getInstance();
+            Creature creature = boardArray.getCaveCreatures().get(0);
+            cave = new Cave(creature, squares.get(middleSquare).getPosition());
+            boardArray.setCaveCreatures(creature);
+
         }
     }
 
