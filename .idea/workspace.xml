@@ -4,99 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="ensured that images cant take null">
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/.idea/libraries/Sprint_2___Alex.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/DesignRationale/FIT3077 - Design Rationale Sprint 2 - Alex Ung.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/Sequence Diagrams/Alex Ung Board setup sequence diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/Sequence Diagrams/Alex Ung Flipping Dragon Card Sequence Diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/Sequence Diagrams/Alex Ung Player Changing of turn to next player.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/Sequence Diagrams/Alex Ung Player Movement + Win Game Sequence Diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/Testing/FIT3077 - Sprint 2 - Test Scenarios.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/UML/Alex's UML_FIT3077 FINAL.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Documentation/UML/Sprint3_UML_Class_Diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Sprint 2 - Alex.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/Sprint 3 Documentation/FIT3077_-_Sprint_3_-_Fiery_Dragons.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/artifacts/Sprint_2___Alex_jar/Sprint 2 - Alex.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/.idea/libraries/Sprint_2___Alex.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/DesignRationale/FIT3077 - Design Rationale Sprint 2 - Alex Ung.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/Sequence Diagrams/Alex Ung Board setup sequence diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/Sequence Diagrams/Alex Ung Flipping Dragon Card Sequence Diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/Sequence Diagrams/Alex Ung Player Changing of turn to next player.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/Sequence Diagrams/Alex Ung Player Movement + Win Game Sequence Diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/Testing/FIT3077 - Sprint 2 - Test Scenarios.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/UML/Alex's UML_FIT3077 FINAL.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Documentation/UML/Sprint3_UML_Class_Diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Sprint 2 - Alex.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/Sprint 3 Documentation/FIT3077_-_Sprint_3_-_Fiery_Dragons.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/src/Images/FD logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/src/Images/baby dragon resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/src/Images/bat resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/src/Images/dragon card original.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/src/Images/dragon card resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/src/Images/salamander resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/out/production/Sprint 2 - Alex/src/Images/spider resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/BabyDragon.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Bat.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Creature.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/PirateDragon.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Salamander.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Creature/Spider.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Game.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/2 baby dragon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/2 bats.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/2 salamander.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/2 skull.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/2 spider.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/3 baby dragon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/3 bats.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/3 salamander.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/3 spider.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/FD logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/baby dragon resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/bat resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/dragon card original.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/dragon card resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/magic background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/salamander resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/skull.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/Images/spider resize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/actors/Actor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/actors/DragonToken.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/BoardArray.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Cave.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/CreatureType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCard.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCardArray.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Square.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/VolcanoCard.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPanel$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPool.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonTokenPanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/SquarePanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/Controller.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/MovementManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/PlayerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CL_Monday06pm_Team003.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CL_Monday06pm_Team003.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/BabyDragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/BabyDragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Bat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Bat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/PirateDragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/PirateDragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Salamander.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Salamander.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Spider.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 2 - Alex/src/Creature/Spider.java" afterDir="false" />
-    </list>
+    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="Restructured files and file names to make navigation easier." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,9 +18,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2gfNGwzSrxGq9e7sWhgSsSTiTvo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -123,7 +31,10 @@
   "keyToString": {
     "Application.Game.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Sprint__3__Branch",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Romi/Desktop/FIT3077/CL_Monday06pm_Team003/Project/Sprint 3",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
@@ -158,10 +69,20 @@
       <option name="presentableId" value="Default" />
       <updated>1716084580594</updated>
     </task>
+    <task id="LOCAL-00001" summary="Restructured files and file names to make navigation easier.">
+      <option name="closed" value="true" />
+      <created>1716103745007</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716103745007</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ensured that images cant take null" />
-    <option name="LAST_COMMIT_MESSAGE" value="ensured that images cant take null" />
+    <MESSAGE value="Restructured files and file names to make navigation easier." />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured files and file names to make navigation easier." />
   </component>
 </project>
