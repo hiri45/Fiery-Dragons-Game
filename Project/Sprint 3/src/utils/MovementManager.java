@@ -78,7 +78,13 @@ public class MovementManager {
         return noPositions >= 0 || dragonToken.getCave().getCavePosition() >= noPositions;// Block backward movement into the cave if not aligned with the cave entry rules.
 
     }
-
+    /**
+     * Determines if a DragonToken can win the game based on its current position and the number of positions to move.
+     *
+     * @param dragonToken the DragonToken whose winning condition is being checked.
+     * @param noPositions the number of positions the DragonToken will move.
+     * @return true if the DragonToken can win the game, false otherwise.
+     */
     public boolean canWin(DragonToken dragonToken, int noPositions) {
         int newPosition = dragonToken.getPosition() + noPositions;
         int boardSize = boardArray.getSquares().size();
