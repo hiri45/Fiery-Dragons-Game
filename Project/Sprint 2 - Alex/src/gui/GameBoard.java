@@ -39,12 +39,18 @@ public class GameBoard extends JPanel {
         JFrame frame = new JFrame("Fiery Dragon Board Game"); // Create a new JFrame with the game's title
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation to exit the application
 
-
         WindowPanel gameWindow = WindowPanel.getInstance(); // Create the main game panel
-        frame.add(gameWindow); // Add the game panel to the frame
+
+        // Wrap the WindowPanel in a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(gameWindow);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        // Add the JScrollPane to the frame
+        frame.add(scrollPane); // Add the scroll pane, not the game panel directly
 
         frame.pack(); // Size the frame so that all its contents are at or above their preferred sizes
         frame.setVisible(true); // Make the frame visible
-        frame.setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null); // Center the frame on the screen
     }
 }
