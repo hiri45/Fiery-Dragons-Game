@@ -16,6 +16,7 @@ import src.actors.DragonToken;
 import src.utils.PlayerManager;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Represents a card on the game board which includes multiple squares and potentially a cave.
@@ -77,6 +78,13 @@ public class VolcanoCard {
      * @param creature3 Creature for the third square.
      */
     public void initialiseSquares(Creature creature1, Creature creature2, Creature creature3) {
+        Random random = new Random();
+        boolean randomBool = random.nextBoolean();
+        if(randomBool){
+            Creature temp = creature1; // temp now holds the reference to creature1
+            creature1 = creature3;     // creature1 now holds the reference to creature2
+            creature3 = temp;
+        }
         if (squares.size() < squareCount) {
             squares.add(new Square(creature1));
             squares.add(new Square(creature2));
