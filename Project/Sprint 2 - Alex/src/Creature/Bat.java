@@ -1,7 +1,7 @@
 package src.Creature;
 
 import javax.swing.*;
-import java.net.URL;
+import java.util.Objects;
 
 public class Bat extends Creature {
     public Bat() {
@@ -12,13 +12,13 @@ public class Bat extends Creature {
         // Provide specific implementation for getting dragon image
         // This is just a placeholder implementation
         if(dragonAmount == 1){
-            return new ImageIcon(this.getClass().getResource("/src/Images/bat resize.png"));
+            return new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/src/Images/bat resize.png")));
         }
         else if (dragonAmount == 2){
-            return new ImageIcon(this.getClass().getResource("/src/Images/2 bats.png"));
+            return new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/src/Images/2 bats.png")));
         }
         else{
-            return new ImageIcon(this.getClass().getResource("/src/Images/3 bats.png"));
+            return new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/src/Images/3 bats.png")));
         }
     }
 }

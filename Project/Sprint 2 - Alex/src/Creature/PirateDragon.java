@@ -1,6 +1,7 @@
 package src.Creature;
 
 import javax.swing.*;
+import java.util.Objects;
 
 public class PirateDragon extends Creature{
     public PirateDragon() {
@@ -11,10 +12,10 @@ public class PirateDragon extends Creature{
         // Provide specific implementation for getting dragon image
         // This is just a placeholder implementation
         if(dragonAmount == 1){
-            return new ImageIcon(this.getClass().getResource("/src/Images/skull.png"));
+            return new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/src/Images/skull.png")));
         }
         else{
-            return new ImageIcon(this.getClass().getResource("/src/Images/2 skull.png"));
+            return new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/src/Images/2 skull.png")));
         }
     }
 }
