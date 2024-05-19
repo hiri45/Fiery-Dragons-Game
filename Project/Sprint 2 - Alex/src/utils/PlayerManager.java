@@ -104,21 +104,6 @@ public class PlayerManager {
     public void assignCaves(){
         BoardArray boardArray = BoardArray.getInstance();
         ArrayList<VolcanoCard> board = boardArray.getBoard();
-
-//        if (playerCount == 2){
-//            DragonToken player1 = players.get(0);
-//            DragonToken player2 = players.get(1);
-//
-//            board.get(0).getCave().setCaveOwner(player1);
-//            player1.setStartingPosition(player1.getCave().getCavePosition());
-//            System.out.println(player1.getCave().getCreatureType().getName());
-//            System.out.println(player1.getCave().getCavePosition());
-//            board.get(4).getCave().setCaveOwner(player2);
-//            player2.setStartingPosition(player2.getCave().getCavePosition());
-//            System.out.println(player2.getCave().getCreatureType().getName());
-//            System.out.println(player2.getCave().getCavePosition());
-//
-//        } else{
             for(DragonToken dragonToken: players){
                 // For every volcano card on the board
                 for(VolcanoCard volcanoCard: board){
@@ -132,10 +117,7 @@ public class PlayerManager {
                 }
             }
         }
-//        for(DragonToken dragonToken: players){
-//            dragonToken.setStartingPosition(dragonToken.getCave().getCavePosition());
-//        }
-//    }
+
     public int getPlayerTurn() {
         return playerTurn;
     }

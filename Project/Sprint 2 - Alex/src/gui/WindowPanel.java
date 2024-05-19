@@ -128,7 +128,7 @@ public class WindowPanel extends JPanel {
             numberOfPlayers = Integer.parseInt(input);
             JOptionPane.showMessageDialog(this, "To confirm, the number of players is: " + numberOfPlayers);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "This game only supports upto 4 players", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "This game only supports up to 4 players", "Error", JOptionPane.ERROR_MESSAGE);
             popupForNumberOfPlayers(); // Optionally retry until valid input is given
         }
     }
@@ -218,25 +218,9 @@ public class WindowPanel extends JPanel {
 
         //add the dragonTokens onto the gui
         // Coordinates and offsets for the tokens
-        int[][] tokenCoordinates = {
-                {offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize},
-                {offsetX + (gridSize / 2) * squareSize + squareSize, offsetY + gridSize * squareSize},
-                {offsetX + (gridSize + 1) * squareSize - squareSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize},
-                {offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize}
-        };
-
-//        if(numberOfPlayers == 2){
-//            addDragonToken(dragonTokens.get(0),cavePanels.get(0).getX(),cavePanels.get(0).getY());
-//            addDragonToken(dragonTokens.get(1),cavePanels.get(2).getX(),cavePanels.get(2).getY());
-//
-//        }else{
-            for (int i = 0; i < numberOfPlayers; i++) {
-                    addDragonToken(dragonTokens.get(i), cavePanels.get(i).getX(), cavePanels.get(i).getY());
-                }
-//            }
-        // Add the specified number of dragon tokens
-
-
+        for (int i = 0; i < numberOfPlayers; i++) {
+                addDragonToken(dragonTokens.get(i), cavePanels.get(i).getX(), cavePanels.get(i).getY());
+            }
     }
 
     /**
@@ -295,7 +279,8 @@ public class WindowPanel extends JPanel {
         // Check if the movement is forward (positive number of positions).
         if (noPosition > 0) {
             // Handle forward movement by delegating to the appropriate method.
-            forwardsMovement(dragonTokenPanel, newPosition);
+            move(dragonTokenPanel,newPosition);
+//            forwardsMovement(dragonTokenPanel, newPosition);
         } else {
             // Handle backward movement by delegating to the appropriate method.
             backwardsMovement(dragonTokenPanel, newPosition);
@@ -303,20 +288,6 @@ public class WindowPanel extends JPanel {
 
     }
 
-
-    /**
-     * Manages forward movement of a dragon token on the game board.
-     *
-     * This method directly calls the move method to update the dragon token's position on the board
-     * based on the new position calculated in the moveToken method.
-     *
-     * @param dragonTokenPanel The graphical panel representing the dragon token.
-     * @param newPosition      The calculated new position for the dragon token, assuming forward movement.
-     */
-    public void forwardsMovement(DragonTokenPanel dragonTokenPanel, int newPosition){
-        // Move the token forward by updating its position to the new calculated position.
-        move(dragonTokenPanel, newPosition);
-    }
     /**
      * Manages backward movement of a dragon token on the game board, including handling special cases
      * like moving into a cave.
