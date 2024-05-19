@@ -1,43 +1,62 @@
 package src.Creature;
 
-
 import javax.swing.*;
-import java.net.URL;
+import java.util.Objects;
 
-//Class to store all information about a specific creature including graphics, name and enemy status
 public abstract class Creature {
-    private final ImageIcon image;
     private final String name;
-    private final boolean enemy;
-    private int dragonAmount;
+    private final ImageIcon image;
+    private final boolean isEnemy;
 
-    public Creature(String name, ImageIcon image, boolean enemy)
-    {
+    /**
+     * Constructor for the Creature class.
+     * @param name the name of the creature
+     * @param image the image of the creature
+     * @param isEnemy whether the creature is an enemy
+     */
+    public Creature(String name, ImageIcon image, boolean isEnemy) {
         this.name = name;
         this.image = image;
-        this.enemy = enemy;
-    }
-    public static ImageIcon retrieveImage(String location) {
-        URL imgLocation = Creature.class.getResource(location);
-        if (imgLocation != null) {
-            return new ImageIcon(imgLocation);
-        } else {
-            System.err.println("cannot findd");
-            return null;
-        }
+        this.isEnemy = isEnemy;
     }
 
+    /**
+     * Retrieves the image for the creature.
+     * @param imagePath the path to the image file
+     * @return the image icon
+     */
+    protected static ImageIcon retrieveImage(String imagePath) {
+        return new ImageIcon(Objects.requireNonNull(Creature.class.getResource(imagePath)));
+    }
+
+    /**
+     * Abstract method to get the dragon image based on the amount.
+     * @param dragonAmount the amount of dragons
+     * @return the image icon representing the dragon
+     */
+    public abstract ImageIcon getDragonImage(int dragonAmount);
+
+    /**
+     * Gets the name of the creature.
+     * @return the name of the creature
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Gets the image of the creature.
+     * @return the image of the creature
+     */
     public ImageIcon getImage() {
         return image;
     }
 
-    public abstract ImageIcon getDragonImage(int dragonAmount);
-
-    public String getName() {
-        return name;
-    }
+    /**
+     * Checks if the creature is an enemy.
+     * @return true if the creature is an enemy, false otherwise
+     */
     public boolean isEnemy() {
-        return enemy;
+        return isEnemy;
     }
 }
-

@@ -21,6 +21,11 @@ public class DragonCard extends JPanel {
     private final int creatureAmount;
     private final Creature creature;
 
+    /**
+     * Constructor for the DragonCard class.
+     * @param creature the creature associated with the card
+     * @param creatureAmount the amount of creatures
+     */
     public DragonCard(Creature creature, int creatureAmount) {
         this.creature = creature;
         //currently displays the name and amount of creature, but will change to an image in later sprint
@@ -37,66 +42,62 @@ public class DragonCard extends JPanel {
         });
     }
 
+    /**
+     * Method to flip the card.
+     */
     public void flip() {
         isFrontVisible = !isFrontVisible;
         updateAppearance();
     }
-    public void checkFlip(){
-        if(!flipped)
-        {
+
+    /**
+     * Method to check if the card should flip.
+     */
+    public void checkFlip() {
+        if (!flipped) {
             flipped = true;
             flip();
         }
     }
 
-    //will update appearance of dragon card depending on whether isFrontVisible is true or nah
+    /**
+     * Method to update the appearance of the card.
+     */
     private void updateAppearance() {
         removeAll(); // Clear any existing content
         JLabel label;
-        if(isFrontVisible)
-        {
+        if (isFrontVisible) {
             label = new JLabel(front);
             add(label);
             revalidate();
             repaint();
-        }
-        else
-        {
+        } else {
             label = new JLabel(back);
-
             PlayerManager playerManager = PlayerManager.getInstance();
             DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
 
             BoardArray boardArray = BoardArray.getInstance();
             WindowPanel windowPanel = WindowPanel.getInstance();
 
-            if(!this.creature.isEnemy())
-            {
-                if (currentPlayer.isInCave() && this.creature.getName().equals(currentPlayer.getCave().getCreatureType().getName())){
+            if (!this.creature.isEnemy()) {
+                if (currentPlayer.isInCave() && this.creature.getName().equals(currentPlayer.getCave().getCreatureType().getName())) {
                     add(label);
                     revalidate();
                     repaint();
                     currentPlayer.move(this.creatureAmount);
-                }
-                else if(!currentPlayer.isInCave() && this.creature.getName().equals(boardArray.getSquares().get(currentPlayer.getPosition()).getCreature().getName()))
-                {
+                } else if (!currentPlayer.isInCave() && this.creature.getName().equals(boardArray.getSquares().get(currentPlayer.getPosition()).getCreature().getName())) {
                     add(label);
                     revalidate();
                     repaint();
                     currentPlayer.move(this.creatureAmount);
-                }
-                else
-                {
+                } else {
                     add(label);
                     revalidate();
                     repaint();
                     playerManager.updatePlayerTurn();
                     windowPanel.displayCurrentPlayer();
-
                 }
-            }
-            else
-            {
+            } else {
                 add(label);
                 revalidate();
                 repaint();
@@ -107,22 +108,44 @@ public class DragonCard extends JPanel {
         }
     }
 
+    /**
+     * Getter for creatureAmount.
+     * @return the amount of creatures
+     */
     public int getCreatureAmount() {
         return creatureAmount;
     }
 
+    /**
+     * Setter for isFrontVisible.
+     * @param frontVisible visibility status of the front side of the card
+     */
     public void setFrontVisible(boolean frontVisible) {
         isFrontVisible = frontVisible;
     }
+
+    /**
+     * Getter for isFrontVisible.
+     * @return true if the front side of the card is visible, false otherwise
+     */
     public boolean isFrontVisible() {
         return isFrontVisible;
     }
 
+    /**
+     * Getter for creature.
+     * @return the creature associated with the card
+     */
     public Creature getCreature() {
         return creature;
     }
+
+    /**
+     * Setter for flipped.
+     * @param flipped flip status of the card
+     */
     public void setFlipped(boolean flipped) {
         this.flipped = flipped;
     }
-
 }
+
