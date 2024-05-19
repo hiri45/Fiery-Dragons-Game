@@ -409,6 +409,9 @@ public class WindowPanel extends JPanel {
             this.add(card); // Add the card to the WindowPanel.
         }
     }
+    /**
+     *places the DragonCard Pool in the panel. In this case it will be the main Game Panel -> WindowPanel
+     */
     private void placeDragonCardPool()
     {
         int dragonPoolSideLength = (width/3); //Dynamic dragon pool size so that it always scales with screen size
@@ -467,6 +470,9 @@ public class WindowPanel extends JPanel {
         }
 
     }
+    /**
+     * Displays current player on the window panel (top left) so that the player knows whose turn it is
+     */
     public void displayCurrentPlayer()
     {
         PlayerManager playerManager = PlayerManager.getInstance();
@@ -477,6 +483,9 @@ public class WindowPanel extends JPanel {
         currentPlayerDisplay.add(label);
         this.add(currentPlayerDisplay);
     }
+    /**
+     * displays message when player turn has ended
+     */
     public void showPlayerTurnPopup(String message) {
         JOptionPane.showMessageDialog(this, message, "End of Turn ;(", JOptionPane.INFORMATION_MESSAGE);
     }
