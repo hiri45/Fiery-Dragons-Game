@@ -1,0 +1,49 @@
+<changelist name="Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]" date="1715918792414" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 17/05/2024 2:06 pm [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/WindowPanel$1.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/WindowPanel$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/WindowPanel$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/utils/MovementManager.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/utils/MovementManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/MovementManager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/CavePanel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/WindowPanel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/board/Square.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/board/Square.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/Square.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/board/VolcanoCard.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/board/VolcanoCard.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/VolcanoCard.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/GameBoard.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/board/BoardArray.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/board/BoardArray.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/BoardArray.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CL_Monday06pm_Team003/src/board/Cave.class" />
+    <option name="AFTER_PATH" value="out/production/CL_Monday06pm_Team003/src/board/Cave.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_2_06_pm_[Changes]/Cave.class" />
+  </binary>
+</changelist>
