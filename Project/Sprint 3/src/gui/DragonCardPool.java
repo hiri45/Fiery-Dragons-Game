@@ -44,7 +44,7 @@ public class DragonCardPool extends JPanel {
         }
 
         for (Creature i : specialCreature) {
-            for (int j = 1; j <= 2; j++) {
+            for (int j = 0;j<1; j++) {
                 DragonCard card = new DragonCard(i, j);
                 dragonCards.add(card);
             }

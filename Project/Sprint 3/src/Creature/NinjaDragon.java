@@ -1,6 +1,9 @@
 package src.Creature;
 
 import src.actors.DragonToken;
+import src.board.BoardArray;
+import src.utils.MovementManager;
+import src.utils.PlayerManager;
 
 import javax.swing.*;
 import java.util.Objects;
@@ -22,9 +25,20 @@ public class NinjaDragon extends Creature implements SpecialCreature{
 
     @Override
     public void performSpecialAction(DragonToken dragonToken) {
+        PlayerManager playerManager = PlayerManager.getInstance();
+        DragonToken closestPlayer = dragonToken;
+        int temp;
+        int closestDistance = BoardArray.getInstance().getSquares().size();
+        for (DragonToken player:playerManager.getPlayers()){
+            temp = Math.abs(dragonToken.getPosition() - player.getPosition());
+            if (temp < closestDistance && dragonToken != player && !player.isInCave()){
+                closestPlayer = player;
+                closestDistance = player.getPosition();
+            }
+        }
+        if (closestPlayer != dragonToken){
+            MovementManager.getInstance().swap(dragonToken,closestPlayer);
+        }
 
     }
-
-
-//    public int dynamicMovement
 }

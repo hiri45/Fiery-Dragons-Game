@@ -218,4 +218,17 @@ public class MovementManager {
             System.exit(0);
         }
     }
+
+    public void swap(DragonToken dragonToken1, DragonToken dragonToken2) {
+        int dt1NewPosition,dt2NewPosition;
+        dt1NewPosition = dragonToken2.getPosition();
+        dt2NewPosition = dragonToken1.getPosition();
+
+        windowPanel.move(dragonToken1.getDragonTokenPanel(), dragonToken2.getPosition());
+        windowPanel.move(dragonToken2.getDragonTokenPanel(), dragonToken1.getPosition());
+        dragonToken1.setPosition(dt1NewPosition);
+        dragonToken2.setPosition(dt2NewPosition);
+
+
+    }
 }
