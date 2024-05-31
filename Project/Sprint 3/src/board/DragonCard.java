@@ -103,7 +103,6 @@ public class DragonCard extends JPanel {
                 repaint();
                 if(this.creature instanceof SpecialCreature){
                     ((SpecialCreature) this.creature).performSpecialAction(currentPlayer);
-                    System.out.println("ppiuzza");
                 }else{
                     currentPlayer.move(-(this.creatureAmount));
                 }

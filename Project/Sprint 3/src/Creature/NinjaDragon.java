@@ -27,18 +27,24 @@ public class NinjaDragon extends Creature implements SpecialCreature{
     public void performSpecialAction(DragonToken dragonToken) {
         PlayerManager playerManager = PlayerManager.getInstance();
         DragonToken closestPlayer = dragonToken;
+        int boardSize = BoardArray.getInstance().getSquares().size();
         int temp;
-        int closestDistance = BoardArray.getInstance().getSquares().size();
+        int closestDistance = boardSize;
         for (DragonToken player:playerManager.getPlayers()){
-            temp = Math.abs(dragonToken.getPosition() - player.getPosition());
-            if (temp < closestDistance && dragonToken != player && !player.isInCave()){
+            temp = circularDistance(dragonToken.getPosition(),player.getPosition(),boardSize);
+            if (temp < closestDistance && !dragonToken.equals(player) && !player.isInCave()){
                 closestPlayer = player;
-                closestDistance = player.getPosition();
+                closestDistance = temp;
             }
         }
         if (closestPlayer != dragonToken){
             MovementManager.getInstance().swap(dragonToken,closestPlayer);
         }
 
+    }
+    private int circularDistance(int pos1, int pos2, int boardSize) {
+        int directDistance = Math.abs(pos1 - pos2);
+        int wrapAroundDistance = boardSize - directDistance;
+        return Math.min(directDistance, wrapAroundDistance);
     }
 }
