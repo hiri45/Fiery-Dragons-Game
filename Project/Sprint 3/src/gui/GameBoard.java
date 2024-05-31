@@ -25,7 +25,7 @@ public class GameBoard extends JPanel {
      *
      * @param args Command line arguments (not used).
      */
-    public static void main(String[] args) {
+    public GameBoard() {
         GameBoard gameBoard = new GameBoard();
         gameBoard.drawGameBoard();
     }
