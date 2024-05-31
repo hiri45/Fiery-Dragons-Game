@@ -20,17 +20,6 @@ import javax.swing.*;
 public class GameBoard extends JPanel {
 
     /**
-     * The main entry point for the application.
-     * Initializes the game board and makes it visible.
-     *
-     * @param args Command line arguments (not used).
-     */
-    public GameBoard() {
-        GameBoard gameBoard = new GameBoard();
-        gameBoard.drawGameBoard();
-    }
-
-    /**
      * Creates and displays the main game window.
      * This method sets up the JFrame that hosts the game panel and configures its properties
      * such as size, close operation, and visibility.

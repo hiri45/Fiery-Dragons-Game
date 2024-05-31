@@ -37,7 +37,6 @@ public class Game{
         boardArray.addPosition(8,3);
 
         GameBoard gameBoard = new GameBoard();
-        gameBoard = new GameBoard();
         gameBoard.drawGameBoard();
     }
 }

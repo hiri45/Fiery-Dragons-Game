@@ -13,6 +13,7 @@ public class DragonCardPool extends JPanel {
 
     public Creature[] creatureArray = {new Bat(), new BabyDragon(), new Salamander(), new Spider()};
     public Creature[] enemy = {new PirateDragon(), new PirateDragon()};
+    public Creature[] specialCreature = {new NinjaDragon()};
 
     /**
      * Constructor for the DragonCardPool class.
@@ -41,6 +42,14 @@ public class DragonCardPool extends JPanel {
                 dragonCards.add(card);
             }
         }
+
+        for (Creature i : specialCreature) {
+            for (int j = 1; j <= 2; j++) {
+                DragonCard card = new DragonCard(i, j);
+                dragonCards.add(card);
+            }
+        }
+
         // Collections.shuffle(dragonCards); // This shuffles the dragon cards arrayList so we can randomize placement of the dragon cards
         BoardArray boardArray = BoardArray.getInstance();
         boardArray.setDragonCards(dragonCards);
