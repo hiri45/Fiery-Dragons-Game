@@ -20,7 +20,7 @@ public class DragonCardPool extends JPanel {
      */
     public DragonCardPool() {
         setOpaque(false); // Make the Panel transparent (other than the circle)
-        setLayout(new GridLayout(4, 4, 20, 20)); // Layout with 4 rows, 4 columns, and gaps
+        setLayout(new GridLayout(4, 4, 10, 10)); // Layout with 4 rows, 4 columns, and gaps
         generateDragonCards();
     }
 

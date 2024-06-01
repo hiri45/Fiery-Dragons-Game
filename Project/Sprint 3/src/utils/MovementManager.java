@@ -7,7 +7,7 @@
  * the interaction between game rules and user actions.
  *
  * Author: Alex Ung
- * Last Modified: 29/04/2024
+ * Last Modified: 1/06/2024
  */
 package src.utils;
 
@@ -197,7 +197,11 @@ public class MovementManager {
 
         return newPosition;
     }
-
+    /**
+     * Ends the game by announcing the winner and closing the application.
+     *
+     * @param dragonToken The token of the player who won the game.
+     */
     public void endGame(DragonToken dragonToken) {
         windowPanel.moveToken(dragonToken.getDragonTokenPanel(), dragonToken.getStartingPosition());
 
@@ -220,14 +224,23 @@ public class MovementManager {
             System.exit(0);
         }
     }
-
+    /**
+     * Swaps the positions of two dragon tokens on the board.
+     *
+     * @param dragonToken1 The first dragon token.
+     * @param dragonToken2 The second dragon token.
+     */
     public void swap(DragonToken dragonToken1, DragonToken dragonToken2) {
+        // Store the positions of the tokens before swapping
         int dt1NewPosition,dt2NewPosition;
         dt1NewPosition = dragonToken2.getPosition();
         dt2NewPosition = dragonToken1.getPosition();
 
+        // Move the tokens to their new positions on the board
         windowPanel.move(dragonToken1.getDragonTokenPanel(), dragonToken2.getPosition());
         windowPanel.move(dragonToken2.getDragonTokenPanel(), dragonToken1.getPosition());
+
+        // Update the positions of the dragon tokens
         dragonToken1.setPosition(dt1NewPosition);
         dragonToken2.setPosition(dt2NewPosition);
 
