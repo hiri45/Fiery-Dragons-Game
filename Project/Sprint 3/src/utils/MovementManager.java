@@ -89,7 +89,9 @@ public class MovementManager {
         int newPosition = dragonToken.getPosition() + noPositions;
         int boardSize = boardArray.getSquares().size();
         int tempVar = (newPosition) % (boardSize);
-
+        if (dragonToken.getCycleTracker() < 0){
+            return false;
+        }
         if (tempVar <= 2 && newPosition >= (boardSize - 1)) {
             newPosition = tempVar;
 

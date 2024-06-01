@@ -38,6 +38,9 @@ public class NinjaDragon extends Creature implements SpecialCreature{
             }
         }
         if (closestPlayer != dragonToken){
+            if (closestPlayer.getPosition() < dragonToken.getCave().getCavePosition()){
+                dragonToken.setCycleTracker(dragonToken.getCycleTracker()-1);
+            }
             MovementManager.getInstance().swap(dragonToken,closestPlayer);
         }
 
