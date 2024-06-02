@@ -77,6 +77,7 @@ public class WindowPanel extends JPanel {
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
         displayCurrentPlayer();
+        saveButton();
         backgroundImage = new ImageIcon(this.getClass().getResource("/src/Images/magic background.png")).getImage();
         if (backgroundImage == null) {
             System.err.println("Background image not found!");
@@ -418,6 +419,18 @@ public class WindowPanel extends JPanel {
         JLabel label = new JLabel("Current Player: "+ currentPlayer.getId());
         currentPlayerDisplay.add(label);
         this.add(currentPlayerDisplay);
+    }
+
+    /**
+     * A button on the game board which will implement a save function to save the current configuration of the game
+     */
+    public void saveButton()
+    {
+        JButton saveButton = new JButton();
+        saveButton.setBounds(750,100,150,50);
+        JLabel label = new JLabel("Save Game");
+        saveButton.add(label);
+        this.add(saveButton);
     }
     /**
      * displays message when player turn has ended
