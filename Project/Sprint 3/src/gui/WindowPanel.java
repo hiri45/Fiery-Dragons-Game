@@ -358,7 +358,7 @@ public class WindowPanel extends JPanel {
 
     private void placeBeaverWizardCard(){
         BeaverWizardCard beaverWizardCard = new BeaverWizardCard();
-        beaverWizardCard.setBounds(width -100, height -100, 100,100);
+        beaverWizardCard.setBounds(width -150, 50, 100,100);
         add(beaverWizardCard);
     }
 

@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class BeaverWizardCard extends JPanel {
-    private final ImageIcon front = new ImageIcon(Objects.requireNonNull(DragonCard.class.getResource("/src/Images/dragon card resize.png")));
+    private final ImageIcon front = new ImageIcon(Objects.requireNonNull(DragonCard.class.getResource("/src/Images/beaverwizard resize.png")));
     private ArrayList<DragonToken> used = new ArrayList<DragonToken>();
 
     public BeaverWizardCard() {
