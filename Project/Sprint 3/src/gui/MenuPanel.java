@@ -5,6 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class creates the starting menu for the game with a title and start button for the time being. The start buttons goes to the
+ * actual game when pressed which is done through the startGame function and actionListener.
+ */
 public class MenuPanel extends JPanel {
     private static MenuPanel instance;
     JLabel titleLabel;
@@ -48,7 +52,9 @@ public class MenuPanel extends JPanel {
         }
         return instance;
     }
-
+    /**
+     * this method is used to open up the WindowPanel which is the game to be played
+     */
     private void startGame() {
         frame.getContentPane().removeAll();
         WindowPanel gameWindow = WindowPanel.getInstance();

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="a button implemented on window panel which will be used to save game">
+    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="menu screen created which goes to game panel when start button pressed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/GameBoard.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717295462659</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="menu screen created which goes to game panel when start button pressed">
+      <option name="closed" value="true" />
+      <created>1717308347319</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717308347319</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -137,6 +145,7 @@
     <MESSAGE value="new branch test" />
     <MESSAGE value="test" />
     <MESSAGE value="a button implemented on window panel which will be used to save game" />
-    <option name="LAST_COMMIT_MESSAGE" value="a button implemented on window panel which will be used to save game" />
+    <MESSAGE value="menu screen created which goes to game panel when start button pressed" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu screen created which goes to game panel when start button pressed" />
   </component>
 </project>
