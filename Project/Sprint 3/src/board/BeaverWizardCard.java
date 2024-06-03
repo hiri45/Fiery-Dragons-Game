@@ -1,6 +1,7 @@
 package src.board;
 
 import src.actors.DragonToken;
+import src.gui.WindowPanel;
 import src.utils.PlayerManager;
 
 import javax.swing.*;
@@ -30,13 +31,18 @@ public class BeaverWizardCard extends JPanel {
         DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
         for (DragonToken i : used){
             if(currentPlayer == i){
-                //dont play
+                JOptionPane.showMessageDialog(null,"Don't be selfish! Player has already used Beaver Wizards power!","Move Blocked",JOptionPane.PLAIN_MESSAGE);
             }
             else{
+                used.add(currentPlayer);
                 Random rand= new Random();
 
                 int randomNumber = rand.nextInt(5)+1;
                 currentPlayer.move(randomNumber);
+                playerManager.updatePlayerTurn();
+                WindowPanel.getInstance().showPlayerTurnPopup("You have used the Beaver Wizards power and have moved " +
+                        (randomNumber) + "spots!");
+
             }
         }
     }
