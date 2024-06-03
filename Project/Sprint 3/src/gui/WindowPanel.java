@@ -16,6 +16,7 @@ import src.actors.DragonToken;
 import src.board.*;
 import src.utils.MovementManager;
 import src.utils.PlayerManager;
+import src.utils.SaveLoad;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,12 +48,14 @@ public class WindowPanel extends JPanel {
     private ArrayList<CavePanel> cavePanels = new ArrayList<>();    // Panels for each cave
     private int numberOfPlayers; // Variable to store the number of players
     private Image backgroundImage;
+    private SaveLoad saveLoad;
+
 
     /**
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
      * and dragon cards, and configures basic panel settings.
      */
-    private WindowPanel() {
+    private WindowPanel(int numberOfPlayers) {
         this.setLayout(null); // Use a null layout manager for absolute positioning
         //this.setBackground(new Color(153,153,153));
         this.setPreferredSize(new Dimension(width, height));
@@ -64,8 +67,10 @@ public class WindowPanel extends JPanel {
         int totalBoardHeight = gridSize * squareSize;
         this.offsetX = centerX - (totalBoardWidth / 2);
         this.offsetY = centerY - (totalBoardHeight / 2);
+        this.numberOfPlayers = numberOfPlayers;
 
-        popupForNumberOfPlayers();
+
+        //popupForNumberOfPlayers();
         PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
         playerManager.addPlayers(numberOfPlayers); // Add players to the game
 
@@ -75,17 +80,30 @@ public class WindowPanel extends JPanel {
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
         displayCurrentPlayer();
+        saveLoad = new SaveLoad();
+        saveButton();
         backgroundImage = new ImageIcon(this.getClass().getResource("/src/Images/magic background.png")).getImage();
         if (backgroundImage == null) {
             System.err.println("Background image not found!");
         }
 
     }
-    public static WindowPanel getInstance(){
+    public static WindowPanel getInstance(int numberOfPlayers){
         if(instance == null){
-            instance = new WindowPanel();
+            instance = new WindowPanel(numberOfPlayers);
         }
         return instance;
+    }
+
+    public static WindowPanel getInstance() {
+        if (instance == null) {
+            instance = new WindowPanel(2); // Default to 0 players if no number is provided
+        }
+        return instance;
+    }
+
+    public static void resetInstance(int numberOfPlayers) {
+        instance = new WindowPanel(numberOfPlayers);
     }
 
     /**
@@ -120,7 +138,7 @@ public class WindowPanel extends JPanel {
         return height;
     }
 
-    private void popupForNumberOfPlayers() {
+/*    public void popupForNumberOfPlayers() {
         String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
         try {
             numberOfPlayers = Integer.parseInt(input);
@@ -129,7 +147,7 @@ public class WindowPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "This game only supports up to 4 players", "Error", JOptionPane.ERROR_MESSAGE);
             popupForNumberOfPlayers(); // Optionally retry until valid input is given
         }
-    }
+    }*/
 
     /**
      * Creates and arranges the squares and caves on the game board.
@@ -422,6 +440,29 @@ public class WindowPanel extends JPanel {
         JLabel label = new JLabel("Current Player: "+ currentPlayer.getId());
         currentPlayerDisplay.add(label);
         this.add(currentPlayerDisplay);
+    }
+
+    /**
+     * A button on the game board which will implement a save function to save the current configuration of the game
+     */
+    public void saveButton()
+    {
+        JButton saveButton = new JButton();
+        saveButton.setBounds(750,100,150,50);
+        JLabel label = new JLabel("Save Game");
+        saveButton.add(label);
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveLoad.saveGame();
+                JOptionPane.showMessageDialog(null, "Game Saved!");
+            }
+        });
+        this.add(saveButton);
+    }
+
+    public void loadGame(){
+        // put attributes for when loading a game
     }
     /**
      * displays message when player turn has ended

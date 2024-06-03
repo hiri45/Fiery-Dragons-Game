@@ -4,13 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="Restructured files and file names to make navigation easier." />
+    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="created load button, savefile.txt and implementing loading and saving on SaveLoad file">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/WindowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/WindowPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/savedGame.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/utils/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/utils/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/utils/SaveLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/utils/SaveLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/PlayerManager.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Hirun &lt;hhet0002@student.monash.edu&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -22,7 +44,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2gfNGwzSrxGq9e7sWhgSsSTiTvo" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -35,9 +59,10 @@
     "git-widget-placeholder": "Sprint__3__Branch",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Romi/Desktop/FIT3077/CL_Monday06pm_Team003/Project/Sprint 3",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
   <component name="RunManager">
@@ -77,12 +102,74 @@
       <option name="project" value="LOCAL" />
       <updated>1716103745007</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="new branch test">
+      <option name="closed" value="true" />
+      <created>1717231993844</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717231993844</updated>
+    </task>
+    <task id="LOCAL-00003" summary="test">
+      <option name="closed" value="true" />
+      <created>1717232537803</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717232537803</updated>
+    </task>
+    <task id="LOCAL-00004" summary="test">
+      <option name="closed" value="true" />
+      <created>1717232908704</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717232908704</updated>
+    </task>
+    <task id="LOCAL-00005" summary="a button implemented on window panel which will be used to save game">
+      <option name="closed" value="true" />
+      <created>1717295462659</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717295462659</updated>
+    </task>
+    <task id="LOCAL-00006" summary="menu screen created which goes to game panel when start button pressed">
+      <option name="closed" value="true" />
+      <created>1717308347319</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717308347319</updated>
+    </task>
+    <task id="LOCAL-00007" summary="menu screen created which goes to game panel when start button pressed, documentation added for new files">
+      <option name="closed" value="true" />
+      <created>1717382384911</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717382384911</updated>
+    </task>
+    <task id="LOCAL-00008" summary="created load button, savefile.txt and implementing loading and saving on SaveLoad file">
+      <option name="closed" value="true" />
+      <created>1717406169328</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717406169328</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ensured that images cant take null" />
     <MESSAGE value="Restructured files and file names to make navigation easier." />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured files and file names to make navigation easier." />
+    <MESSAGE value="new branch test" />
+    <MESSAGE value="test" />
+    <MESSAGE value="a button implemented on window panel which will be used to save game" />
+    <MESSAGE value="menu screen created which goes to game panel when start button pressed" />
+    <MESSAGE value="menu screen created which goes to game panel when start button pressed, documentation added for new files" />
+    <MESSAGE value="created load button, savefile.txt and implementing loading and saving on SaveLoad file" />
+    <option name="LAST_COMMIT_MESSAGE" value="created load button, savefile.txt and implementing loading and saving on SaveLoad file" />
   </component>
 </project>
