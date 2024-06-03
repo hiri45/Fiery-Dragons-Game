@@ -23,6 +23,14 @@ public class PlayerManager {
     private static PlayerManager instance;
     public ArrayList<DragonToken> players;
 
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
+    public void setPlayerCount(int playerCount) {
+        this.playerCount = playerCount;
+    }
+
     public int playerCount;
 
     public void setPlayerTurn(int playerTurn) {

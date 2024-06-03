@@ -13,14 +13,14 @@ import java.awt.event.ActionListener;
  */
 public class MenuPanel extends JPanel{
     private static MenuPanel instance;
-    JLabel titleLabel;
+    private JLabel titleLabel;
     JPanel menuButtonPanel;
-    JButton startButton,loadButton;
-    Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
-    Font normalFont = new Font("Times New Roman", Font.PLAIN, 30);
-    String gameChoice;
-    SaveLoad saveLoad;
-    WindowPanel gameWindow;
+    private JButton startButton,loadButton;
+    private Font titleGameont = new Font("Times New Roman", Font.PLAIN, 90);
+    private Font basicFont = new Font("Times New Roman", Font.PLAIN, 30);
+    private String gameChoice;
+    private SaveLoad saveLoad;
+    private WindowPanel gameWindow;
     private JFrame frame;
 
     private MenuPanel(JFrame frame) {
@@ -29,7 +29,7 @@ public class MenuPanel extends JPanel{
         this.setBackground(Color.black);
         titleLabel = new JLabel("Fiery Dragons");
         titleLabel.setForeground(Color.white);
-        titleLabel.setFont(titleFont);
+        titleLabel.setFont(titleGameont);
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,14 +52,14 @@ public class MenuPanel extends JPanel{
         startButton = new JButton("START");
         startButton.setBackground(Color.black);
         startButton.setForeground(Color.white);
-        startButton.setFont(normalFont);
+        startButton.setFont(basicFont);
         startButton.addActionListener(actionListener);
         startButton.setActionCommand("start");
 
         loadButton = new JButton("LOAD");
         loadButton.setBackground(Color.black);
         loadButton.setForeground(Color.white);
-        loadButton.setFont(normalFont);
+        loadButton.setFont(basicFont);
         loadButton.addActionListener(actionListener);
         loadButton.setActionCommand("load");
 
@@ -83,17 +83,21 @@ public class MenuPanel extends JPanel{
      */
     private void startGame(String gameChoice) {
         frame.getContentPane().removeAll();
-        gameWindow = WindowPanel.getInstance();
-        JScrollPane scrollPane = new JScrollPane(gameWindow);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
         if (gameChoice.equals("start")) {
             // Add the JScrollPane to the frame for a new game
+            int numberOfPlayers = popupForNumberOfPlayers();
+            gameWindow = WindowPanel.getInstance(numberOfPlayers);
+            JScrollPane scrollPane = new JScrollPane(gameWindow);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             frame.add(scrollPane);
         } else if (gameChoice.equals("load")) {
-            saveLoad = new SaveLoad(gameWindow);
+            saveLoad = new SaveLoad();
             saveLoad.loadGame();
+            gameWindow = saveLoad.getWindowPanel();
+            JScrollPane scrollPane = new JScrollPane(gameWindow);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             // Add the JScrollPane to the frame after loading the game
             frame.add(scrollPane);
         }
@@ -102,7 +106,7 @@ public class MenuPanel extends JPanel{
         frame.repaint();
     }
 
-/*    public int popupForNumberOfPlayers() {
+    public int popupForNumberOfPlayers() {
         String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
         int numberOfPlayers = 0;
         try {
@@ -113,6 +117,6 @@ public class MenuPanel extends JPanel{
             return popupForNumberOfPlayers(); // Retry until valid input is given
         }
         return numberOfPlayers;
-    }*/
+    }
 
 }
