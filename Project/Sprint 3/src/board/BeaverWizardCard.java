@@ -15,7 +15,17 @@ public class BeaverWizardCard extends JPanel {
     private final ImageIcon front = new ImageIcon(Objects.requireNonNull(DragonCard.class.getResource("/src/Images/dragon card resize.png")));
     private ArrayList<DragonToken> used = new ArrayList<DragonToken>();
 
+    public BeaverWizardCard() {
+        JLabel label = new JLabel(front);
+        add(label);
+        revalidate();
+        repaint();
 
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {randomMove(); }});
+    }
+    }
 
 
 
