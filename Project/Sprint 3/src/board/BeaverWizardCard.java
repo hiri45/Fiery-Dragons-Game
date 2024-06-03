@@ -25,6 +25,20 @@ public class BeaverWizardCard extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {randomMove(); }});
     }
+    public void randomMove() {
+        PlayerManager playerManager = PlayerManager.getInstance();
+        DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
+        for (DragonToken i : used){
+            if(currentPlayer == i){
+                //dont play
+            }
+            else{
+                Random rand= new Random();
+
+                int randomNumber = rand.nextInt(5)+1;
+                currentPlayer.move(randomNumber);
+            }
+        }
     }
 
 
