@@ -25,6 +25,10 @@ public class PlayerManager {
 
     public int playerCount;
 
+    public void setPlayerTurn(int playerTurn) {
+        this.playerTurn = playerTurn;
+    }
+
     /**
      * Constructs a new PlayerManager, initializing the player list and setting the initial player turn.
      */

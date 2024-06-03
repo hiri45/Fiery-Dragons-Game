@@ -51,6 +51,7 @@ public class WindowPanel extends JPanel {
     private int numberOfPlayers; // Variable to store the number of players
     private Image backgroundImage;
 
+
     /**
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
      * and dragon cards, and configures basic panel settings.
@@ -67,6 +68,7 @@ public class WindowPanel extends JPanel {
         int totalBoardHeight = gridSize * squareSize;
         this.offsetX = centerX - (totalBoardWidth / 2);
         this.offsetY = centerY - (totalBoardHeight / 2);
+
 
         popupForNumberOfPlayers();
         PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
@@ -123,7 +125,7 @@ public class WindowPanel extends JPanel {
         return height;
     }
 
-    private void popupForNumberOfPlayers() {
+    public void popupForNumberOfPlayers() {
         String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
         try {
             numberOfPlayers = Integer.parseInt(input);
@@ -431,6 +433,10 @@ public class WindowPanel extends JPanel {
         JLabel label = new JLabel("Save Game");
         saveButton.add(label);
         this.add(saveButton);
+    }
+
+    public void loadGame(){
+        // put attributes for when loading a game
     }
     /**
      * displays message when player turn has ended

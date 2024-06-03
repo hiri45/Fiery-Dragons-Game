@@ -1,5 +1,7 @@
 package src.gui;
 
+import src.utils.SaveLoad;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,13 +11,16 @@ import java.awt.event.ActionListener;
  * This class creates the starting menu for the game with a title and start button for the time being. The start buttons goes to the
  * actual game when pressed which is done through the startGame function and actionListener.
  */
-public class MenuPanel extends JPanel {
+public class MenuPanel extends JPanel{
     private static MenuPanel instance;
     JLabel titleLabel;
-    JPanel startButtonPanel;
-    JButton startButton;
+    JPanel menuButtonPanel;
+    JButton startButton,loadButton;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 30);
+    String gameChoice;
+    SaveLoad saveLoad;
+    WindowPanel gameWindow;
     private JFrame frame;
 
     private MenuPanel(JFrame frame) {
@@ -25,27 +30,47 @@ public class MenuPanel extends JPanel {
         titleLabel = new JLabel("Fiery Dragons");
         titleLabel.setForeground(Color.white);
         titleLabel.setFont(titleFont);
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameChoice = e.getActionCommand();
+                switch (gameChoice) {
+                    case "start":
+                        startGame("start");
+                        break;
+                    case "load":
+                        startGame("load");
+                        break;
+                }
+            }
+        };
 
-        startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(350, 400, 200, 100);
-        startButtonPanel.setBackground(Color.black);
+        menuButtonPanel = new JPanel();
+        menuButtonPanel.setBounds(350, 400, 200, 100);
+        menuButtonPanel.setBackground(Color.black);
 
         startButton = new JButton("START");
         startButton.setBackground(Color.black);
         startButton.setForeground(Color.white);
         startButton.setFont(normalFont);
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                startGame();
-            }
-        });
+        startButton.addActionListener(actionListener);
+        startButton.setActionCommand("start");
+
+        loadButton = new JButton("LOAD");
+        loadButton.setBackground(Color.black);
+        loadButton.setForeground(Color.white);
+        loadButton.setFont(normalFont);
+        loadButton.addActionListener(actionListener);
+        loadButton.setActionCommand("load");
 
         this.add(titleLabel);
-        startButtonPanel.add(startButton);
+        menuButtonPanel.add(startButton);
+        menuButtonPanel.add(loadButton);
 
     }
-
+    /**
+     * ensures that theres only a single instance of the menu panel
+     * */
     public static MenuPanel getInstance(JFrame frame) {
         if (instance == null) {
             instance = new MenuPanel(frame);
@@ -53,18 +78,41 @@ public class MenuPanel extends JPanel {
         return instance;
     }
     /**
-     * this method is used to open up the WindowPanel which is the game to be played
+     * this method is used to open up the WindowPanel which is the game to be played, you can either choose to start a new game
+     * or load up a saved version of the game
      */
-    private void startGame() {
+    private void startGame(String gameChoice) {
         frame.getContentPane().removeAll();
-        WindowPanel gameWindow = WindowPanel.getInstance();
+        gameWindow = WindowPanel.getInstance();
         JScrollPane scrollPane = new JScrollPane(gameWindow);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-        // Add the JScrollPane to the frame
-        frame.add(scrollPane); // Add the scroll pane, not the game panel directly*/
+        if (gameChoice.equals("start")) {
+            // Add the JScrollPane to the frame for a new game
+            frame.add(scrollPane);
+        } else if (gameChoice.equals("load")) {
+            saveLoad = new SaveLoad(gameWindow);
+            saveLoad.loadGame();
+            // Add the JScrollPane to the frame after loading the game
+            frame.add(scrollPane);
+        }
+
         frame.revalidate();
         frame.repaint();
     }
+
+/*    public int popupForNumberOfPlayers() {
+        String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
+        int numberOfPlayers = 0;
+        try {
+            numberOfPlayers = Integer.parseInt(input);
+            JOptionPane.showMessageDialog(this, "To confirm, the number of players is: " + numberOfPlayers);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "This game only supports up to 4 players", "Error", JOptionPane.ERROR_MESSAGE);
+            return popupForNumberOfPlayers(); // Retry until valid input is given
+        }
+        return numberOfPlayers;
+    }*/
+
 }

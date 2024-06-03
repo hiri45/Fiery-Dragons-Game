@@ -33,7 +33,7 @@ public class GameBoard extends JPanel {
         MenuPanel menuPanel = MenuPanel.getInstance(frame);
 
         frame.add(menuPanel, BorderLayout.NORTH);
-        frame.add(menuPanel.startButtonPanel, BorderLayout.CENTER);
+        frame.add(menuPanel.menuButtonPanel, BorderLayout.CENTER);
 
         frame.pack(); // Size the frame so that all its contents are at or above their preferred sizes
         frame.setVisible(true); // Make the frame visible
