@@ -29,22 +29,30 @@ public class BeaverWizardCard extends JPanel {
     public void randomMove() {
         PlayerManager playerManager = PlayerManager.getInstance();
         DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
-        for (DragonToken i : used){
-            if(currentPlayer == i){
-                JOptionPane.showMessageDialog(null,"Don't be selfish! Player has already used Beaver Wizards power!","Move Blocked",JOptionPane.PLAIN_MESSAGE);
-            }
-            else{
-                used.add(currentPlayer);
-                Random rand= new Random();
 
-                int randomNumber = rand.nextInt(5)+1;
-                currentPlayer.move(randomNumber);
-                playerManager.updatePlayerTurn();
-                WindowPanel.getInstance().showPlayerTurnPopup("You have used the Beaver Wizards power and have moved " +
-                        (randomNumber) + "spots!");
-
+        boolean canUse = true;
+        for (DragonToken i : used) {
+            if (currentPlayer == i) {
+                canUse = false;
+                break;
             }
         }
+        if(!canUse){
+            JOptionPane.showMessageDialog(null,"Don't be selfish! Player has already used Beaver Wizards power!","Move Blocked",JOptionPane.PLAIN_MESSAGE);
+        }
+        else{
+            used.add(currentPlayer);
+            Random rand= new Random();
+
+            int randomNumber = rand.nextInt(5)+1;
+            currentPlayer.move(randomNumber);
+            playerManager.updatePlayerTurn();
+            WindowPanel.getInstance().showPlayerTurnPopup("You have used the Beaver Wizards power and have moved " +
+                    (randomNumber) + "spots!");
+        }
+
+
+
     }
 
 
