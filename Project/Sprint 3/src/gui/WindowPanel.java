@@ -13,10 +13,7 @@
 package src.gui;
 
 import src.actors.DragonToken;
-import src.board.BoardArray;
-import src.board.Cave;
-import src.board.Square;
-import src.board.VolcanoCard;
+import src.board.*;
 import src.utils.MovementManager;
 import src.utils.PlayerManager;
 
@@ -74,6 +71,7 @@ public class WindowPanel extends JPanel {
 
         createSquaresAndCaves();
         placeDragonCardPool();
+        placeBeaverWizardCard();
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
         displayCurrentPlayer();
@@ -356,6 +354,12 @@ public class WindowPanel extends JPanel {
         DragonCardPool dragonCardPool = new DragonCardPool();
         dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
         add(dragonCardPool);
+    }
+
+    private void placeBeaverWizardCard(){
+        BeaverWizardCard beaverWizardCard = new BeaverWizardCard();
+        beaverWizardCard.setBounds(width -100, height -100, 100,100);
+        add(beaverWizardCard);
     }
 
 
