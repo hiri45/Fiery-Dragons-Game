@@ -48,7 +48,8 @@ public class BeaverWizardCard extends JPanel {
             currentPlayer.move(randomNumber);
             playerManager.updatePlayerTurn();
             WindowPanel.getInstance().showPlayerTurnPopup("You have used the Beaver Wizards power and have moved " +
-                    (randomNumber) + "spots!");
+                    (randomNumber) + " spots!");
+            BoardArray.getInstance().resetDragonCards();
         }
 
 
