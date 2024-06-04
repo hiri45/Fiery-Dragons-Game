@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="saving and loading for a dragon tokens position is now saved on the game">
+    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="made changes to menu panel to ensure that game menu looks a bit nicer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/CreatureType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCardArray.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedGame.txt" beforeDir="false" afterPath="$PROJECT_DIR$/savedGame.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717469891085</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="made changes to menu panel to ensure that game menu looks a bit nicer">
+      <option name="closed" value="true" />
+      <created>1717472227456</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717472227456</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -181,6 +180,7 @@
     <MESSAGE value="menu screen created which goes to game panel when start button pressed, documentation added for new files" />
     <MESSAGE value="created load button, savefile.txt and implementing loading and saving on SaveLoad file" />
     <MESSAGE value="saving and loading for a dragon tokens position is now saved on the game" />
-    <option name="LAST_COMMIT_MESSAGE" value="saving and loading for a dragon tokens position is now saved on the game" />
+    <MESSAGE value="made changes to menu panel to ensure that game menu looks a bit nicer" />
+    <option name="LAST_COMMIT_MESSAGE" value="made changes to menu panel to ensure that game menu looks a bit nicer" />
   </component>
 </project>
