@@ -57,16 +57,13 @@ public class BoardArray {
         //Create a set of volcano cards that will be used for the game board
         for(int i = 0; i<volcanoCardCount; i++){
             if(i%2==0){
-//                board.add(new VolcanoCard(squaresPerVC,true));
                 caveCards.add(new VolcanoCard(squaresPerVC,true));
             }
             else{
                 nonCaveCards.add(new VolcanoCard(squaresPerVC,false));
-//                board.add(new VolcanoCard(squaresPerVC,false));
             }
 
         }
-        // Initialize volcano cards with creatures
         initialiseCardsWithCreatures();
     }
     private void initialiseCardsWithCreatures(){
@@ -74,18 +71,36 @@ public class BoardArray {
         Bat bat = new Bat();
         Salamander salamander = new Salamander();
         Spider spider = new Spider();
+
+        ArrayList<Creature> creatures = new ArrayList<>();
+        creatures.add(babyDragon);
+        creatures.add(bat);
+        creatures.add(salamander);
+        creatures.add(spider);
+
+        for (VolcanoCard caveCard: caveCards){
+            Collections.shuffle(creatures);
+            caveCard.initialiseSquares(creatures);
+        }
+
+        for (VolcanoCard caveCard: nonCaveCards){
+            Collections.shuffle(creatures);
+            caveCard.initialiseSquares(creatures);
+        }
+
         //initialise volcano cards with relevant squares
         //Cave volcano cards
-        caveCards.get(0).initialiseSquares(babyDragon, bat, spider);
-        caveCards.get(1).initialiseSquares(salamander,spider,bat);
-        caveCards.get(2).initialiseSquares(spider,salamander,babyDragon);
-        caveCards.get(3).initialiseSquares(bat,spider, babyDragon);
+//        caveCards.get(0).initialiseSquares(babyDragon, bat, spider);
+//        caveCards.get(1).initialiseSquares(salamander,spider,bat);
+//        caveCards.get(2).initialiseSquares(spider,salamander,babyDragon);
+//        caveCards.get(3).initialiseSquares(bat,spider, babyDragon);
+//
+//        //non-cave volcano cards
+//        nonCaveCards.get(0).initialiseSquares(spider ,bat, salamander);
+//        nonCaveCards.get(1).initialiseSquares(babyDragon, salamander,bat);
+//        nonCaveCards.get(2).initialiseSquares(bat,babyDragon,salamander);
+//        nonCaveCards.get(3).initialiseSquares(salamander,babyDragon,spider);
 
-        //non-cave volcano cards
-        nonCaveCards.get(0).initialiseSquares(spider ,bat, salamander);
-        nonCaveCards.get(1).initialiseSquares(babyDragon, salamander,bat);
-        nonCaveCards.get(2).initialiseSquares(bat,babyDragon,salamander);
-        nonCaveCards.get(3).initialiseSquares(salamander,babyDragon,spider);
     }
 
 
