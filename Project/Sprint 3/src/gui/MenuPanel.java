@@ -94,7 +94,6 @@ public class MenuPanel extends JPanel{
             boardArray.setVolcanoCardCount(vCCount);
             boardArray.setSquaresPerVC(squaresPerVC);
             boardArray.addVolcanoCards(vCCount,squaresPerVC);
-            boardArray.shuffleAndCombine();
             System.out.println(boardArray.getSquares().size());
             boardArray.addPosition();
 
@@ -141,14 +140,14 @@ public class MenuPanel extends JPanel{
             try {
                 numberOfVC = Integer.parseInt(input);
 
-                if (numberOfVC >= 5 && numberOfVC <= 12) {
+                if (numberOfVC >= 6 && numberOfVC <= 12) {
                     validInput = true;
                     JOptionPane.showMessageDialog(null, "To confirm, the number of volcano cards is: " + numberOfVC);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Please enter a number between 5 and 12", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Please enter a number between 6 and 12", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a number between 5 and 12", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a number between 6 and 12", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
