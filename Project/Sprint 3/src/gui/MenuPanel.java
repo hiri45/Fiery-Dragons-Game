@@ -86,7 +86,9 @@ public class MenuPanel extends JPanel{
         if (gameChoice.equals("start")) {
             // Add the JScrollPane to the frame for a new game
             int numberOfPlayers = popupForNumberOfPlayers();
-            gameWindow = WindowPanel.getInstance(numberOfPlayers);
+            int vCCount = popupForVolcanoCardCount();
+            int squaresPerVC = popupForSquaresPerVC();
+            gameWindow = WindowPanel.getInstance(numberOfPlayers,vCCount,squaresPerVC);
             JScrollPane scrollPane = new JScrollPane(gameWindow);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -119,4 +121,47 @@ public class MenuPanel extends JPanel{
         return numberOfPlayers;
     }
 
+    public int popupForVolcanoCardCount() {
+        int numberOfVC = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            String input = JOptionPane.showInputDialog(null, "How many players Volcano Cards?:", "Board Setup", JOptionPane.QUESTION_MESSAGE);
+            try {
+                numberOfVC = Integer.parseInt(input);
+
+                if (numberOfVC >= 5 && numberOfVC <= 12) {
+                    validInput = true;
+                    JOptionPane.showMessageDialog(null, "To confirm, the number of volcano cards is: " + numberOfVC);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter a number between 5 and 12", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a number between 5 and 12", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        return numberOfVC;
+    }
+    public int popupForSquaresPerVC() {
+        int numberOfSquaresPerVC = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            String input = JOptionPane.showInputDialog(null, "How many squares per volcano card:", "Volcano Card Setup", JOptionPane.QUESTION_MESSAGE);
+            try {
+                numberOfSquaresPerVC = Integer.parseInt(input);
+                if (numberOfSquaresPerVC >= 3 && numberOfSquaresPerVC <= 5) {
+                    validInput = true;
+                    JOptionPane.showMessageDialog(null, "To confirm, the number of squares per volcano card is: " + numberOfSquaresPerVC);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter a number between 2 and 5", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a number between 3 and 5", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        return numberOfSquaresPerVC;
+    }
 }

@@ -50,12 +50,13 @@ public class WindowPanel extends JPanel {
     private Image backgroundImage;
     private SaveLoad saveLoad;
 
+    private int volcanoCardCount,squaresPerVC;
 
     /**
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
      * and dragon cards, and configures basic panel settings.
      */
-    private WindowPanel(int numberOfPlayers) {
+    private WindowPanel(int numberOfPlayers,int volcanoCardCount, int squaresPerVC) {
         this.setLayout(null); // Use a null layout manager for absolute positioning
         //this.setBackground(new Color(153,153,153));
         this.setPreferredSize(new Dimension(width, height));
@@ -68,7 +69,8 @@ public class WindowPanel extends JPanel {
         this.offsetX = centerX - (totalBoardWidth / 2);
         this.offsetY = centerY - (totalBoardHeight / 2);
         this.numberOfPlayers = numberOfPlayers;
-
+        this.volcanoCardCount = volcanoCardCount;
+        this.squaresPerVC = squaresPerVC;
 
         //popupForNumberOfPlayers();
         PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
@@ -88,22 +90,22 @@ public class WindowPanel extends JPanel {
         }
 
     }
-    public static WindowPanel getInstance(int numberOfPlayers){
+    public static WindowPanel getInstance(int numberOfPlayers,int volcanoCardCount, int squaresPerVC){
         if(instance == null){
-            instance = new WindowPanel(numberOfPlayers);
+            instance = new WindowPanel(numberOfPlayers,volcanoCardCount,squaresPerVC);
         }
         return instance;
     }
 
     public static WindowPanel getInstance() {
         if (instance == null) {
-            instance = new WindowPanel(2); // Default to 0 players if no number is provided
+            instance = new WindowPanel(2,8,3); // Default to standard board if no number is provided
         }
         return instance;
     }
 
     public static void resetInstance(int numberOfPlayers) {
-        instance = new WindowPanel(numberOfPlayers);
+        instance = new WindowPanel(numberOfPlayers, instance.volcanoCardCount, instance.squaresPerVC);
     }
 
     /**
@@ -137,17 +139,6 @@ public class WindowPanel extends JPanel {
     public int getHeight() {
         return height;
     }
-
-/*    public void popupForNumberOfPlayers() {
-        String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
-        try {
-            numberOfPlayers = Integer.parseInt(input);
-            JOptionPane.showMessageDialog(this, "To confirm, the number of players is: " + numberOfPlayers);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "This game only supports up to 4 players", "Error", JOptionPane.ERROR_MESSAGE);
-            popupForNumberOfPlayers(); // Optionally retry until valid input is given
-        }
-    }*/
 
     /**
      * Creates and arranges the squares and caves on the game board.
