@@ -31,6 +31,7 @@ public class BoardArray {
 
     public static BoardArray instance;
 
+    private int volcanoCardCount, squaresPerVC;
     private BoardArray(){
         caveCreatures.add(new BabyDragon());
         caveCreatures.add(new Salamander());
@@ -55,15 +56,20 @@ public class BoardArray {
      */
     public void addVolcanoCards(int volcanoCardCount, int squaresPerVC){
         //Create a set of volcano cards that will be used for the game board
-        for(int i = 0; i<volcanoCardCount; i++){
-            if(i%2==0){
-                caveCards.add(new VolcanoCard(squaresPerVC,true));
-            }
-            else{
-                nonCaveCards.add(new VolcanoCard(squaresPerVC,false));
-            }
-
+//        for(int i = 0; i<volcanoCardCount; i++){
+//            if(i%2==0){
+//                caveCards.add(new VolcanoCard(squaresPerVC,true));
+//            }
+//            else{
+//                nonCaveCards.add(new VolcanoCard(squaresPerVC,false));
+//            }
+//
+//        }
+        for (int i = 0; i < volcanoCardCount; i++){
+            board.add(new VolcanoCard(squaresPerVC,false));
         }
+
+        for (int i < )
         initialiseCardsWithCreatures();
     }
     private void initialiseCardsWithCreatures(){
@@ -135,10 +141,8 @@ public class BoardArray {
     }
     /**
      * Sets starting positions for each VolcanoCard and fixes their position.
-     * @param volcanoCardCount Total number of volcano cards.
-     * @param squaresPerVC Number of squares per volcano card.
      */
-    public void addPosition(int volcanoCardCount, int squaresPerVC){
+    public void addPosition(){
         //add the starting position to each volcano card
         int counter = 0;
         board.get(0).setStartPosition(counter);
@@ -146,9 +150,7 @@ public class BoardArray {
         for (int i = 1; i < volcanoCardCount; i ++){
             board.get(i).setStartPosition(counter);
             counter += 3;
-
         }
-
         for (int i = 0; i < volcanoCardCount; i ++){
             board.get(i).setFixedPositions();
         }
@@ -187,5 +189,11 @@ public class BoardArray {
         }
     }
 
+    public void setVolcanoCardCount(int volcanoCardCount) {
+        this.volcanoCardCount = volcanoCardCount;
+    }
 
+    public void setSquaresPerVC(int squaresPerVC) {
+        this.squaresPerVC = squaresPerVC;
+    }
 }

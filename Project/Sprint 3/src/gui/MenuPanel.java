@@ -1,5 +1,6 @@
 package src.gui;
 
+import src.board.BoardArray;
 import src.utils.SaveLoad;
 
 import javax.swing.*;
@@ -88,7 +89,17 @@ public class MenuPanel extends JPanel{
             int numberOfPlayers = popupForNumberOfPlayers();
             int vCCount = popupForVolcanoCardCount();
             int squaresPerVC = popupForSquaresPerVC();
+
+            BoardArray boardArray = BoardArray.getInstance();
+            boardArray.setVolcanoCardCount(vCCount);
+            boardArray.setSquaresPerVC(squaresPerVC);
+            boardArray.addVolcanoCards(vCCount,squaresPerVC);
+            boardArray.shuffleAndCombine();
+            System.out.println(boardArray.getSquares().size());
+            boardArray.addPosition();
+
             gameWindow = WindowPanel.getInstance(numberOfPlayers,vCCount,squaresPerVC);
+
             JScrollPane scrollPane = new JScrollPane(gameWindow);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -155,7 +166,7 @@ public class MenuPanel extends JPanel{
                     validInput = true;
                     JOptionPane.showMessageDialog(null, "To confirm, the number of squares per volcano card is: " + numberOfSquaresPerVC);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Please enter a number between 2 and 5", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Please enter a number between 3 and 5", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Invalid input. Please enter a number between 3 and 5", "Error", JOptionPane.ERROR_MESSAGE);
