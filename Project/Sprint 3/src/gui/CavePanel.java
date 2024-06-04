@@ -51,6 +51,7 @@ public class CavePanel extends JPanel {
         // Create and add a label displaying the creature type from the cave
         creatureLabel = new JLabel(cave.getCreatureImage());
         this.add(creatureLabel);
+        refreshCavePanel();
     }
 
     /**
@@ -69,5 +70,19 @@ public class CavePanel extends JPanel {
      */
     public int getY() {
         return y;
+    }
+
+    public Cave getCave() {
+        return cave;
+    }
+    /**
+     * refreshes the cave panels when loading up a game to ensure that the cave panels reflect the creatures on the save text file
+     * */
+    public void refreshCavePanel() {
+        this.removeAll();
+        creatureLabel = new JLabel(cave.getCreatureImage());
+        this.add(creatureLabel);
+        this.revalidate();
+        this.repaint();
     }
 }

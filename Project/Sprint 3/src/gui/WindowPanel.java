@@ -487,4 +487,7 @@ public class WindowPanel extends JPanel {
         }
     }
 
+    public ArrayList<CavePanel> getCavePanels() {
+        return cavePanels;
+    }
 }

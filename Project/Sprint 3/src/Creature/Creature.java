@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.Objects;
 
 public abstract class Creature {
-    private final String name;
+    private final  String name;
     private final ImageIcon image;
     private final boolean isEnemy;
 
@@ -59,4 +59,25 @@ public abstract class Creature {
     public boolean isEnemy() {
         return isEnemy;
     }
+    /**
+     * when getting the name of the creature type it can be converted into the type of creature it corresponds to
+     * @param creatureType name of creature in String format
+     * @return creature type corresponding to the string given
+     * */
+    public static Creature stringToCreature(String creatureType) {
+        switch (creatureType) {
+            case "BabyDragon":
+                return new BabyDragon();
+            case "Bat":
+                return new Bat();
+            case "Salamander":
+                return new Salamander();
+            case "Spider":
+                return new Spider();
+            default:
+                throw new IllegalArgumentException("Unknown creature type: " + creatureType);
+        }
+    }
 }
+
+

@@ -1,5 +1,8 @@
 package src.utils;
 
+import src.Creature.Creature;
+import src.board.Cave;
+import src.gui.CavePanel;
 import src.gui.DragonTokenPanel;
 import src.gui.WindowPanel;
 
@@ -44,6 +47,15 @@ public class SaveLoad {
                 DragonTokenPanel dragonTokenPanel = windowPanel.getDragonTokenPanel(i);
                 dragonTokenPanel.moveDragonToken(x, y);
             }
+            // Load the creature types for each cave
+            ArrayList<CavePanel> cavePanels = windowPanel.getCavePanels();
+            for (CavePanel cavePanel : cavePanels) {
+                String creatureTypeString = bufferedReader.readLine();
+                Creature creature = Creature.stringToCreature(creatureTypeString);
+                Cave cave = cavePanel.getCave();
+                cave.setCreatureType(creature);
+                cavePanel.refreshCavePanel();
+            }
 
             bufferedReader.close();
 
@@ -61,19 +73,27 @@ public class SaveLoad {
      * */
     public void saveGame() {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("savedGame.txt"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("savedGame.txt"));
             // save the player details
-            writer.write(""+playerManager.getPlayerCount());
-            writer.newLine();
-            writer.write(""+playerManager.getPlayerTurn());
-            writer.newLine();
+            bufferedWriter.write(""+playerManager.getPlayerCount());
+            bufferedWriter.newLine();
+            bufferedWriter.write(""+playerManager.getPlayerTurn());
+            bufferedWriter.newLine();
             // Save dragon token positions
             ArrayList<DragonTokenPanel> dragonTokenPanels = windowPanel.getDragonTokenPanels();
             for (DragonTokenPanel dragonTokenPanel : dragonTokenPanels) {
-                writer.write(dragonTokenPanel.getX() + "," + dragonTokenPanel.getY());
-                writer.newLine();
+                bufferedWriter.write(dragonTokenPanel.getX() + "," + dragonTokenPanel.getY());
+                bufferedWriter.newLine();
             }
-            writer.close();
+
+            // Save the creature types for each cave
+            ArrayList<CavePanel> cavePanels = windowPanel.getCavePanels();
+            for (CavePanel cavePanel : cavePanels) {
+                Cave cave = cavePanel.getCave();
+                bufferedWriter.write(cave.getCreatureType().getName());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
 
         }
         catch (IOException e) {
