@@ -52,6 +52,8 @@ public class WindowPanel extends JPanel {
     private int numberOfPlayers; // Variable to store the number of players
     private Image backgroundImage;
     private SaveLoad saveLoad;
+    private ArrayList<DragonTokenPanel> dragonTokenPanels;
+
 
 
     /**
@@ -76,13 +78,14 @@ public class WindowPanel extends JPanel {
         //popupForNumberOfPlayers();
         PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
         playerManager.addPlayers(numberOfPlayers); // Add players to the game
+        this.dragonTokenPanels = new ArrayList<>(); // Initialize the dragonTokenPanels list
 
         createSquaresAndCaves();
         placeDragonCardPool();
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
         displayCurrentPlayer();
-        saveLoad = new SaveLoad();
+        saveLoad = new SaveLoad(this);
         saveButton();
         backgroundImage = new ImageIcon(this.getClass().getResource("/src/Images/magic background.png")).getImage();
         if (backgroundImage == null) {
@@ -276,6 +279,7 @@ public class WindowPanel extends JPanel {
         DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x, y, dragonToken, offsetX, offsetY, Color.red);
         dragonTokenPanel.setBounds(x, y, 50, 50); // Set size and position of the token panel.
         this.add(dragonTokenPanel, 0); // Add the token panel to this WindowPanel at the lowest z-index.
+        dragonTokenPanels.add(dragonTokenPanel);
 
     }
     /**
@@ -457,9 +461,16 @@ public class WindowPanel extends JPanel {
         this.add(saveButton);
     }
 
-    public void loadGame(){
-        // put attributes for when loading a game
+    /**Method to get a specific DragonTokenPanel by index*/
+    public DragonTokenPanel getDragonTokenPanel(int index) {
+        return dragonTokenPanels.get(index);
     }
+
+    /**Method to get all DragonTokenPanels*/
+    public ArrayList<DragonTokenPanel> getDragonTokenPanels() {
+        return dragonTokenPanels;
+    }
+
     /**
      * displays message when player turn has ended
      */

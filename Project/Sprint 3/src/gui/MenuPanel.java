@@ -16,7 +16,7 @@ public class MenuPanel extends JPanel{
     private JLabel titleLabel;
     JPanel menuButtonPanel;
     private JButton startButton,loadButton;
-    private Font titleGameont = new Font("Times New Roman", Font.PLAIN, 90);
+    private Font titleGameFont = new Font("Times New Roman", Font.PLAIN, 90);
     private Font basicFont = new Font("Times New Roman", Font.PLAIN, 30);
     private String gameChoice;
     private SaveLoad saveLoad;
@@ -29,7 +29,7 @@ public class MenuPanel extends JPanel{
         this.setBackground(Color.black);
         titleLabel = new JLabel("Fiery Dragons");
         titleLabel.setForeground(Color.white);
-        titleLabel.setFont(titleGameont);
+        titleLabel.setFont(titleGameFont);
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,7 +92,7 @@ public class MenuPanel extends JPanel{
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             frame.add(scrollPane);
         } else if (gameChoice.equals("load")) {
-            saveLoad = new SaveLoad();
+            saveLoad = new SaveLoad(gameWindow);
             saveLoad.loadGame();
             gameWindow = saveLoad.getWindowPanel();
             JScrollPane scrollPane = new JScrollPane(gameWindow);
