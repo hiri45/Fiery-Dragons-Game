@@ -50,12 +50,14 @@ public class DragonCardPool extends JPanel {
             }
         }
 
-        // Collections.shuffle(dragonCards); // This shuffles the dragon cards arrayList so we can randomize placement of the dragon cards
+        Collections.shuffle(dragonCards); // This shuffles the dragon cards arrayList so we can randomize placement of the dragon cards
+        System.out.println();
         BoardArray boardArray = BoardArray.getInstance();
         boardArray.setDragonCards(dragonCards);
         // Adds dragon cards to dragon card pool panel
         for (DragonCard i : dragonCards) {
             add(i);
+            System.out.println(i.getCreature());
         }
     }
 

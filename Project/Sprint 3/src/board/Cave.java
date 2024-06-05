@@ -29,6 +29,7 @@ public class Cave {
 
     private CavePanel cavePanel;        // GUI component associated with this cave
 
+
     /**
      * Constructs a Cave with a specified creature type and position.
      *
@@ -75,6 +76,9 @@ public class Cave {
     public Creature getCreatureType() {
         return creatureType;
     }
+    /**
+     * gets the image corresponding to the creature type
+     * */
     public ImageIcon getCreatureImage() {return creatureType.getImage();}
 
     /**
@@ -97,6 +101,12 @@ public class Cave {
         this.caveOwner = caveOwner;
     }
 
+    public void setCreatureType(Creature creatureType) {
+        this.creatureType = creatureType;
+        if (cavePanel != null) {
+            cavePanel.refreshCavePanel();
+        }
+    }
     /**
      * Sets a new position for this cave on the game board.
      *
