@@ -119,15 +119,24 @@ public class MenuPanel extends JPanel{
     }
 
     public int popupForNumberOfPlayers() {
-        String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
         int numberOfPlayers = 0;
-        try {
-            numberOfPlayers = Integer.parseInt(input);
-            JOptionPane.showMessageDialog(this, "To confirm, the number of players is: " + numberOfPlayers);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "This game only supports up to 4 players", "Error", JOptionPane.ERROR_MESSAGE);
-            return popupForNumberOfPlayers(); // Retry until valid input is given
+        boolean validInput = false;
+
+        while (!validInput) {
+            String input = JOptionPane.showInputDialog(this, "How many players? (2-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
+            try {
+                numberOfPlayers = Integer.parseInt(input);
+                if (numberOfPlayers >= 2 && numberOfPlayers <= 4) {
+                    JOptionPane.showMessageDialog(this, "To confirm, the number of players is: " + numberOfPlayers);
+                    validInput = true;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Please enter a number between 2 and 4.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Invalid input. Please enter a number between 2 and 4.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
+
         return numberOfPlayers;
     }
 
@@ -136,11 +145,11 @@ public class MenuPanel extends JPanel{
         boolean validInput = false;
 
         while (!validInput) {
-            String input = JOptionPane.showInputDialog(null, "How many players Volcano Cards?:", "Board Setup", JOptionPane.QUESTION_MESSAGE);
+            String input = JOptionPane.showInputDialog(null, "How many Volcano Cards?:", "Board Setup", JOptionPane.QUESTION_MESSAGE);
             try {
                 numberOfVC = Integer.parseInt(input);
 
-                if (numberOfVC >= 6 && numberOfVC <= 12) {
+                if (numberOfVC >= 5 && numberOfVC <= 12) {
                     validInput = true;
                     JOptionPane.showMessageDialog(null, "To confirm, the number of volcano cards is: " + numberOfVC);
                 } else {

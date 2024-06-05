@@ -7,7 +7,7 @@
  * with these elements.
  *
  * Author: Alex Ung
- * Last Modified: 29/04/2024
+ * Last Modified: 5/06/2024
  */
 
 package src.gui;
@@ -275,8 +275,8 @@ public class WindowPanel extends JPanel {
      */
     private void addDragonToken(DragonToken dragonToken, int x, int y) {
         // Create a new DragonTokenPanel with specified position, token data, and default color.
-        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x, y, dragonToken, offsetX, offsetY, Color.red);
-        dragonTokenPanel.setBounds(x, y, 50, 50); // Set size and position of the token panel.
+        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x+squareSize/2, y, dragonToken, offsetX, offsetY, Color.red);
+        dragonTokenPanel.setBounds(x+squareSize/2, y, 50, 50); // Set size and position of the token panel.
         this.add(dragonTokenPanel, 0); // Add the token panel to this WindowPanel at the lowest z-index.
 
     }
