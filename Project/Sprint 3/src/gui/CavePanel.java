@@ -75,12 +75,22 @@ public class CavePanel extends JPanel {
     public Cave getCave() {
         return cave;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
     /**
      * refreshes the cave panels when loading up a game to ensure that the cave panels reflect the creatures on the save text file
      * */
     public void refreshCavePanel() {
         this.removeAll();
         creatureLabel = new JLabel(cave.getCreatureImage());
+        this.x = getX();
+        this.y = getY();
         this.add(creatureLabel);
         this.revalidate();
         this.repaint();

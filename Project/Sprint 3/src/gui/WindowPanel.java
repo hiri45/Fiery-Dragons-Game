@@ -199,11 +199,11 @@ public class WindowPanel extends JPanel {
             int y = (int) (centerY + radius * Math.sin(angle) - squareSize / 2);
 
             addSquare(squares, index, x, y);
-            System.out.println(index+ ","+ x + ","+ y);
+            //System.out.println(index+ ","+ x + ","+ y);
         }
 
         // Check the total number of squares drawn
-        System.out.println("Total squares drawn: " + boardPanels.size());
+        //System.out.println("Total squares drawn: " + boardPanels.size());
 
         // Call method to add creature labels to the squares.
         addCreatureLabels();
@@ -311,8 +311,8 @@ public class WindowPanel extends JPanel {
 
         // Retrieve the current position of the dragon token from its panel.
         int newPosition = dragonTokenPanel.getDragonToken().getPosition();
-        System.out.println(newPosition);
-        System.out.println(dragonTokenPanel.getDragonToken().getCave().getCavePosition());
+        //System.out.println(newPosition);
+        //System.out.println(dragonTokenPanel.getDragonToken().getCave().getCavePosition());
         // Check if the movement is forward (positive number of positions).
         if (noPosition > 0) {
             // Handle forward movement by delegating to the appropriate method.

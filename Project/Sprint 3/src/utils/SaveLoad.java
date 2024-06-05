@@ -37,16 +37,19 @@ public class SaveLoad {
             int volcanoCardAmount = Integer.parseInt(bufferedReader.readLine());
             int volcanoCardSquaresAmount = Integer.parseInt(bufferedReader.readLine());
             int playerTurn = Integer.parseInt(bufferedReader.readLine());
+
+            // creating board with saved data
             BoardArray boardArray = BoardArray.getInstance();
             boardArray.setVolcanoCardCount(volcanoCardAmount);
             boardArray.setSquaresPerVC(volcanoCardSquaresAmount);
 
             boardArray.addVolcanoCards(volcanoCardAmount,volcanoCardSquaresAmount);
             boardArray.addPosition();
-            // Loading details regarding the player
+
             WindowPanel.resetInstance(playerAmount,volcanoCardAmount,volcanoCardSquaresAmount);
             windowPanel = WindowPanel.getInstance();
 
+            // Loading details regarding the player
             playerManager.setPlayerTurn(playerTurn);
             playerManager.setPlayerCount(playerAmount);
 
@@ -65,6 +68,13 @@ public class SaveLoad {
                 Creature creature = Creature.stringToCreature(creatureTypeString);
                 Cave cave = cavePanel.getCave();
                 cave.setCreatureType(creature);
+                String[] position = bufferedReader.readLine().split(",");
+                int cavePosition = Integer.parseInt(position[0]);
+                int xPos = Integer.parseInt(position[1]);
+                int yPos = Integer.parseInt(position[2]);
+                cave.setCavePosition(cavePosition);
+                cavePanel.setX(xPos);
+                cavePanel.setY(yPos);
                 cavePanel.refreshCavePanel();
             }
 
@@ -116,11 +126,15 @@ public class SaveLoad {
                 bufferedWriter.newLine();
             }
 
-            // Save the creature types for each cave
+            // Save the creature type and position for each cave
             ArrayList<CavePanel> cavePanels = windowPanel.getCavePanels();
             for (CavePanel cavePanel : cavePanels) {
                 Cave cave = cavePanel.getCave();
+                System.out.println(cavePanel.getX()+""+cavePanel.getY());
+                System.out.println(cave.getCavePosition());
                 bufferedWriter.write(cave.getCreatureType().getName());
+                bufferedWriter.newLine();
+                bufferedWriter.write(cave.getCavePosition()+ "," + cavePanel.getX() + "," + cavePanel.getY());
                 bufferedWriter.newLine();
             }
 
