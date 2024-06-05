@@ -24,17 +24,17 @@ public class Game{
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // Initialize the singleton BoardArray instance
-        BoardArray boardArray = BoardArray.getInstance();
-
-        // Add volcano cards to the board and configure each with 3 squares
-        boardArray.addVolcanoCards(8,3);
-
-        // Shuffle the board setup for randomness and recombine
-        boardArray.shuffleAndCombine();
-
-        // Add positions to the board for volcano cards and squares
-        boardArray.addPosition(8,3);
+//        // Initialize the singleton BoardArray instance
+//        BoardArray boardArray = BoardArray.getInstance();
+//
+////        // Add volcano cards to the board and configure each with 3 squares
+////        boardArray.addVolcanoCards(8,3);
+//
+//        // Shuffle the board setup for randomness and recombine
+//        boardArray.shuffleAndCombine();
+//
+//        // Add positions to the board for volcano cards and squares
+//        boardArray.addPosition();
 
         GameBoard gameBoard = new GameBoard();
         gameBoard.drawGameBoard();

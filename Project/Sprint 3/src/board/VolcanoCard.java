@@ -12,6 +12,7 @@
 package src.board;
 
 import src.Creature.Creature;
+import src.Creature.Salamander;
 import src.actors.DragonToken;
 import src.utils.PlayerManager;
 
@@ -73,22 +74,16 @@ public class VolcanoCard {
      * Initializes the squares on this card with specific creature types.
      * Each square is created with a designated creature.
      *
-     * @param creature1 Creature for the first square.
-     * @param creature2 Creature for the second square.
-     * @param creature3 Creature for the third square.
+     * @param creatures a list of possible creatures for a square.
      */
-    public void initialiseSquares(Creature creature1, Creature creature2, Creature creature3) {
-        Random random = new Random();
-        boolean randomBool = random.nextBoolean();
-        if(randomBool){
-            Creature temp = creature1; // temp now holds the reference to creature1
-            creature1 = creature3;     // creature1 now holds the reference to creature2
-            creature3 = temp;
-        }
-        if (squares.size() < squareCount) {
-            squares.add(new Square(creature1));
-            squares.add(new Square(creature2));
-            squares.add(new Square(creature3));
+    public void initialiseSquares(ArrayList<Creature> creatures) {
+        int counter = 0;
+        for (int i=0;i<squareCount; i++){
+            if (counter == creatures.size()){
+                counter = 0;
+            }
+            squares.add(new Square(creatures.get(counter)));
+            counter++;
         }
     }
 
@@ -97,11 +92,15 @@ public class VolcanoCard {
      * The cave is associated with the creature and position of the middle square.
      */
     public void initialiseCave() {
-        int middleSquare = 1;
+        BoardArray boardArray = BoardArray.getInstance();
+        Random random = new Random();
+        int min = 0;
+        int max = squareCount-1;
+        int randomNumber = random.nextInt(max);
         if (this.hasCave && cave == null) {
-            BoardArray boardArray = BoardArray.getInstance();
             Creature creature = boardArray.getCaveCreatures().get(0);
-            cave = new Cave(creature, squares.get(middleSquare).getPosition());
+            cave = new Cave(creature, squares.get(randomNumber).getPosition());
+
             boardArray.setCaveCreatures(creature);
 
         }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.Objects;
 
 public abstract class Creature {
-    private final  String name;
+    private final String name;
     private final ImageIcon image;
     private final boolean isEnemy;
 
@@ -83,5 +83,3 @@ public abstract class Creature {
         }
     }
 }
-
-

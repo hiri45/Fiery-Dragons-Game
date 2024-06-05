@@ -7,7 +7,7 @@
  * with these elements.
  *
  * Author: Alex Ung
- * Last Modified: 29/04/2024
+ * Last Modified: 5/06/2024
  */
 
 package src.gui;
@@ -32,7 +32,7 @@ public class WindowPanel extends JPanel {
     private static WindowPanel instance;
 
     private final int squareSize = 75;   // Size of each square on the board
-    private final int gridSize = 8;      // Grid size of the board, representing 8x8
+    private int gridSize = 8;      // Grid size of the board, representing 8x8
 
     private int offsetX;                 // Horizontal offset for centering the board
     private int offsetY;                 // Vertical offset for centering the board
@@ -41,8 +41,8 @@ public class WindowPanel extends JPanel {
     private final int cardSize = 60;     // Size of dragon cards
     private final Color caveColor = new Color(128, 64, 0); // Color for caves
 
-    private final int width = 1000;      // Width of the panel
-    private final int height = 900;      // Height of the panel
+    private final int width = 1600;      // Width of the panel
+    private final int height = 1500;      // Height of the panel
 
     private ArrayList<SquarePanel> boardPanels = new ArrayList<>(); // Panels for each square
     private ArrayList<CavePanel> cavePanels = new ArrayList<>();    // Panels for each cave
@@ -52,14 +52,28 @@ public class WindowPanel extends JPanel {
     private ArrayList<DragonTokenPanel> dragonTokenPanels;
     private DragonCardPool dragonCardPool;
 
+    private int dragonCardPoolX, dragonCardPoolY;
 
+    private int volcanoCardCount,squaresPerVC;
 
+    private ArrayList<VolcanoCard> volcanoCards = BoardArray.getInstance().getBoard();
+
+    private ArrayList<Cave> caves = new ArrayList<>();
+
+    private int centerX = width/2;
+    private int centerY = height/2;
+
+    private final BoardArray boardArray = BoardArray.getInstance();
+
+    private double radius;
+
+    private ArrayList<Double> angles = new ArrayList<Double>();
 
     /**
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
      * and dragon cards, and configures basic panel settings.
      */
-    private WindowPanel(int numberOfPlayers) {
+    private WindowPanel(int numberOfPlayers,int volcanoCardCount, int squaresPerVC) {
         this.setLayout(null); // Use a null layout manager for absolute positioning
         //this.setBackground(new Color(153,153,153));
         this.setPreferredSize(new Dimension(width, height));
@@ -72,9 +86,10 @@ public class WindowPanel extends JPanel {
         this.offsetX = centerX - (totalBoardWidth / 2);
         this.offsetY = centerY - (totalBoardHeight / 2);
         this.numberOfPlayers = numberOfPlayers;
+        this.volcanoCardCount = volcanoCardCount;
+        this.squaresPerVC = squaresPerVC;
 
-
-        //popupForNumberOfPlayers();
+        this.gridSize = calculateGridSize(volcanoCardCount,squaresPerVC);
         PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
         playerManager.addPlayers(numberOfPlayers); // Add players to the game
         this.dragonTokenPanels = new ArrayList<>(); // Initialize the dragonTokenPanels list
@@ -93,22 +108,22 @@ public class WindowPanel extends JPanel {
         }
 
     }
-    public static WindowPanel getInstance(int numberOfPlayers){
+    public static WindowPanel getInstance(int numberOfPlayers,int volcanoCardCount, int squaresPerVC){
         if(instance == null){
-            instance = new WindowPanel(numberOfPlayers);
+            instance = new WindowPanel(numberOfPlayers,volcanoCardCount,squaresPerVC);
         }
         return instance;
     }
 
     public static WindowPanel getInstance() {
         if (instance == null) {
-            instance = new WindowPanel(2); // Default to 0 players if no number is provided
+            instance = new WindowPanel(2,8,3); // Default to standard board if no number is provided
         }
         return instance;
     }
 
     public static void resetInstance(int numberOfPlayers) {
-        instance = new WindowPanel(numberOfPlayers);
+        instance = new WindowPanel(numberOfPlayers, instance.volcanoCardCount, instance.squaresPerVC);
     }
 
     /**
@@ -143,16 +158,11 @@ public class WindowPanel extends JPanel {
         return height;
     }
 
-/*    public void popupForNumberOfPlayers() {
-        String input = JOptionPane.showInputDialog(this, "How many players? (1-4):", "Player Setup", JOptionPane.QUESTION_MESSAGE);
-        try {
-            numberOfPlayers = Integer.parseInt(input);
-            JOptionPane.showMessageDialog(this, "To confirm, the number of players is: " + numberOfPlayers);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "This game only supports up to 4 players", "Error", JOptionPane.ERROR_MESSAGE);
-            popupForNumberOfPlayers(); // Optionally retry until valid input is given
-        }
-    }*/
+
+    private int calculateGridSize(int volcanoCardCount, int squaresPerVC) {
+        return (int) Math.ceil(Math.sqrt(volcanoCardCount * squaresPerVC)) + 2;
+
+    }
 
     /**
      * Creates and arranges the squares and caves on the game board.
@@ -161,78 +171,42 @@ public class WindowPanel extends JPanel {
      * of DragonToken representations based on the game's rules.
      */
     private void createSquaresAndCaves() {
-        // Retrieve the singleton instance of BoardArray which holds all the squares and volcano cards.
+        int totalSquares = volcanoCardCount*squaresPerVC;
         BoardArray boardArray = BoardArray.getInstance();
-        // Get the list of all squares from the board array.
         ArrayList<Square> squares = boardArray.getSquares();
-        int index = 0; // Index used to place squares in their respective panel positions.
+        int index = 0;
 
-        // Position squares along the top edge of the board from left to right, excluding corners.
-        for (int i = 1; i < gridSize - 1; i++, index++) {
-            int x = offsetX + i * squareSize;
-            int y = offsetY;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
-            squarePanel.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(squarePanel);
-            this.add(squarePanel);
+        // Calculate the radius based on the number of squares and square size
+        radius = (squareSize * totalSquares) / (2 * Math.PI) + 20;
+        if (radius < 300){
+            radius = 300;
+        }
+        for (int i = 0; i < totalSquares; i++, index++) {
+            // Calculate angle for each square
+            double angle = 2 * Math.PI * i / totalSquares;
+            angles.add(angle);
+            // Calculate x and y position based on angle and radius
+            int x = (int) (centerX + radius * Math.cos(angle) - squareSize / 2);
+            int y = (int) (centerY + radius * Math.sin(angle) - squareSize / 2);
+
+            addSquare(squares, index, x, y);
+            System.out.println(index+ ","+ x + ","+ y);
         }
 
-        // Position squares along the right edge of the board from top to bottom, excluding corners.
-        for (int j = 1; j < gridSize - 1; j++, index++) {
-            int x = offsetX + (gridSize - 1) * squareSize;
-            int y = offsetY + j * squareSize;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
-            squarePanel.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(squarePanel);
-            this.add(squarePanel);
-        }
+        // Check the total number of squares drawn
+        System.out.println("Total squares drawn: " + boardPanels.size());
 
-        // Position squares along the bottom edge of the board from right to left, excluding corners.
-        for (int i = gridSize - 2; i > 0; i--, index++) {
-            int x = offsetX + i * squareSize;
-            int y = offsetY + (gridSize - 1) * squareSize;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
-            squarePanel.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(squarePanel);
-            this.add(squarePanel);
-        }
-
-        // Position squares along the left edge of the board from bottom to top, excluding corners.
-        for (int j = gridSize - 2; j > 0; j--, index++) {
-            int x = offsetX;
-            int y = offsetY + j * squareSize;
-            SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
-            squarePanel.setBounds(x, y, squareSize, squareSize);
-            boardPanels.add(squarePanel);
-            this.add(squarePanel);
-        }
         // Call method to add creature labels to the squares.
         addCreatureLabels();
 
         // Retrieve all volcano cards to determine which ones have caves.
-        ArrayList<VolcanoCard> volcanoCards = boardArray.getBoard();
-        ArrayList<Cave> caves = new ArrayList<>();
         for (VolcanoCard card: volcanoCards){
             if(card.hasCave()){
                 caves.add(card.getCave());
-
             }
         }
 
-        //place first cave down on the map starting from the left side of the board, and then place the rest of the caves down
-        VolcanoCard card = volcanoCards.get(0);
-        if (card.hasCave()) {
-            addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY - caveSize);//top left cave
-            addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize);//right top cave
-            addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize + squareSize, offsetY + gridSize * squareSize);//bottom left right cave
-            addCave(caves.get(3),offsetX - caveSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize); //left bottom cave
-        }else{
-            addCave(caves.get(0),offsetX + (gridSize / 2) * squareSize + squareSize, offsetY - caveSize); //top cave right
-            addCave(caves.get(1),offsetX + (gridSize + 1) * squareSize - squareSize,offsetY + (gridSize / 2 - 1) * squareSize + 2 * squareSize); // right cave bottom
-            addCave(caves.get(2),offsetX + (gridSize / 2) * squareSize - 2 * squareSize, offsetY + gridSize * squareSize); // bottom cave left
-            addCave(caves.get(3),offsetX - caveSize, offsetY + (gridSize / 2 - 1) * squareSize - squareSize); // Left cave top
-        }
-
+        drawCaveForCard();
         // Retrieve the list of dragon tokens from the player manager and position them.
         PlayerManager playerManager = PlayerManager.getInstance();
         ArrayList<DragonToken> dragonTokens = playerManager.getPlayers();
@@ -243,7 +217,38 @@ public class WindowPanel extends JPanel {
                 addDragonToken(dragonTokens.get(i), cavePanels.get(i).getX(), cavePanels.get(i).getY());
             }
     }
+    private void addSquare(ArrayList<Square> squares, int index, int x, int y) {
+        if (index >= squares.size()) return; // Ensure index is within bounds
+        SquarePanel squarePanel = new SquarePanel(squares.get(index), x, y);
+        squarePanel.setBounds(x, y, squareSize, squareSize);
+        boardPanels.add(squarePanel);
+        this.add(squarePanel);
+    }
 
+    private void drawCaveForCard() {
+            for (Cave cave:caves){
+                int caveX = 0;
+                int caveY = 0;
+
+                // Determine the position for the cave relative to the selected square
+                double angle = angles.get(cave.getCavePosition());
+
+                // Calculate x and y position based on angle and radius
+                caveX = (int) (centerX + (radius+75) * Math.cos(angle) - squareSize / 2);
+                caveY = (int) (centerY + (radius+75) * Math.sin(angle) - squareSize / 2);
+
+                addCave(cave, caveX, caveY);
+                System.out.println("cave: " + cave.getCavePosition() + ","+ caveX + ","+ caveY);
+            }
+    }
+
+
+    private boolean isWithinBounds(int x, int y) {
+        // Adjust the bounds checking logic as needed based on your board size and layout
+        int boardWidth = getWidth();
+        int boardHeight = getHeight();
+        return x >= 0 && x < boardWidth && y >= 0 && y < boardHeight;
+    }
     /**
      * Adds a CavePanel to the game board at a specified position.
      *
@@ -276,10 +281,9 @@ public class WindowPanel extends JPanel {
      */
     private void addDragonToken(DragonToken dragonToken, int x, int y) {
         // Create a new DragonTokenPanel with specified position, token data, and default color.
-        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x, y, dragonToken, offsetX, offsetY, Color.red);
-        dragonTokenPanel.setBounds(x, y, 50, 50); // Set size and position of the token panel.
+        DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x+squareSize/2, y, dragonToken, offsetX, offsetY, Color.red);
+        dragonTokenPanel.setBounds(x+squareSize/2, y, 50, 50); // Set size and position of the token panel.
         this.add(dragonTokenPanel, 0); // Add the token panel to this WindowPanel at the lowest z-index.
-        dragonTokenPanels.add(dragonTokenPanel);
 
     }
     /**
@@ -297,7 +301,8 @@ public class WindowPanel extends JPanel {
 
         // Retrieve the current position of the dragon token from its panel.
         int newPosition = dragonTokenPanel.getDragonToken().getPosition();
-
+        System.out.println(newPosition);
+        System.out.println(dragonTokenPanel.getDragonToken().getCave().getCavePosition());
         // Check if the movement is forward (positive number of positions).
         if (noPosition > 0) {
             // Handle forward movement by delegating to the appropriate method.
@@ -372,9 +377,9 @@ public class WindowPanel extends JPanel {
      */
     private void placeDragonCardPool()
     {
-        int dragonPoolSideLength = (width/3); //Dynamic dragon pool size so that it always scales with screen size
-        int dragonCardPoolX = (width - dragonPoolSideLength) / 2;
-        int dragonCardPoolY = (height - dragonPoolSideLength) / 2;
+        int dragonPoolSideLength = (int) radius; //Dynamic dragon pool size so that it always scales with screen size
+        dragonCardPoolX = (width - dragonPoolSideLength) / 2;
+        dragonCardPoolY = (height - dragonPoolSideLength) / 2;
         dragonCardPool = new DragonCardPool();
         dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
         add(dragonCardPool);
@@ -382,7 +387,7 @@ public class WindowPanel extends JPanel {
 
     private void placeBeaverWizardCard(){
         BeaverWizardCard beaverWizardCard = new BeaverWizardCard();
-        beaverWizardCard.setBounds(width -150, 50, 100,100);
+        beaverWizardCard.setBounds(dragonCardPoolX+ (int) radius/3, dragonCardPoolY + (int) radius, 100,100);
         add(beaverWizardCard);
     }
 
@@ -396,7 +401,7 @@ public class WindowPanel extends JPanel {
      */
     public void addCreatureLabels() {
         // Retrieve the singleton instance of BoardArray to access squares and volcano cards.
-        BoardArray boardArray = BoardArray.getInstance();
+
         ArrayList<Square> squares = boardArray.getSquares();
         ArrayList<JLabel> labels = new ArrayList<>();
 
@@ -416,7 +421,7 @@ public class WindowPanel extends JPanel {
 
         // Assign each label to its corresponding square panel and set a random background color.
         for (int k = 0; k < this.boardPanels.size(); k++) {
-            if (k % 3 == 0) {  // Change the color every three panels for visual diversity.
+            if (k % squaresPerVC == 0) {  // Change the color every time a new vc is shown
                 rand = new Random();  // Reinitialize random number generator.
                 r = rand.nextFloat();
                 g = rand.nextFloat();
@@ -442,7 +447,7 @@ public class WindowPanel extends JPanel {
         PlayerManager playerManager = PlayerManager.getInstance();
         DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
         JPanel currentPlayerDisplay = new JPanel();
-        currentPlayerDisplay.setBounds(100,100,150,50);
+        currentPlayerDisplay.setBounds(dragonCardPoolX+ (int) radius/4, dragonCardPoolY- (int) radius/3,150,50);
         JLabel label = new JLabel("Current Player: "+ currentPlayer.getId());
         currentPlayerDisplay.add(label);
         this.add(currentPlayerDisplay);
@@ -454,7 +459,7 @@ public class WindowPanel extends JPanel {
     public void saveButton()
     {
         JButton saveButton = new JButton();
-        saveButton.setBounds(750,100,150,50);
+        saveButton.setBounds(dragonCardPoolX+ (int) radius/4, dragonCardPoolY- (int) radius/3+50,150,50);
         JLabel label = new JLabel("Save Game");
         saveButton.add(label);
         saveButton.addActionListener(new ActionListener() {

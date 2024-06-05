@@ -7,7 +7,6 @@ public class PirateDragon extends Creature{
     public PirateDragon() {
         super("PirateDragon", retrieveImage("/src/Images/FD logo.png"), true);
     }
-
     @Override
     /**
      * Provides a specific implementation for getting the pirate dragon image.

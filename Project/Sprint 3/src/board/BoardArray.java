@@ -20,8 +20,6 @@ import java.util.Collections;
 public class BoardArray {
 
     private ArrayList<VolcanoCard> board = new ArrayList<>();
-    private ArrayList<VolcanoCard> caveCards = new ArrayList<>();
-    private ArrayList<VolcanoCard> nonCaveCards = new ArrayList<>();
 
     private ArrayList<DragonCard> dragonCards = new ArrayList<>();
 
@@ -31,6 +29,7 @@ public class BoardArray {
 
     public static BoardArray instance;
 
+    private int volcanoCardCount, squaresPerVC;
     private BoardArray(){
         caveCreatures.add(new BabyDragon());
         caveCreatures.add(new Salamander());
@@ -54,19 +53,34 @@ public class BoardArray {
      * @param squaresPerVC Number of squares each VolcanoCard will hold.
      */
     public void addVolcanoCards(int volcanoCardCount, int squaresPerVC){
-        //Create a set of volcano cards that will be used for the game board
-        for(int i = 0; i<volcanoCardCount; i++){
-            if(i%2==0){
-//                board.add(new VolcanoCard(squaresPerVC,true));
-                caveCards.add(new VolcanoCard(squaresPerVC,true));
-            }
-            else{
-                nonCaveCards.add(new VolcanoCard(squaresPerVC,false));
-//                board.add(new VolcanoCard(squaresPerVC,false));
-            }
+        int i = 0;
+        int noCaves = 0;
+        int alternatingCaveMaxBoardSize = 7;
+        if (volcanoCardCount < alternatingCaveMaxBoardSize )
+            while (i < volcanoCardCount){
+                if (noCaves < 4){
+                    board.add(new VolcanoCard(squaresPerVC,true));
+                    noCaves++;
+                }
+                else{
+                    board.add(new VolcanoCard(squaresPerVC,false));
+                }
+                i++;
 
+
+            }
+        else{
+            while (i < volcanoCardCount) {
+                if (i % 2 == 0 && noCaves < 4){
+                    board.add(new VolcanoCard(squaresPerVC,true));
+                    noCaves ++;
+                }else{
+                    board.add(new VolcanoCard(squaresPerVC,false));
+                }
+                i+= 1;
+            }
         }
-        // Initialize volcano cards with creatures
+//        Collections.shuffle(board);
         initialiseCardsWithCreatures();
     }
     private void initialiseCardsWithCreatures(){
@@ -74,66 +88,34 @@ public class BoardArray {
         Bat bat = new Bat();
         Salamander salamander = new Salamander();
         Spider spider = new Spider();
-        //initialise volcano cards with relevant squares
-        //Cave volcano cards
-        caveCards.get(0).initialiseSquares(babyDragon, bat, spider);
-        caveCards.get(1).initialiseSquares(salamander,spider,bat);
-        caveCards.get(2).initialiseSquares(spider,salamander,babyDragon);
-        caveCards.get(3).initialiseSquares(bat,spider, babyDragon);
 
-        //non-cave volcano cards
-        nonCaveCards.get(0).initialiseSquares(spider ,bat, salamander);
-        nonCaveCards.get(1).initialiseSquares(babyDragon, salamander,bat);
-        nonCaveCards.get(2).initialiseSquares(bat,babyDragon,salamander);
-        nonCaveCards.get(3).initialiseSquares(salamander,babyDragon,spider);
-    }
+        ArrayList<Creature> creatures = new ArrayList<>();
+        creatures.add(babyDragon);
+        creatures.add(bat);
+        creatures.add(salamander);
+        creatures.add(spider);
 
-
-
-
-    /**
-     * Shuffles cave and non-cave cards separately and combines them into the main board array.
-     */
-    public void shuffleAndCombine(){
-        //This only shuffles the cards in a fixed location, but should be okay for first sprint.
-        Collections.shuffle(caveCards);
-        Collections.shuffle(nonCaveCards);
-
-        // Determine the maximum size to iterate to
-        int maxSize = caveCards.size() + nonCaveCards.size();
-
-        // Alternate between cave and non-cave cards
-        for (int i = 0, j = 0, k = 0; i < maxSize; i++) {
-            if (i % 2 == 0 && j < caveCards.size()) {
-                // On even iterations, add from caveCards if available
-                board.add(caveCards.get(j));
-                j++;
-            } else if (k < nonCaveCards.size()) {
-                // On odd iterations, or if caveCards are exhausted, add from nonCaveCards
-                board.add(nonCaveCards.get(k));
-                k++;
-            }
+        for (VolcanoCard card: board){
+            Collections.shuffle(creatures);
+            card.initialiseSquares(creatures);
         }
-        for(VolcanoCard volcanoCard: this.getBoard()){
+        for(VolcanoCard volcanoCard: board) {
             squares.addAll(volcanoCard.getSquares());
         }
     }
     /**
      * Sets starting positions for each VolcanoCard and fixes their position.
-     * @param volcanoCardCount Total number of volcano cards.
-     * @param squaresPerVC Number of squares per volcano card.
      */
-    public void addPosition(int volcanoCardCount, int squaresPerVC){
+    public void addPosition(){
         //add the starting position to each volcano card
         int counter = 0;
-        board.get(0).setStartPosition(counter);
-        counter += 3;
-        for (int i = 1; i < volcanoCardCount; i ++){
+//        board.get(0).setStartPosition(counter);
+//        counter += squaresPerVC;
+        System.out.println(board.size());
+        for (int i = 0; i < volcanoCardCount; i ++){
             board.get(i).setStartPosition(counter);
-            counter += 3;
-
+            counter += squaresPerVC;
         }
-
         for (int i = 0; i < volcanoCardCount; i ++){
             board.get(i).setFixedPositions();
         }
@@ -172,5 +154,11 @@ public class BoardArray {
         }
     }
 
+    public void setVolcanoCardCount(int volcanoCardCount) {
+        this.volcanoCardCount = volcanoCardCount;
+    }
 
+    public void setSquaresPerVC(int squaresPerVC) {
+        this.squaresPerVC = squaresPerVC;
+    }
 }

@@ -29,7 +29,6 @@ public class Cave {
 
     private CavePanel cavePanel;        // GUI component associated with this cave
 
-
     /**
      * Constructs a Cave with a specified creature type and position.
      *
