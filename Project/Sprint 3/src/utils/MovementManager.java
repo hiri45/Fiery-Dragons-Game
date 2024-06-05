@@ -99,7 +99,7 @@ public class MovementManager {
         if (noPositions < 0) {
             return false;
         }
-        if (newPosition == dragonToken.getCave().getCavePosition() + 1 && !dragonToken.isInCave()) {
+        if (newPosition == dragonToken.getCave().getCavePosition() + 1 && !dragonToken.isInCave() && dragonToken.getCycleTracker() > 0) {
             return true;
         }
 

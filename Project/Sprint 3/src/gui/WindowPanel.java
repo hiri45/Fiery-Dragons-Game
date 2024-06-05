@@ -52,7 +52,7 @@ public class WindowPanel extends JPanel {
     private ArrayList<DragonTokenPanel> dragonTokenPanels;
     private DragonCardPool dragonCardPool;
 
-
+    private int dragonCardPoolX, dragonCardPoolY;
 
     private int volcanoCardCount,squaresPerVC;
 
@@ -378,8 +378,8 @@ public class WindowPanel extends JPanel {
     private void placeDragonCardPool()
     {
         int dragonPoolSideLength = (int) radius; //Dynamic dragon pool size so that it always scales with screen size
-        int dragonCardPoolX = (width - dragonPoolSideLength) / 2;
-        int dragonCardPoolY = (height - dragonPoolSideLength) / 2;
+        dragonCardPoolX = (width - dragonPoolSideLength) / 2;
+        dragonCardPoolY = (height - dragonPoolSideLength) / 2;
         dragonCardPool = new DragonCardPool();
         dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
         add(dragonCardPool);
@@ -387,7 +387,7 @@ public class WindowPanel extends JPanel {
 
     private void placeBeaverWizardCard(){
         BeaverWizardCard beaverWizardCard = new BeaverWizardCard();
-        beaverWizardCard.setBounds(width -150, 50, 100,100);
+        beaverWizardCard.setBounds(dragonCardPoolX+ (int) radius/3, dragonCardPoolY + (int) radius, 100,100);
         add(beaverWizardCard);
     }
 
@@ -447,7 +447,7 @@ public class WindowPanel extends JPanel {
         PlayerManager playerManager = PlayerManager.getInstance();
         DragonToken currentPlayer = playerManager.getPlayers().get(playerManager.getPlayerTurn());
         JPanel currentPlayerDisplay = new JPanel();
-        currentPlayerDisplay.setBounds(100,100,150,50);
+        currentPlayerDisplay.setBounds(dragonCardPoolX+ (int) radius/4, dragonCardPoolY- (int) radius/3,150,50);
         JLabel label = new JLabel("Current Player: "+ currentPlayer.getId());
         currentPlayerDisplay.add(label);
         this.add(currentPlayerDisplay);
@@ -459,7 +459,7 @@ public class WindowPanel extends JPanel {
     public void saveButton()
     {
         JButton saveButton = new JButton();
-        saveButton.setBounds(750,100,150,50);
+        saveButton.setBounds(dragonCardPoolX+ (int) radius/4, dragonCardPoolY- (int) radius/3+50,150,50);
         JLabel label = new JLabel("Save Game");
         saveButton.add(label);
         saveButton.addActionListener(new ActionListener() {
