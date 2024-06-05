@@ -2,7 +2,9 @@ package src.utils;
 
 import src.Creature.Creature;
 import src.board.Cave;
+import src.board.DragonCard;
 import src.gui.CavePanel;
+import src.gui.DragonCardPool;
 import src.gui.DragonTokenPanel;
 import src.gui.WindowPanel;
 
@@ -57,6 +59,21 @@ public class SaveLoad {
                 cavePanel.refreshCavePanel();
             }
 
+            // Load dragon cards
+            DragonCardPool dragonCardPool = windowPanel.getDragonCardPool();
+            ArrayList<DragonCard> dragonCards = new ArrayList<>();
+            int numCards = Integer.parseInt(bufferedReader.readLine());
+            for (int i = 0; i < numCards; i++) {
+                String creatureTypeString = bufferedReader.readLine();
+                int creatureAmount = Integer.parseInt(bufferedReader.readLine());
+                boolean flipped = Boolean.parseBoolean(bufferedReader.readLine());
+                Creature creature = Creature.stringToCreature(creatureTypeString);
+                DragonCard card = new DragonCard(creature, creatureAmount);
+                card.setFlipped(flipped);
+                dragonCards.add(card);
+            }
+            dragonCardPool.setDragonCards(dragonCards);
+
             bufferedReader.close();
 
         }
@@ -93,6 +110,21 @@ public class SaveLoad {
                 bufferedWriter.write(cave.getCreatureType().getName());
                 bufferedWriter.newLine();
             }
+
+            // Save dragon cards
+            DragonCardPool dragonCardPool = windowPanel.getDragonCardPool();
+            ArrayList<DragonCard> dragonCards = dragonCardPool.getDragonCards();
+            bufferedWriter.write("" + dragonCards.size());
+            bufferedWriter.newLine();
+            for (DragonCard card : dragonCards) {
+                bufferedWriter.write(card.getCreature().getName());
+                bufferedWriter.newLine();
+                bufferedWriter.write("" + card.getCreatureAmount());
+                bufferedWriter.newLine();
+                bufferedWriter.write("" + card.isFlipped());
+                bufferedWriter.newLine();
+            }
+
             bufferedWriter.close();
 
         }

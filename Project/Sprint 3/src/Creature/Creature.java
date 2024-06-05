@@ -74,6 +74,10 @@ public abstract class Creature {
                 return new Salamander();
             case "Spider":
                 return new Spider();
+            case "Ninja Dragon":
+                return new NinjaDragon();
+            case "PirateDragon":
+                return new PirateDragon();
             default:
                 throw new IllegalArgumentException("Unknown creature type: " + creatureType);
         }
