@@ -382,10 +382,6 @@ public class WindowPanel extends JPanel {
         add(dragonCardPool);
     }
 
-    public DragonCardPool getDragonCardPool() {
-        return dragonCardPool;
-    }
-
     /**
      * Adds creature labels to each square panel on the game board.
      *
@@ -494,5 +490,9 @@ public class WindowPanel extends JPanel {
 
     public ArrayList<CavePanel> getCavePanels() {
         return cavePanels;
+    }
+
+    public DragonCardPool getDragonCardPool() {
+        return dragonCardPool;
     }
 }
