@@ -41,8 +41,8 @@ public class WindowPanel extends JPanel {
     private final int cardSize = 60;     // Size of dragon cards
     private final Color caveColor = new Color(128, 64, 0); // Color for caves
 
-    private final int width = 1000;      // Width of the panel
-    private final int height = 900;      // Height of the panel
+    private final int width = 1600;      // Width of the panel
+    private final int height = 1500;      // Height of the panel
 
     private ArrayList<SquarePanel> boardPanels = new ArrayList<>(); // Panels for each square
     private ArrayList<CavePanel> cavePanels = new ArrayList<>();    // Panels for each cave
@@ -56,8 +56,8 @@ public class WindowPanel extends JPanel {
 
     private ArrayList<Cave> caves = new ArrayList<>();
 
-    private int centerX = 500;
-    private int centerY = 400;
+    private int centerX = width/2;
+    private int centerY = height/2;
 
     private final BoardArray boardArray = BoardArray.getInstance();
 
@@ -220,26 +220,12 @@ public class WindowPanel extends JPanel {
     }
 
     private void drawCaveForCard() {
-        Random random = new Random();
-        int caveCounter = 0;
-        int caveIndex = 0;
-        int maxCaves = 4;
-        ArrayList<SquarePanel> chosenPanels = new ArrayList<>();
-
             for (Cave cave:caves){
-                SquarePanel chosenPanel = boardPanels.get(cave.getCavePosition());
-                int cardX = chosenPanel.getX();
-                int cardY = chosenPanel.getY();
                 int caveX = 0;
                 int caveY = 0;
 
                 // Determine the position for the cave relative to the selected square
                 double angle = angles.get(cave.getCavePosition());
-                double offsetAngle = Math.PI / 4; // This can be adjusted if necessary
-
-//                // Calculate cave positions with a larger radius to place them outside the perimeter
-//                caveX = (int) (centerX + (radius + 1.5 * squareSize) * Math.cos(angle));
-//                caveY = (int) (centerY + (radius + 1.5 * squareSize) * Math.sin(angle));
 
                 // Calculate x and y position based on angle and radius
                 caveX = (int) (centerX + (radius+75) * Math.cos(angle) - squareSize / 2);
@@ -385,7 +371,7 @@ public class WindowPanel extends JPanel {
      */
     private void placeDragonCardPool()
     {
-        int dragonPoolSideLength = (width/3); //Dynamic dragon pool size so that it always scales with screen size
+        int dragonPoolSideLength = (int) radius; //Dynamic dragon pool size so that it always scales with screen size
         int dragonCardPoolX = (width - dragonPoolSideLength) / 2;
         int dragonCardPoolY = (height - dragonPoolSideLength) / 2;
         DragonCardPool dragonCardPool = new DragonCardPool();
@@ -496,7 +482,6 @@ public class WindowPanel extends JPanel {
         // Draw the background image
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
-            g.drawOval(683,443,100,100);
         }
     }
 
