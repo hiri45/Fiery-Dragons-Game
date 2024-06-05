@@ -115,7 +115,7 @@ public class DragonTokenPanel extends JPanel {
      * @param newY The new y-coordinate for the token.
      */
     public void moveDragonToken(int newX, int newY) {
-        setX(newX);
+        setX(newX+squareSize/2);
         setY(newY);
         updatePosition();
         repaint();
