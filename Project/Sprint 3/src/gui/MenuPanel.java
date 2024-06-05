@@ -14,11 +14,11 @@ import java.awt.event.ActionListener;
  */
 public class MenuPanel extends JPanel{
     private static MenuPanel instance;
-    private JLabel titleLabel;
+    private JLabel gameTitle;
     JPanel menuButtonPanel;
     private JButton startButton,loadButton;
-    private Font titleGameont = new Font("Times New Roman", Font.PLAIN, 90);
-    private Font basicFont = new Font("Times New Roman", Font.PLAIN, 30);
+    private Font titleGameFont = new Font("Impact", Font.BOLD, 90);
+    private Font basicFont = new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 80);
     private String gameChoice;
     private SaveLoad saveLoad;
     private WindowPanel gameWindow;
@@ -26,11 +26,14 @@ public class MenuPanel extends JPanel{
 
     private MenuPanel(JFrame frame) {
         this.frame = frame;
-        this.setBounds(150, 100, 600, 150);
+        //this.setBounds(150, 100, 600, 150);
         this.setBackground(Color.black);
-        titleLabel = new JLabel("Fiery Dragons");
-        titleLabel.setForeground(Color.white);
-        titleLabel.setFont(titleGameont);
+
+        gameTitle = new JLabel("Fiery Dragons");
+        gameTitle.setForeground(Color.white);
+        gameTitle.setFont(titleGameFont);
+        gameTitle.setHorizontalAlignment(JLabel.CENTER); // Center the title label
+
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,15 +50,19 @@ public class MenuPanel extends JPanel{
         };
 
         menuButtonPanel = new JPanel();
-        menuButtonPanel.setBounds(350, 400, 200, 100);
+        menuButtonPanel.setLayout(new BoxLayout(menuButtonPanel, BoxLayout.Y_AXIS));
+        //menuButtonPanel.setBounds(350, 400, 200, 100);
         menuButtonPanel.setBackground(Color.black);
 
         startButton = new JButton("START");
         startButton.setBackground(Color.black);
+        startButton.setFocusPainted(false); // Remove focus border
         startButton.setForeground(Color.white);
         startButton.setFont(basicFont);
         startButton.addActionListener(actionListener);
         startButton.setActionCommand("start");
+        startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         loadButton = new JButton("LOAD");
         loadButton.setBackground(Color.black);
@@ -63,9 +70,13 @@ public class MenuPanel extends JPanel{
         loadButton.setFont(basicFont);
         loadButton.addActionListener(actionListener);
         loadButton.setActionCommand("load");
+        loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        this.add(titleLabel);
+
+
+        this.add(gameTitle);
         menuButtonPanel.add(startButton);
+        menuButtonPanel.add(Box.createVerticalStrut(30)); // Add vertical space between buttons
         menuButtonPanel.add(loadButton);
 
     }
@@ -104,7 +115,7 @@ public class MenuPanel extends JPanel{
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             frame.add(scrollPane);
         } else if (gameChoice.equals("load")) {
-            saveLoad = new SaveLoad();
+            saveLoad = new SaveLoad(gameWindow);
             saveLoad.loadGame();
             gameWindow = saveLoad.getWindowPanel();
             JScrollPane scrollPane = new JScrollPane(gameWindow);
