@@ -69,6 +69,14 @@ public class WindowPanel extends JPanel {
 
     private ArrayList<Double> angles = new ArrayList<Double>();
 
+    public int getVolcanoCardCount() {
+        return volcanoCardCount;
+    }
+
+    public int getSquaresPerVC() {
+        return squaresPerVC;
+    }
+
     /**
      * Constructor for WindowPanel. Sets up the board by creating squares, caves,
      * and dragon cards, and configures basic panel settings.
@@ -108,22 +116,23 @@ public class WindowPanel extends JPanel {
         }
 
     }
-    public static WindowPanel getInstance(int numberOfPlayers,int volcanoCardCount, int squaresPerVC){
-        if(instance == null){
-            instance = new WindowPanel(numberOfPlayers,volcanoCardCount,squaresPerVC);
+
+    public static WindowPanel getInstance(int numberOfPlayers, int volcanoCardCount, int squaresPerVC) {
+        if (instance == null) {
+            instance = new WindowPanel(numberOfPlayers, volcanoCardCount, squaresPerVC);
         }
         return instance;
     }
 
     public static WindowPanel getInstance() {
         if (instance == null) {
-            instance = new WindowPanel(2,8,3); // Default to standard board if no number is provided
+            instance = new WindowPanel(4, 8, 3);
         }
         return instance;
     }
 
-    public static void resetInstance(int numberOfPlayers) {
-        instance = new WindowPanel(numberOfPlayers, instance.volcanoCardCount, instance.squaresPerVC);
+    public static void resetInstance(int numberOfPlayers, int volcanoCardCount, int squaresPerVC) {
+        instance = new WindowPanel(numberOfPlayers, volcanoCardCount, squaresPerVC);
     }
 
     /**
@@ -284,6 +293,7 @@ public class WindowPanel extends JPanel {
         DragonTokenPanel dragonTokenPanel = new DragonTokenPanel(x+squareSize/2, y, dragonToken, offsetX, offsetY, Color.red);
         dragonTokenPanel.setBounds(x+squareSize/2, y, 50, 50); // Set size and position of the token panel.
         this.add(dragonTokenPanel, 0); // Add the token panel to this WindowPanel at the lowest z-index.
+        dragonTokenPanels.add(dragonTokenPanel);
 
     }
     /**

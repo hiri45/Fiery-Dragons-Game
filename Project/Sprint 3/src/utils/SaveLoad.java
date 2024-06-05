@@ -1,6 +1,7 @@
 package src.utils;
 
 import src.Creature.Creature;
+import src.board.BoardArray;
 import src.board.Cave;
 import src.board.DragonCard;
 import src.gui.CavePanel;
@@ -33,11 +34,19 @@ public class SaveLoad {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("savedGame.txt"));
             int playerAmount = Integer.parseInt(bufferedReader.readLine());
+            int volcanoCardAmount = Integer.parseInt(bufferedReader.readLine());
+            int volcanoCardSquaresAmount = Integer.parseInt(bufferedReader.readLine());
             int playerTurn = Integer.parseInt(bufferedReader.readLine());
+            BoardArray boardArray = BoardArray.getInstance();
+            boardArray.setVolcanoCardCount(volcanoCardAmount);
+            boardArray.setSquaresPerVC(volcanoCardSquaresAmount);
 
+            boardArray.addVolcanoCards(volcanoCardAmount,volcanoCardSquaresAmount);
+            boardArray.addPosition();
             // Loading details regarding the player
-            WindowPanel.resetInstance(playerAmount);
+            WindowPanel.resetInstance(playerAmount,volcanoCardAmount,volcanoCardSquaresAmount);
             windowPanel = WindowPanel.getInstance();
+
             playerManager.setPlayerTurn(playerTurn);
             playerManager.setPlayerCount(playerAmount);
 
@@ -93,6 +102,10 @@ public class SaveLoad {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("savedGame.txt"));
             // save the player details
             bufferedWriter.write(""+playerManager.getPlayerCount());
+            bufferedWriter.newLine();
+            bufferedWriter.write(""+windowPanel.getVolcanoCardCount());
+            bufferedWriter.newLine();
+            bufferedWriter.write(""+windowPanel.getSquaresPerVC());
             bufferedWriter.newLine();
             bufferedWriter.write(""+playerManager.getPlayerTurn());
             bufferedWriter.newLine();
