@@ -12,6 +12,7 @@
 package src.board;
 
 import src.Creature.Creature;
+import src.Creature.Salamander;
 import src.actors.DragonToken;
 import src.utils.PlayerManager;
 
@@ -78,7 +79,7 @@ public class VolcanoCard {
     public void initialiseSquares(ArrayList<Creature> creatures) {
         int counter = 0;
         for (int i=0;i<squareCount; i++){
-            if (counter >= creatures.size()){
+            if (counter == creatures.size()){
                 counter = 0;
             }
             squares.add(new Square(creatures.get(counter)));
@@ -92,12 +93,14 @@ public class VolcanoCard {
      */
     public void initialiseCave() {
         BoardArray boardArray = BoardArray.getInstance();
+        Random random = new Random();
         int min = 0;
         int max = squareCount-1;
-        int randomNumber = (int)(Math.random() * (max - min + 1)) + min;
+        int randomNumber = random.nextInt(max);
         if (this.hasCave && cave == null) {
             Creature creature = boardArray.getCaveCreatures().get(0);
             cave = new Cave(creature, squares.get(randomNumber).getPosition());
+
             boardArray.setCaveCreatures(creature);
 
         }

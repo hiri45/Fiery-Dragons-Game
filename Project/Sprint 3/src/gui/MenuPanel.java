@@ -93,8 +93,8 @@ public class MenuPanel extends JPanel{
             BoardArray boardArray = BoardArray.getInstance();
             boardArray.setVolcanoCardCount(vCCount);
             boardArray.setSquaresPerVC(squaresPerVC);
+
             boardArray.addVolcanoCards(vCCount,squaresPerVC);
-            System.out.println(boardArray.getSquares().size());
             boardArray.addPosition();
 
             gameWindow = WindowPanel.getInstance(numberOfPlayers,vCCount,squaresPerVC);

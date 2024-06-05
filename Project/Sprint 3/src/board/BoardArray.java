@@ -20,8 +20,6 @@ import java.util.Collections;
 public class BoardArray {
 
     private ArrayList<VolcanoCard> board = new ArrayList<>();
-    private ArrayList<VolcanoCard> caveCards = new ArrayList<>();
-    private ArrayList<VolcanoCard> nonCaveCards = new ArrayList<>();
 
     private ArrayList<DragonCard> dragonCards = new ArrayList<>();
 
@@ -58,7 +56,7 @@ public class BoardArray {
         int i = 0;
         int noCaves = 0;
         int alternatingCaveMaxBoardSize = 7;
-        if (volcanoCardCount < 7 )
+        if (volcanoCardCount < alternatingCaveMaxBoardSize )
             while (i < volcanoCardCount){
                 if (noCaves < 4){
                     board.add(new VolcanoCard(squaresPerVC,true));
@@ -73,20 +71,16 @@ public class BoardArray {
             }
         else{
             while (i < volcanoCardCount) {
-                if (i % 2 == 0){
+                if (i % 2 == 0 && noCaves < 4){
                     board.add(new VolcanoCard(squaresPerVC,true));
                     noCaves ++;
                 }else{
                     board.add(new VolcanoCard(squaresPerVC,false));
                 }
                 i+= 1;
-                if (noCaves > 4){
-                    break;
-                }
             }
         }
-        System.out.println(noCaves);
-        System.out.println(board.size());
+//        Collections.shuffle(board);
         initialiseCardsWithCreatures();
     }
     private void initialiseCardsWithCreatures(){
@@ -109,48 +103,18 @@ public class BoardArray {
             squares.addAll(volcanoCard.getSquares());
         }
     }
-
-
-
-
-    /**
-     * Shuffles cave and non-cave cards separately and combines them into the main board array.
-     */
-//    public void shuffleAndCombine(){
-//        //This only shuffles the cards in a fixed location, but should be okay for first sprint.
-//        Collections.shuffle(caveCards);
-//        Collections.shuffle(nonCaveCards);
-//
-//        // Determine the maximum size to iterate to
-//        int maxSize = caveCards.size() + nonCaveCards.size();
-//
-//        // Alternate between cave and non-cave cards
-//        for (int i = 0, j = 0, k = 0; i < maxSize; i++) {
-//            if (i % 2 == 0 && j < caveCards.size()) {
-//                // On even iterations, add from caveCards if available
-//                board.add(caveCards.get(j));
-//                j++;
-//            } else if (k < nonCaveCards.size()) {
-//                // On odd iterations, or if caveCards are exhausted, add from nonCaveCards
-//                board.add(nonCaveCards.get(k));
-//                k++;
-//            }
-//        }
-//        for(VolcanoCard volcanoCard: this.getBoard()){
-//            squares.addAll(volcanoCard.getSquares());
-//        }
-//    }
     /**
      * Sets starting positions for each VolcanoCard and fixes their position.
      */
     public void addPosition(){
         //add the starting position to each volcano card
         int counter = 0;
-        board.get(0).setStartPosition(counter);
-        counter += 3;
-        for (int i = 1; i < volcanoCardCount; i ++){
+//        board.get(0).setStartPosition(counter);
+//        counter += squaresPerVC;
+        System.out.println(board.size());
+        for (int i = 0; i < volcanoCardCount; i ++){
             board.get(i).setStartPosition(counter);
-            counter += 3;
+            counter += squaresPerVC;
         }
         for (int i = 0; i < volcanoCardCount; i ++){
             board.get(i).setFixedPositions();
