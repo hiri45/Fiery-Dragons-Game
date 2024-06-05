@@ -50,6 +50,8 @@ public class WindowPanel extends JPanel {
     private Image backgroundImage;
     private SaveLoad saveLoad;
     private ArrayList<DragonTokenPanel> dragonTokenPanels;
+    private DragonCardPool dragonCardPool;
+
 
 
     private int volcanoCardCount,squaresPerVC;
@@ -378,7 +380,7 @@ public class WindowPanel extends JPanel {
         int dragonPoolSideLength = (int) radius; //Dynamic dragon pool size so that it always scales with screen size
         int dragonCardPoolX = (width - dragonPoolSideLength) / 2;
         int dragonCardPoolY = (height - dragonPoolSideLength) / 2;
-        DragonCardPool dragonCardPool = new DragonCardPool();
+        dragonCardPool = new DragonCardPool();
         dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
         add(dragonCardPool);
     }
@@ -498,5 +500,9 @@ public class WindowPanel extends JPanel {
 
     public ArrayList<CavePanel> getCavePanels() {
         return cavePanels;
+    }
+
+    public DragonCardPool getDragonCardPool() {
+        return dragonCardPool;
     }
 }

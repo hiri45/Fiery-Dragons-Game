@@ -14,6 +14,8 @@ public class DragonCardPool extends JPanel {
     public Creature[] creatureArray = {new Bat(), new BabyDragon(), new Salamander(), new Spider()};
     public Creature[] enemy = {new PirateDragon(), new PirateDragon()};
     public Creature[] specialCreature = {new NinjaDragon()};
+    public ArrayList<DragonCard> dragonCards = new ArrayList<>();
+    public BoardArray boardArray = BoardArray.getInstance();
 
     /**
      * Constructor for the DragonCardPool class.
@@ -29,7 +31,7 @@ public class DragonCardPool extends JPanel {
      */
     private void generateDragonCards() {
         // Loop to create all type of dragon cards and then randomize before placing them on the board
-        ArrayList<DragonCard> dragonCards = new ArrayList<>();
+        //dragonCards = new ArrayList<>();
         for (Creature i : creatureArray) {
             for (int j = 1; j <= 3; j++) {
                 DragonCard card = new DragonCard(i, j);
@@ -52,12 +54,29 @@ public class DragonCardPool extends JPanel {
 
         // Collections.shuffle(dragonCards); // This shuffles the dragon cards arrayList so we can randomize placement of the dragon cards
         BoardArray boardArray = BoardArray.getInstance();
+        Collections.shuffle(dragonCards); // This shuffles the dragon cards arrayList so we can randomize placement of the dragon cards
         boardArray.setDragonCards(dragonCards);
         // Adds dragon cards to dragon card pool panel
         for (DragonCard i : dragonCards) {
             add(i);
         }
     }
+
+    public ArrayList<DragonCard> getDragonCards() {
+        return dragonCards;
+    }
+
+    public void setDragonCards(ArrayList<DragonCard> dragonCards) {
+        this.dragonCards = dragonCards;
+        removeAll();
+        for (DragonCard card : dragonCards) {
+            add(card);
+        }
+        boardArray.setDragonCards(dragonCards);
+        revalidate();
+        repaint();
+    }
+
 
     @Override
     /**

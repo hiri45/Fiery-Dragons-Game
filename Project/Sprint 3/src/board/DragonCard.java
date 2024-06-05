@@ -50,6 +50,13 @@ public class DragonCard extends JPanel {
         updateAppearance();
     }
 
+    public boolean isFlipped() {
+        if (flipped) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * Method to check if the card should flip.
      */

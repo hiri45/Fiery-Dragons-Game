@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="created load button, savefile.txt and implementing loading and saving on SaveLoad file">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" afterDir="false" />
+    <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="saving and loading for dragon cards completed">
       <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/WindowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/WindowPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/savedGame.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/utils/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/utils/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/utils/SaveLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/utils/SaveLoad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/PlayerManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +22,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="hhet0002 &lt;hhet0002@student.monash.edu&gt;" />
         <option value="Hirun &lt;hhet0002@student.monash.edu&gt;" />
       </list>
     </option>
@@ -51,20 +44,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Game.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Sprint__3__Branch",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Romi/Desktop/FIT3077/CL_Monday06pm_Team003/Project/Sprint 3",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "advanced.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Game.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Sprint__3__Branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Romi/Desktop/FIT3077/CL_Monday06pm_Team003/Project/Sprint 3&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\himes\IdeaProjects\CL_Monday06pm_Team003\Project\Sprint 3\Sprint 3 Documentation" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.Game" />
@@ -81,6 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Game" />
         <item itemvalue="Application.Game" />
       </list>
     </recent_temporary>
@@ -158,7 +157,39 @@
       <option name="project" value="LOCAL" />
       <updated>1717406169328</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="saving and loading for a dragon tokens position is now saved on the game">
+      <option name="closed" value="true" />
+      <created>1717469891085</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717469891085</updated>
+    </task>
+    <task id="LOCAL-00010" summary="made changes to menu panel to ensure that game menu looks a bit nicer">
+      <option name="closed" value="true" />
+      <created>1717472227456</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717472227456</updated>
+    </task>
+    <task id="LOCAL-00011" summary="changes made to sprint 4 UML with saving,loading and menu panel">
+      <option name="closed" value="true" />
+      <created>1717478760864</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717478760864</updated>
+    </task>
+    <task id="LOCAL-00012" summary="saving and loading for dragon cards completed">
+      <option name="closed" value="true" />
+      <created>1717568140214</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717568140214</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -170,6 +201,10 @@
     <MESSAGE value="menu screen created which goes to game panel when start button pressed" />
     <MESSAGE value="menu screen created which goes to game panel when start button pressed, documentation added for new files" />
     <MESSAGE value="created load button, savefile.txt and implementing loading and saving on SaveLoad file" />
-    <option name="LAST_COMMIT_MESSAGE" value="created load button, savefile.txt and implementing loading and saving on SaveLoad file" />
+    <MESSAGE value="saving and loading for a dragon tokens position is now saved on the game" />
+    <MESSAGE value="made changes to menu panel to ensure that game menu looks a bit nicer" />
+    <MESSAGE value="changes made to sprint 4 UML with saving,loading and menu panel" />
+    <MESSAGE value="saving and loading for dragon cards completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="saving and loading for dragon cards completed" />
   </component>
 </project>
