@@ -13,10 +13,7 @@
 package src.gui;
 
 import src.actors.DragonToken;
-import src.board.BoardArray;
-import src.board.Cave;
-import src.board.Square;
-import src.board.VolcanoCard;
+import src.board.*;
 import src.utils.MovementManager;
 import src.utils.PlayerManager;
 import src.utils.SaveLoad;
@@ -84,6 +81,7 @@ public class WindowPanel extends JPanel {
 
         createSquaresAndCaves();
         placeDragonCardPool();
+        placeBeaverWizardCard();
         MovementManager movementManager = MovementManager.getInstance();
         movementManager.setWindowPanel(this);
         displayCurrentPlayer();
@@ -381,6 +379,13 @@ public class WindowPanel extends JPanel {
         dragonCardPool.setBounds(dragonCardPoolX, dragonCardPoolY, dragonPoolSideLength, dragonPoolSideLength);
         add(dragonCardPool);
     }
+
+    private void placeBeaverWizardCard(){
+        BeaverWizardCard beaverWizardCard = new BeaverWizardCard();
+        beaverWizardCard.setBounds(width -150, 50, 100,100);
+        add(beaverWizardCard);
+    }
+
 
     /**
      * Adds creature labels to each square panel on the game board.

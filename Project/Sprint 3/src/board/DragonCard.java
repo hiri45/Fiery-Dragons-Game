@@ -102,6 +102,7 @@ public class DragonCard extends JPanel {
                     revalidate();
                     repaint();
                     playerManager.updatePlayerTurn();
+                    playerManager.handOverTurn();
                     windowPanel.displayCurrentPlayer();
                 }
             } else {
@@ -114,6 +115,7 @@ public class DragonCard extends JPanel {
                     currentPlayer.move(-(this.creatureAmount));
                 }
                 playerManager.updatePlayerTurn();
+                playerManager.handOverTurn();
                 windowPanel.displayCurrentPlayer();
             }
         }

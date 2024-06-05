@@ -84,10 +84,14 @@ public class PlayerManager {
             players.get(playerTurn).setTurn(true);
 
         }
+
+
+    }
+
+    public void handOverTurn(){
         // Show popup for the next player's turn
         WindowPanel.getInstance().showPlayerTurnPopup("Bad Luck! It's now Player " + (playerTurn) + "'s turn.");
         BoardArray.getInstance().resetDragonCards();
-
     }
     /**
      * Adds a specified number of players to the game and assigns them dragon tokens.
