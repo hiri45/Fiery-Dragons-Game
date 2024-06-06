@@ -29,6 +29,10 @@ public class VolcanoCard {
     private ArrayList<Square> squares;     // List of squares on this card
     private Cave cave;                     // Cave associated with this card, if any
 
+    public int getStartPosition() {
+        return startPosition;
+    }
+
     private int startPosition;             // Position of the first square on the card
 
     /**

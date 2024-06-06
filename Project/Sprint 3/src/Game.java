@@ -11,7 +11,7 @@
 package src;
 
 // Import necessary classes from other packages
-import src.board.BoardArray;
+
 import src.gui.GameBoard;
 
 // Main class for the Fiery Dragons game

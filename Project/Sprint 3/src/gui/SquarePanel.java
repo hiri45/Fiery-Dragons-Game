@@ -11,6 +11,7 @@
 
 package src.gui;
 
+import src.Creature.Creature;
 import src.board.Square;
 
 import javax.swing.*;
@@ -25,6 +26,14 @@ public class SquarePanel extends JPanel {
     private int x;         // X-coordinate of the panel's position
     private int y;         // Y-coordinate of the panel's position
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     /**
      * Constructs a SquarePanel with the specified Square object and position.
      *
@@ -36,6 +45,7 @@ public class SquarePanel extends JPanel {
         this.square = square;
         this.x = x;
         this.y = y;
+        updateCreatureImage();
 
         // Visual customization of the panel
         setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Outline the square with a black border
@@ -67,5 +77,17 @@ public class SquarePanel extends JPanel {
      */
     public int getYCoordinate() {
         return y;
+    }
+
+    /**
+     * when saving and this method ensures that the images for the volcano card squares get updated
+     * */
+    public void updateCreatureImage() {
+        this.removeAll();
+        ImageIcon image = square.ui();
+        JLabel label = new JLabel(image);
+        add(label); // Add the new label with the creature's image
+        revalidate(); // Revalidate the panel to update the UI
+        repaint(); // Repaint the panel to show the new image
     }
 }

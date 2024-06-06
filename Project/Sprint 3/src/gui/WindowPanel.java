@@ -50,6 +50,8 @@ public class WindowPanel extends JPanel {
     private Image backgroundImage;
     private SaveLoad saveLoad;
     private ArrayList<DragonTokenPanel> dragonTokenPanels;
+    private ArrayList<SquarePanel> squarePanels;
+
     private DragonCardPool dragonCardPool;
 
     private int dragonCardPoolX, dragonCardPoolY;
@@ -63,7 +65,12 @@ public class WindowPanel extends JPanel {
     private int centerX = width/2;
     private int centerY = height/2;
 
+
     private final BoardArray boardArray = BoardArray.getInstance();
+
+
+    ArrayList<Square> squares = boardArray.getSquares();
+
 
     private double radius;
 
@@ -75,6 +82,10 @@ public class WindowPanel extends JPanel {
 
     public int getSquaresPerVC() {
         return squaresPerVC;
+    }
+
+    public ArrayList<VolcanoCard> getVolcanoCards() {
+        return volcanoCards;
     }
 
     /**
@@ -101,6 +112,7 @@ public class WindowPanel extends JPanel {
         PlayerManager playerManager = PlayerManager.getInstance(); // Get the singleton instance of PlayerManager
         playerManager.addPlayers(numberOfPlayers); // Add players to the game
         this.dragonTokenPanels = new ArrayList<>(); // Initialize the dragonTokenPanels list
+        this.squarePanels = new ArrayList<>();
 
         createSquaresAndCaves();
         placeDragonCardPool();
@@ -182,7 +194,7 @@ public class WindowPanel extends JPanel {
     private void createSquaresAndCaves() {
         int totalSquares = volcanoCardCount*squaresPerVC;
         BoardArray boardArray = BoardArray.getInstance();
-        ArrayList<Square> squares = boardArray.getSquares();
+        squares = boardArray.getSquares();
         int index = 0;
 
         // Calculate the radius based on the number of squares and square size
@@ -232,6 +244,7 @@ public class WindowPanel extends JPanel {
         squarePanel.setBounds(x, y, squareSize, squareSize);
         boardPanels.add(squarePanel);
         this.add(squarePanel);
+        squarePanels.add(squarePanel);
     }
 
     private void drawCaveForCard() {
@@ -247,7 +260,7 @@ public class WindowPanel extends JPanel {
                 caveY = (int) (centerY + (radius+75) * Math.sin(angle) - squareSize / 2);
 
                 addCave(cave, caveX, caveY);
-                System.out.println("cave: " + cave.getCavePosition() + ","+ caveX + ","+ caveY);
+                //System.out.println("cave: " + cave.getCavePosition() + ","+ caveX + ","+ caveY);
             }
     }
 
@@ -412,7 +425,7 @@ public class WindowPanel extends JPanel {
     public void addCreatureLabels() {
         // Retrieve the singleton instance of BoardArray to access squares and volcano cards.
 
-        ArrayList<Square> squares = boardArray.getSquares();
+        //ArrayList<Square> squares = boardArray.getSquares();
         ArrayList<JLabel> labels = new ArrayList<>();
 
         // Create labels for each square based on the creature type it contains.
@@ -490,6 +503,16 @@ public class WindowPanel extends JPanel {
     /**Method to get all DragonTokenPanels*/
     public ArrayList<DragonTokenPanel> getDragonTokenPanels() {
         return dragonTokenPanels;
+    }
+
+    /**Method to get a specific DragonTokenPanel by index*/
+    public SquarePanel getSquarePanel(int index) {
+        return squarePanels.get(index);
+    }
+
+    /**Method to get all DragonTokenPanels*/
+    public ArrayList<SquarePanel> getSquarePanels() {
+        return squarePanels;
     }
 
     /**
