@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class BeaverWizardCard extends JPanel {
     private final ImageIcon front = new ImageIcon(Objects.requireNonNull(DragonCard.class.getResource("/src/Images/beaverwizard resize.png")));
-    private ArrayList<DragonToken> used = new ArrayList<DragonToken>();
+    private final ArrayList<DragonToken> used = new ArrayList<DragonToken>();
 
     public BeaverWizardCard() {
         JLabel label = new JLabel(front);
