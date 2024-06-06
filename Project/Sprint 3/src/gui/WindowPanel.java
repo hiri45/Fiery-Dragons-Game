@@ -505,11 +505,6 @@ public class WindowPanel extends JPanel {
         return dragonTokenPanels;
     }
 
-    /**Method to get a specific DragonTokenPanel by index*/
-    public SquarePanel getSquarePanel(int index) {
-        return squarePanels.get(index);
-    }
-
     /**Method to get all DragonTokenPanels*/
     public ArrayList<SquarePanel> getSquarePanels() {
         return squarePanels;
