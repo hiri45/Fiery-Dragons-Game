@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CL_Monday06pm_Team003:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d50318fe-e280-434d-9dcb-1fada7225ce3" name="Changes" comment="resolving saving and loading with new changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/board/BoardArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/board/BoardArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/board/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/board/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/board/VolcanoCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/board/VolcanoCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/MenuPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/SquarePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/SquarePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/gui/WindowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/gui/WindowPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/Sprint 3/src/utils/SaveLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Sprint 3/src/utils/SaveLoad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/BoardArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/BoardArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/VolcanoCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/VolcanoCard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/CavePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/MenuPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/WindowPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/CreatureType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/DragonCardArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/board/Square.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPanel$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/DragonCardPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/SquarePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/gui/SquarePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/Controller.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/SaveLoad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CL_Monday06pm_Team003/src/utils/SaveLoad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedGame.txt" beforeDir="false" afterPath="$PROJECT_DIR$/savedGame.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedGame.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,8 +67,8 @@
     "git-widget-placeholder": "Sprint__3__Branch",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Romi/Desktop/FIT3077/CL_Monday06pm_Team003/Project/Sprint 3",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "advanced.settings"
   }
