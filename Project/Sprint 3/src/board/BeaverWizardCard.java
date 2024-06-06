@@ -46,7 +46,7 @@ public class BeaverWizardCard extends JPanel {
 
             int randomNumber = rand.nextInt(5)+1;
             currentPlayer.move(randomNumber);
-            playerManager.updatePlayerTurn();
+            //playerManager.updatePlayerTurn(); //un comment if you want player turn to change after using card. Currently will not
             WindowPanel.getInstance().showPlayerTurnPopup("You have used the Beaver Wizards power and have moved " +
                     (randomNumber) + " spots!");
             BoardArray.getInstance().resetDragonCards();
