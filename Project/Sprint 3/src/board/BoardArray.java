@@ -13,11 +13,17 @@ package src.board;
 
 
 import src.Creature.*;
+import src.gui.MenuPanel;
+import src.gui.WindowPanel;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class BoardArray {
+
+    public void setBoard(ArrayList<VolcanoCard> board) {
+        this.board = board;
+    }
 
     private ArrayList<VolcanoCard> board = new ArrayList<>();
 
@@ -26,6 +32,7 @@ public class BoardArray {
     private ArrayList<Square> squares = new ArrayList<>();
 
     private ArrayList<Creature> caveCreatures = new ArrayList<>();
+
 
     public static BoardArray instance;
 
@@ -80,10 +87,11 @@ public class BoardArray {
                 i+= 1;
             }
         }
-//        Collections.shuffle(board);
+
         initialiseCardsWithCreatures();
     }
-    private void initialiseCardsWithCreatures(){
+
+    public void initialiseCardsWithCreatures(){
         BabyDragon babyDragon = new BabyDragon();
         Bat bat = new Bat();
         Salamander salamander = new Salamander();
@@ -103,6 +111,7 @@ public class BoardArray {
             squares.addAll(volcanoCard.getSquares());
         }
     }
+
     /**
      * Sets starting positions for each VolcanoCard and fixes their position.
      */
@@ -111,7 +120,7 @@ public class BoardArray {
         int counter = 0;
 //        board.get(0).setStartPosition(counter);
 //        counter += squaresPerVC;
-        System.out.println(board.size());
+        //System.out.println(board.size());
         for (int i = 0; i < volcanoCardCount; i ++){
             board.get(i).setStartPosition(counter);
             counter += squaresPerVC;

@@ -1,15 +1,11 @@
 package src.utils;
 
 import src.Creature.Creature;
-import src.board.BoardArray;
-import src.board.Cave;
-import src.board.DragonCard;
-import src.gui.CavePanel;
-import src.gui.DragonCardPool;
-import src.gui.DragonTokenPanel;
-import src.gui.WindowPanel;
+import src.board.*;
+import src.gui.*;
 
 import javax.swing.*;
+import java.awt.desktop.SystemEventListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -42,11 +38,10 @@ public class SaveLoad {
             BoardArray boardArray = BoardArray.getInstance();
             boardArray.setVolcanoCardCount(volcanoCardAmount);
             boardArray.setSquaresPerVC(volcanoCardSquaresAmount);
-
-            boardArray.addVolcanoCards(volcanoCardAmount,volcanoCardSquaresAmount);
+            boardArray.addVolcanoCards(volcanoCardAmount, volcanoCardSquaresAmount);
             boardArray.addPosition();
 
-            WindowPanel.resetInstance(playerAmount,volcanoCardAmount,volcanoCardSquaresAmount);
+            WindowPanel.resetInstance(playerAmount, volcanoCardAmount, volcanoCardSquaresAmount);
             windowPanel = WindowPanel.getInstance();
 
             // Loading details regarding the player
@@ -93,6 +88,34 @@ public class SaveLoad {
             }
             dragonCardPool.setDragonCards(dragonCards);
 
+            // save volcano card squares and positions
+            ArrayList<VolcanoCard> volcanoCards = windowPanel.getVolcanoCards();
+            for (VolcanoCard volcanoCard : volcanoCards) {
+                int volcStartPos = Integer.parseInt(bufferedReader.readLine());
+                volcanoCard.setStartPosition(volcStartPos);
+            }
+
+            ArrayList<SquarePanel> squarePanels = windowPanel.getSquarePanels();
+            for (SquarePanel squarePanel : squarePanels) {
+                String[] position = bufferedReader.readLine().split(",");
+                int x = Integer.parseInt(position[0]);
+                int y = Integer.parseInt(position[1]);
+                squarePanel.setX(x);
+                squarePanel.setY(y);
+            }
+            // Set creatures for squares of each volcano card
+            for (VolcanoCard volcanoCard : volcanoCards) {
+                ArrayList<Square> squares = volcanoCard.getSquares();
+                String[] creatureNames = bufferedReader.readLine().split(", ");
+                for (int i = 0; i < squares.size(); i++) {
+                    Creature creature = Creature.stringToCreature(creatureNames[i]);
+                    squares.get(i).setCreature(creature);
+                }
+                for(SquarePanel squarePanel:squarePanels){
+                    squarePanel.updateCreatureImage();
+                }
+            }
+
             bufferedReader.close();
 
         }
@@ -130,8 +153,6 @@ public class SaveLoad {
             ArrayList<CavePanel> cavePanels = windowPanel.getCavePanels();
             for (CavePanel cavePanel : cavePanels) {
                 Cave cave = cavePanel.getCave();
-                System.out.println(cavePanel.getX()+""+cavePanel.getY());
-                System.out.println(cave.getCavePosition());
                 bufferedWriter.write(cave.getCreatureType().getName());
                 bufferedWriter.newLine();
                 bufferedWriter.write(cave.getCavePosition()+ "," + cavePanel.getX() + "," + cavePanel.getY());
@@ -149,6 +170,31 @@ public class SaveLoad {
                 bufferedWriter.write("" + card.getCreatureAmount());
                 bufferedWriter.newLine();
                 bufferedWriter.write("" + card.isFlipped());
+                bufferedWriter.newLine();
+            }
+
+            // save volcano card squares and positions
+            ArrayList<VolcanoCard> volcanoCards = windowPanel.getVolcanoCards();
+            for (VolcanoCard volcanoCard:volcanoCards){
+                bufferedWriter.write("" + volcanoCard.getStartPosition());
+                bufferedWriter.newLine();
+            }
+
+            ArrayList<SquarePanel> squarePanels = windowPanel.getSquarePanels();
+            for (SquarePanel squarePanel: squarePanels) {
+                bufferedWriter.write(squarePanel.getXCoordinate() + "," + squarePanel.getYCoordinate());
+                bufferedWriter.newLine();
+            }
+            for (VolcanoCard volcanoCard : volcanoCards) {
+                ArrayList<Square> squares = volcanoCard.getSquares();
+                StringBuilder creaturesStringBuilder = new StringBuilder(); // to ensure that the creatures are separated properly with ","
+                for (int i = 0; i < squares.size(); i++) {
+                    creaturesStringBuilder.append(squares.get(i).getCreature().getName());
+                    if (i < squares.size() - 1) {
+                        creaturesStringBuilder.append(", ");
+                    }
+                }
+                bufferedWriter.write(creaturesStringBuilder.toString());
                 bufferedWriter.newLine();
             }
 

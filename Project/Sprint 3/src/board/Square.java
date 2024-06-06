@@ -21,6 +21,10 @@ import javax.swing.*;
  * and interactions based on the creature type they contain.
  */
 public class Square {
+    public void setCreature(Creature creature) {
+        this.creature = creature;
+    }
+
     private Creature creature; // The creature associated with this square
     private int position;          // The position of this square on the board
 

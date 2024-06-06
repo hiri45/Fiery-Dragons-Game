@@ -19,16 +19,17 @@ public class MenuPanel extends JPanel{
     private JButton startButton,loadButton;
     private Font titleGameFont = new Font("Impact", Font.BOLD, 90);
     private Font basicFont = new Font("Gill Sans MT Ext Condensed Bold", Font.PLAIN, 80);
+
     private String gameChoice;
     private SaveLoad saveLoad;
     private WindowPanel gameWindow;
-    private JFrame frame;
+    private static JFrame frame;
 
     private MenuPanel(JFrame frame) {
         this.frame = frame;
-        //this.setBounds(150, 100, 600, 150);
         this.setBackground(Color.black);
 
+        // setting game data
         gameTitle = new JLabel("Fiery Dragons");
         gameTitle.setForeground(Color.white);
         gameTitle.setFont(titleGameFont);
@@ -49,21 +50,22 @@ public class MenuPanel extends JPanel{
             }
         };
 
+        // menu button data
         menuButtonPanel = new JPanel();
         menuButtonPanel.setLayout(new BoxLayout(menuButtonPanel, BoxLayout.Y_AXIS));
-        //menuButtonPanel.setBounds(350, 400, 200, 100);
         menuButtonPanel.setBackground(Color.black);
 
+        // start button data
         startButton = new JButton("START");
         startButton.setBackground(Color.black);
-        startButton.setFocusPainted(false); // Remove focus border
+        startButton.setFocusPainted(false);
         startButton.setForeground(Color.white);
         startButton.setFont(basicFont);
         startButton.addActionListener(actionListener);
         startButton.setActionCommand("start");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
+        // load button data
         loadButton = new JButton("LOAD");
         loadButton.setBackground(Color.black);
         loadButton.setForeground(Color.white);
@@ -89,6 +91,13 @@ public class MenuPanel extends JPanel{
         }
         return instance;
     }
+    public static MenuPanel getInstance() {
+        if (instance == null) {
+            instance = new MenuPanel(frame);
+        }
+        return instance;
+    }
+
     /**
      * this method is used to open up the WindowPanel which is the game to be played, you can either choose to start a new game
      * or load up a saved version of the game
